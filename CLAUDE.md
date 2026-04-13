@@ -7,11 +7,11 @@
 
 ## Identidad del Proyecto
 
-**Nombre:** Proyecto Innovaciones Pedagógicas e Internacionalización  
-**Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)  
-**Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git  
-**Versión actual:** 0.3.0  
-**Última sesión:** 2026-04-13 (Sesión 4 — PocketBase pendiente)
+**Nombre:** Proyecto Innovaciones Pedagógicas e Internacionalización
+**Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
+**Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
+**Versión actual:** 0.5.0
+**Última sesión:** 2026-04-13 (Sesión 6 — Scroll animations, publication categories, Vercel bug)
 
 ---
 
@@ -21,9 +21,9 @@
 |------|-----------|
 | Frontend | Next.js 14 (App Router) + TypeScript estricto |
 | Estilos | TailwindCSS personalizado (colores ULEAM) |
-| Backend | PocketBase (SQLite embebido, REST auto-generada) |
-| Auth | PocketBase Email/Password + middleware Next.js |
-| Deploy | Vercel (frontend) + PocketBase Cloud/VPS (backend) |
+| Base de datos | Estática en `/lib/data.ts` (in-memory vía `/lib/db.ts`) |
+| Auth | Credenciales hardcodeadas + middleware Next.js cookies |
+| Deploy | ⏳ Pendiente — Vercel da 404 NOT_FOUND |
 | CI/CD | GitHub Actions (planificado) |
 
 ### Colores ULEAM
@@ -36,17 +36,31 @@
 
 | Módulo | Estado | % |
 |--------|--------|---|
-| Landing Page | ✅ Completo | 100% |
-| Admin Panel (CRUD) | ✅ Completo | 100% |
+| Landing Page | ✅ Completo + scroll animations | 100% |
+| Admin Panel (CRUD) | ✅ Completo + categoría publicaciones | 100% |
 | Middleware / Auth | ✅ Completo | 100% |
-| TypeScript Types | ✅ Completo | 100% |
+| TypeScript Types | ✅ Completo (Publication.category added) | 100% |
 | Documentación | ✅ Actualizada | 100% |
 | Git + GitHub | ✅ Pusheado | 100% |
-| **PocketBase Backend** | ⏳ Pendiente | 0% |
+| Base de datos estática | ✅ data.ts + db.ts in-memory | 100% |
 | **Contenido real** | ⏳ Pendiente | 0% |
-| **Deploy** | ⏳ Pendiente | 0% |
+| **Deploy Vercel** | ❌ 404 NOT_FOUND | 0% |
 
-**Progreso general: ~70%**
+**Progreso general: ~95%**
+
+---
+
+## Cambios Recientes (Sesión 6)
+
+- ✅ Team fotos más pequeñas (h-48) con animación scroll lento izquierda
+- ✅ Arturo ORCID: `0000-0002-7017-9443` | Jhonny ORCID: `0000-0001-6053-6307`
+- ✅ Jhonny es "Colíder del Proyecto"
+- ✅ Placeholder videos eliminados (Episodio 1 y 2)
+- ✅ Publications ahora tienen `category`: `regional` | `libros` | `impacto`
+- ✅ Publications con scroll animation + filter buttons por categoría
+- ✅ Admin panel actualizado con campo category
+- ⚠️ Admin panel NO escribe en data.ts: cambios se pierden al reiniciar
+- ❌ Vercel deploy: 404 NOT_FOUND persistente
 
 ---
 
@@ -62,6 +76,7 @@ proyecto-innovacion-e-internacionalizacion/
 ├── QWEN.md                        # Contexto para Qwen (espejo de CLAUDE.md)
 ├── README.md                      # Documentación general
 ├── RESUMEN.md                     # Resumen ejecutivo
+├── DEPLOY_GUIDE.md               # Guía de despliegue
 ├── setup-pocketbase.ps1          # Script PowerShell automatización
 │
 ├── Imágenes (root):
@@ -89,7 +104,7 @@ proyecto-innovacion-e-internacionalizacion/
     ├── app/
     │   ├── layout.tsx
     │   ├── page.tsx               # Landing page (1 sola página con secciones)
-    │   ├── globals.css
+    │   ├── globals.css            # + animate-scroll-left keyframes
     │   └── admin/                 # Panel admin (11 páginas)
     │       ├── layout.tsx
     │       ├── page.tsx
@@ -98,7 +113,7 @@ proyecto-innovacion-e-internacionalizacion/
     │       ├── members/page.tsx
     │       ├── videos/page.tsx
     │       ├── categories/page.tsx
-    │       ├── publications/page.tsx
+    │       ├── publications/page.tsx  # + category field
     │       ├── news/page.tsx
     │       ├── activities/page.tsx
     │       └── settings/page.tsx
@@ -107,41 +122,47 @@ proyecto-innovacion-e-internacionalizacion/
     │   ├── Footer.tsx
     │   ├── Hero.tsx
     │   ├── About.tsx
-    │   ├── TeamSection.tsx
+    │   ├── TeamSection.tsx        # + scroll animation
     │   ├── VideoGallery.tsx
     │   ├── VideoCard.tsx
-    │   ├── PublicationsSection.tsx
+    │   ├── PublicationsSection.tsx  # + categories + scroll
     │   ├── NewsSection.tsx
     │   ├── ActivityGallery.tsx
     │   ├── Contact.tsx
     │   └── admin/DataTable.tsx
     ├── lib/
-    │   ├── pocketbase.ts          # Cliente PocketBase + helpers
-    │   └── admin-auth.ts          # Helpers de autenticación admin
-    ├── types/index.ts             # 8 interfaces TypeScript
+    │   ├── data.ts                # Datos estáticos (fuente de verdad)
+    │   └── db.ts                  # In-memory CRUD (se pierde al reiniciar)
+    ├── types/index.ts             # 9 interfaces TypeScript (+ category)
     └── public/images/             # 6 imágenes estáticas
 ```
 
 ---
 
-## PocketBase — Schema de Colecciones
+## Base de Datos Estática
 
-> **Estado:** Aún no configurado. Ver `POCKETBASE_SETUP.md` para guía completa.
+> **Estado:** Migrado de PocketBase a datos estáticos en Sesión 5.
 
-### 8 Colecciones Requeridas
+### Estructura (`/lib/data.ts`)
 
-| # | Colección | Campos clave |
-|---|-----------|-------------|
-| 1 | `members` | name, role, orcid, email, photo, is_leader, order |
-| 2 | `publications` | title, authors, abstract, publication_date, doi_link, pdf_file, type |
-| 3 | `videos` | title, youtube_url, embed_id, category→video_categories, is_featured |
-| 4 | `video_categories` | name, slug, description, order, is_active |
-| 5 | `news` | title, content, featured_image, published_date, is_featured, slug |
-| 6 | `activities` | title, description, photos[], event_date, category |
-| 7 | `site_settings` | key, value, section |
-| 8 | `users` | email, password, role (built-in PocketBase) |
+| Entidad | Campos | Notas |
+|---------|--------|-------|
+| `members` | name, role, orcid, email, photo, is_leader, order | 2 miembros |
+| `publications` | title, authors, abstract, publication_date, doi_link, type, **category** | category: regional/libros/impacto |
+| `videos` | title, youtube_url, embed_id, category, is_featured | ⚠️ Vacío actualmente |
+| `video_categories` | name, slug, description, order, is_active | 3 categorías |
+| `news` | title, content, published_date, is_featured, slug | 2 noticias |
+| `activities` | title, description, photos[], event_date, category | 2 actividades |
+| `site_settings` | key, value, section | 6 settings |
+| `adminUsers` | email, password, role | 2 usuarios |
 
-**API Rules para todas:** `List/View: true` | `Create/Update/Delete: @request.auth.id != ""`
+### Cómo editar datos permanentes
+1. Abrir `/lib/data.ts`
+2. Modificar los arrays directamente
+3. El servidor reinicia y carga los nuevos datos
+
+### ⚠️ Admin panel no es persistente
+Los cambios desde el admin se guardan en memoria (db.ts) y se pierden al reiniciar el servidor. Para datos permanentes, editar `data.ts` directamente.
 
 ---
 
@@ -167,10 +188,6 @@ npm run dev           # http://localhost:3000
 npm run build
 npm run start
 
-# PocketBase (Windows)
-pocketbase.exe serve --http=127.0.0.1:8090
-# Panel PocketBase: http://127.0.0.1:8090/_/
-
 # Git
 git status
 git add .
@@ -182,20 +199,18 @@ git push
 
 ## Tareas Pendientes (Próximas Sesiones)
 
-### Sesión 4 — PocketBase Backend
-- [ ] Descargar PocketBase v0.22+
-- [ ] Ejecutar servidor local
-- [ ] Crear 8 colecciones según schema
-- [ ] Configurar API rules
-- [ ] Crear 2 usuarios admin
-- [ ] Probar login desde panel Next.js
+### Sesión 7 — Resolver Deploy Vercel
+- [ ] **Opción A (recomendada):** Mover contenido de `frontend/` a la raíz del proyecto
+- [ ] **Opción B:** Crear nuevo proyecto Vercel desde cero apuntando a `frontend/`
+- [ ] **Opción C:** Deploy en Railway o Netlify como alternativa
+- [ ] Testing en producción
+- [ ] Dominio personalizado (opcional)
 
 ### Sesión 5 — Contenido Real (de Word Docs)
 - [ ] Extraer info de `Proyecto_Innovaciones_Pedagógicas 2025.docx` → sección About
 - [ ] Extraer videos de `contenidoYoube.docx` → CRUD Videos
 - [ ] Extraer contactos de `contactos.docx` → Configuración sitio
 - [ ] Extraer publicaciones de `publicaciones.docx` → CRUD Publicaciones
-- [ ] Seed database con datos reales vía admin panel
 
 ### Sesión 6 — Páginas Adicionales (Opcional)
 - [ ] `/videos` — galería completa con filtros
@@ -203,26 +218,19 @@ git push
 - [ ] `/noticias` — listado paginado
 - [ ] `/noticias/[slug]` — detalle de noticia
 
-### Sesión 7 — Deploy
-- [ ] Configurar PocketBase Cloud o VPS
-- [ ] Deploy frontend a Vercel
-- [ ] Variables de entorno en Vercel
-- [ ] Testing en producción
-- [ ] Dominio personalizado (opcional)
-
 ---
 
 ## Instrucciones para el Asistente IA
 
 ### Cuando trabajes en este proyecto:
 1. **Lee este archivo primero** para entender el contexto completo
-2. **Consulta `POCKETBASE_SETUP.md`** antes de tocar configuración de backend
-3. **El frontend usa App Router** de Next.js 14 — no usar `pages/`
-4. **TypeScript estricto** — siempre tipar correctamente, sin `any`
-5. **TailwindCSS** — no añadir CSS inline salvo casos muy específicos
-6. **Colores ULEAM:** usar `#003366` (azul) y `#FFD700` (dorado) con las clases definidas en `tailwind.config.ts`
-7. **No tocar `middleware.ts`** sin entender la lógica de auth completa
-8. **Actualizar documentación** cuando hagas cambios significativos
+2. **El frontend usa App Router** de Next.js 14 — no usar `pages/`
+3. **TypeScript estricto** — siempre tipar correctamente, sin `any`
+4. **TailwindCSS** — no añadir CSS inline salvo casos muy específicos
+5. **Colores ULEAM:** usar `#003366` (azul) y `#FFD700` (dorado) con las clases definidas en `tailwind.config.ts`
+6. **No tocar `middleware.ts`** sin entender la lógica de auth completa
+7. **Actualizar documentación** cuando hagas cambios significativos
+8. **Sincronizar CLAUDE.md y QWEN.md** con los mismos cambios
 
 ### Convenciones de código:
 - Componentes: PascalCase (`TeamSection.tsx`)
@@ -231,10 +239,10 @@ git push
 - Archivos de config: kebab-case
 - Commits: Conventional Commits (`feat:`, `fix:`, `docs:`, etc.)
 
-### Build stats (v0.3.0 — referencia):
+### Build stats (v0.5.0 — referencia):
 ```
 ✓ 14 páginas estáticas generadas
-✓ First Load JS: 87.3 kB - 118 kB
+✓ First Load JS: 87.3 kB - 110 kB
 ✓ Middleware: 26.6 kB
 ✓ Sin errores
 ```
@@ -255,6 +263,6 @@ Este proyecto soporta trabajo con múltiples asistentes IA:
 
 ---
 
-**Última actualización:** 2026-04-13 (Sesión 4)  
-**Versión:** 0.3.0  
-**Estado:** Landing + Admin listos — PocketBase pendiente
+**Última actualización:** 2026-04-13 (Sesión 6)
+**Versión:** 0.5.0
+**Estado:** App funcional en local ✅ — Deploy Vercel 404 ❌

@@ -3,11 +3,12 @@
 > Archivo de contexto para Qwen Code (y asistentes IA compatibles).
 > Archivo equivalente: `CLAUDE.md` (mismo contenido, para Claude Code).
 
-**Última actualización:** 2026-04-13 (Sesión 5 - Migración a base de datos estática)
+**Última actualización:** 2026-04-13 (Sesión 6 - Scroll animations, publication categories, Vercel bug)
 **Estado:** ✅ Landing Page + Admin Panel COMPLETOS - Sin dependencias externas
-**Versión:** 0.4.0
-**Build:** ✅ Exitoso (14 páginas estáticas)
-**Git:** ⚠️ Pendiente hacer commit y push
+**Versión:** 0.5.0
+**Build local:** ✅ Exitoso (14 páginas estáticas)
+**Deploy Vercel:** ❌ 404 NOT_FOUND - Pendiente resolver
+**Git:** ✅ Push completado
 
 **GitHub:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 
@@ -19,8 +20,11 @@
 - ✅ Hero con logo, título animado, CTAs, background animado
 - ✅ About con descripción, objetivos y highlights
 - ✅ Team con fotos, roles, ORCID, emails (líder y colíder)
+  - ✅ Fotos más pequeñas (h-48) con animación scroll lento hacia la izquierda
+  - ✅ Arturo ORCID: 0000-0002-7017-9443 | Jhonny ORCID: 0000-0001-6053-6307
+  - ✅ Jhonny es "Colíder del Proyecto"
 - ✅ Videos con filtros por categoría y YouTube embeds
-- ✅ Publicaciones científicas con tipos y links DOI
+- ✅ Publicaciones científicas con categorías y scroll animado
 - ✅ Noticias con imágenes destacadas
 - ✅ Galería de actividades con lightbox modal
 - ✅ Contacto con redes sociales, info equipo y formulario
@@ -34,7 +38,7 @@
 - ✅ CRUD Miembros (nombre, rol, ORCID, email, líder, orden)
 - ✅ CRUD Videos (YouTube URL parsing, categorías, destacados)
 - ✅ CRUD Categorías de videos (auto-slug, orden, activo)
-- ✅ CRUD Publicaciones (tipo, DOI, autores, resumen)
+- ✅ CRUD Publicaciones (tipo, DOI, autores, resumen, categoría)
 - ✅ CRUD Noticias (contenido, slug auto, destacadas)
 - ✅ CRUD Actividades (categoría, fecha, descripción)
 - ✅ Configuración del sitio (redes sociales, info general)
@@ -47,6 +51,7 @@
 - ✅ Middleware usa cookies para sesiones
 - ✅ Sin dependencias externas (PocketBase elimininado)
 - ✅ Datos editables directamente en el archivo TypeScript
+- ⚠️ Admin panel NO escribe en data.ts: cambios se pierden al reiniciar servidor
 
 ### Estructura Técnica (100%)
 - ✅ Next.js 14 con App Router y TypeScript estricto
@@ -102,11 +107,25 @@
 - [ ] `/noticias` - Listado completo paginado
 - [ ] `/noticias/[slug]` - Detalle de noticia completo
 
-### 3. Deploy - 1-2 horas estimadas
-- [ ] Deploy frontend a Vercel
-- [ ] Configurar variables de entorno en Vercel (si aplica)
-- [ ] Configurar dominio personalizado (opcional)
+### 3. Deploy - ❌ BUG ACTIVO - 404 NOT_FOUND en Vercel
+- [ ] **BUG:** Vercel responde 404 en todas las rutas tras deploy
+- [ ] **Intentos fallidos:**
+  - `vercel.json` en raíz con buildCommand/outputDirectory
+  - `vercel.json` en `frontend/`
+  - `package.json` en raíz delegando a `frontend/`
+  - Root Directory = `frontend` en Vercel settings
+  - Root Directory vacío + `vercel.json` en raíz
+  - Limpiar todo (solo `frontend/` con su `package.json`)
+- [ ] **Posibles causas:**
+  - Vercel no detecta correctamente `frontend/` como app Next.js
+  - Estructura monorepo no configurada correctamente
+- [ ] **Posibles soluciones:**
+  - **Opción A:** Mover todo el contenido de `frontend/` a la raíz del proyecto
+  - **Opción B:** Configurar Vercel como monorepo con `vercel.json` + `rootDirectory`
+  - **Opción C:** Crear nuevo proyecto Vercel apuntando directamente a `frontend/`
+  - **Opción D:** Deploy en Railway/Netlify como alternativa
 - [ ] Testing en producción
+- [ ] Configurar dominio personalizado (opcional)
 
 ---
 
@@ -208,18 +227,20 @@ git push
 | Archivos creados | 65+ |
 | Components React | 13 |
 | Páginas Next.js | 14 |
-| Interfaces TypeScript | 8 |
+| Interfaces TypeScript | 8+ (category field added to Publication) |
 | Build size (First Load) | 87.3 kB - 110 kB |
 | Middleware size | 26.6 kB |
-| Líneas de código | ~12,500 |
-| Commits en GitHub | 1 |
+| Líneas de código | ~13,000 |
+| Commits en GitHub | 5+ |
 | Landing page | 100% |
 | Admin panel | 100% |
 | Base de datos estática | 100% |
+| Publicaciones por categoría | ✅ Regional, Libros, De Impacto |
+| Animaciones scroll | ✅ Team + Publications |
 | Contenido real | 0% |
-| Deploy | 0% |
+| Deploy Vercel | ❌ 404 NOT_FOUND |
 
-**PROGRESO GENERAL: ~100% completado (sin contenido real aún)**
+**PROGRESO GENERAL: ~95% completado (deploy pendiente)**
 
 ---
 
@@ -261,7 +282,10 @@ proyecto-innovacion-e-internacionalizacion/
 
 1. **Sin dependencias externas** → No requiere PocketBase ni bases de datos
 2. **Contenido real** → Editar `/lib/data.ts` para agregar datos reales de los Word documents
-3. **Deploy** → Solo necesitas deploy del frontend (Vercel recomendado)
+3. **Deploy Vercel** → ❌ BUG 404 NOT_FOUND activo (ver sección Deploy arriba)
+4. **Admin panel no es persistente** → Los cambios se pierden al reiniciar el servidor
+5. **Videos placeholder eliminados** → Agregar videos reales desde admin o data.ts
+6. **Publicaciones** → Ahora tienen campo `category`: `regional` | `libros` | `impacto`
 
 ---
 
@@ -278,8 +302,8 @@ Este proyecto soporta trabajo con múltiples asistentes IA:
 
 ---
 
-**ÚLTIMA ACTUALIZACIÓN:** 2026-04-13 (Sesión 4 — Documentación multi-IA sincronizada)
-**PRÓXIMA SESIÓN:** Instalar PocketBase y crear colecciones
-**VERSIÓN:** 0.3.0
-**ESTADO:** ✅ Listo para demo (con datos de ejemplo)
+**ÚLTIMA ACTUALIZACIÓN:** 2026-04-13 (Sesión 6 — Scroll animations, publication categories, Vercel 404 bug)
+**PRÓXIMA SESIÓN:** Resolver deploy Vercel o migrar a Railway/Netlify
+**VERSIÓN:** 0.5.0
+**ESTADO:** ✅ App funcional en local, ❌ Deploy 404 en Vercel
 **REPOSITORIO:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
