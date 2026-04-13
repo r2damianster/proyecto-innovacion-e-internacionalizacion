@@ -1,0 +1,92 @@
+export interface Member {
+  id: string;
+  name: string;
+  role: string;
+  orcid?: string;
+  email: string;
+  photo?: string;
+  is_leader: boolean;
+  order: number;
+  created: string;
+  updated: string;
+}
+
+export interface Publication {
+  id: string;
+  title: string;
+  authors: string;
+  abstract: string;
+  publication_date: string;
+  doi_link?: string;
+  pdf_file?: string;
+  type: 'article' | 'conference' | 'book' | 'other';
+  created: string;
+  updated: string;
+}
+
+export interface VideoCategory {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  cover_image?: string;
+  order: number;
+  is_active: boolean;
+  created: string;
+  updated: string;
+}
+
+export interface Video {
+  id: string;
+  title: string;
+  youtube_url: string;
+  description?: string;
+  embed_id: string;
+  category: string; // relation to video_categories
+  published_date: string;
+  order: number;
+  is_featured: boolean;
+  tags?: string[];
+  created: string;
+  updated: string;
+}
+
+export interface News {
+  id: string;
+  title: string;
+  content: string;
+  featured_image?: string;
+  published_date: string;
+  is_featured: boolean;
+  slug: string;
+  created: string;
+  updated: string;
+}
+
+export interface Activity {
+  id: string;
+  title: string;
+  description?: string;
+  photos: string[];
+  event_date: string;
+  category: string;
+  created: string;
+  updated: string;
+}
+
+export interface SiteSettings {
+  id: string;
+  key: string;
+  value: string;
+  section: string;
+  created: string;
+  updated: string;
+}
+
+export interface AdminUser {
+  id: string;
+  email: string;
+  role: 'admin';
+  created: string;
+  updated: string;
+}

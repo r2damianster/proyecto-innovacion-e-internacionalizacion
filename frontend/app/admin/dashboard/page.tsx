@@ -1,0 +1,125 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import PocketBase from 'pocketbase';
+
+const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
+
+export default function AdminDashboardPage() {
+  const [stats, setStats] = useState({
+    members: 0,
+    videos: 0,
+    publications: 0,
+    news: 0,
+    activities: 0,
+    categories: 0,
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        const pb = new PocketBase(PB_URL);
+        const [members, videos, publications, news, activities, categories] = await Promise.all([
+          pb.collection('members').getList(1, 1),
+          pb.collection('videos').getList(1, 1),
+          pb.collection('publications').getList(1, 1),
+          pb.collection('news').getList(1, 1),
+          pb.collection('activities').getList(1, 1),
+          pb.collection('video_categories').getList(1, 1),
+        ]);
+
+        setStats({
+          members: members.totalItems,
+          videos: videos.totalItems,
+          publications: publications.totalItems,
+          news: news.totalItems,
+          activities: activities.totalItems,
+          categories: categories.totalItems,
+        });
+      } catch (error) {
+        console.error('Error loading stats:', error);
+        // Use zeros if PocketBase is not available
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadStats();
+  }, []);
+
+  const statCards = [
+    { label: 'Miembros', value: stats.members, icon: '👥', color: 'bg-blue-500', link: '/admin/members' },
+    { label: 'Videos', value: stats.videos, icon: '🎬', color: 'bg-red-500', link: '/admin/videos' },
+    { label: 'Categorías', value: stats.categories, icon: '📁', color: 'bg-purple-500', link: '/admin/categories' },
+    { label: 'Publicaciones', value: stats.publications, icon: '📄', color: 'bg-green-500', link: '/admin/publications' },
+    { label: 'Noticias', value: stats.news, icon: '📰', color: 'bg-yellow-500', link: '/admin/news' },
+    { label: 'Actividades', value: stats.activities, icon: '📸', color: 'bg-pink-500', link: '/admin/activities' },
+  ];
+
+  if (loading) {
+    return <div className="text-center py-12">Cargando...</div>;
+  }
+
+  return (
+    <div>
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-uleam-blue mb-2">Dashboard</h2>
+        <p className="text-gray-600">Bienvenido al panel de administración</p>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {statCards.map((stat) => (
+          <Link
+            key={stat.label}
+            href={stat.link}
+            className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-4xl">{stat.icon}</span>
+              <div className={`${stat.color} text-white px-3 py-1 rounded-full text-sm font-bold`}>
+                {stat.value}
+              </div>
+            </div>
+            <h3 className="text-lg font-bold text-gray-800">{stat.label}</h3>
+            <p className="text-sm text-gray-500 mt-1">Click para gestionar</p>
+          </Link>
+        ))}
+      </div>
+
+      {/* Quick Actions */}
+      <div className="bg-white rounded-xl p-6 shadow-md">
+        <h3 className="text-xl font-bold text-uleam-blue mb-4">Acciones Rápidas</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Link href="/admin/members/new" className="px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition text-center font-medium">
+            + Nuevo Miembro
+          </Link>
+          <Link href="/admin/videos/new" className="px-4 py-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition text-center font-medium">
+            + Nuevo Video
+          </Link>
+          <Link href="/admin/news/new" className="px-4 py-3 bg-yellow-50 text-yellow-700 rounded-lg hover:bg-yellow-100 transition text-center font-medium">
+            + Nueva Noticia
+          </Link>
+          <Link href="/admin/publications/new" className="px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition text-center font-medium">
+            + Nueva Publicación
+          </Link>
+        </div>
+      </div>
+
+      {/* Info Box */}
+      <div className="mt-8 bg-gradient-to-r from-uleam-blue to-primary-700 text-white rounded-xl p-6 shadow-md">
+        <h3 className="text-xl font-bold mb-2">ℹ️ Información</h3>
+        <p className="text-gray-200 text-sm">
+          Para que el panel funcione completamente, necesitas tener PocketBase configurado.
+          Descarga PocketBase desde{' '}
+          <a href="https://pocketbase.io/docs/" target="_blank" className="text-uleam-gold underline">
+            pocketbase.io
+          </a>{' '}
+          y crea las colecciones según el schema definido.
+        </p>
+      </div>
+    </div>
+  );
+}
