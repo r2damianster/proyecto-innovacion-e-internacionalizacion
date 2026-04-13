@@ -1,10 +1,13 @@
 # 📦 Estado del Proyecto - Proyecto Innovaciones Pedagógicas ULEAM
 
-**Última actualización:** 2026-04-12 (Sesión 3 - Git push completado)
+> Archivo de contexto para Qwen Code (y asistentes IA compatibles).
+> Archivo equivalente: `CLAUDE.md` (mismo contenido, para Claude Code).
+
+**Última actualización:** 2026-04-13 (Sesión 4 - Documentación sincronizada)
 **Estado:** ✅ Landing Page + Admin Panel COMPLETOS - Código en GitHub
 **Versión:** 0.3.0
 **Build:** ✅ Exitoso (14 páginas estáticas)
-**Git:** ✅ Push a origin/main (commit 7b26b55)
+**Git:** ✅ Push a origin/main (commit d38b5d2)
 
 **GitHub:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 
@@ -53,12 +56,14 @@
 ### Git y Documentación (100%)
 - ✅ Repositorio en GitHub con push completado
 - ✅ .gitignore configurado
-- ✅ QWEN.md (este archivo)
+- ✅ CLAUDE.md (contexto para Claude Code)
+- ✅ QWEN.md (este archivo — contexto para Qwen Code)
 - ✅ CHANGELOG.md con historial completo
 - ✅ README.md con documentación general
 - ✅ POCKETBASE_SETUP.md con guía detallada
 - ✅ RESUMEN.md con resumen ejecutivo
 - ✅ .env.local.example con variables de entorno
+- ✅ Soporte multi-IA: Claude Code + Qwen Code
 
 ---
 
@@ -404,7 +409,22 @@ proyecto-innovacion-e-internacionalizacion/
 
 ---
 
-**ÚLTIMA ACTUALIZACIÓN:** 2026-04-12 (Sesión 3 - Git push completado)
+---
+
+## 🤖 Multi-IA: Claude Code + Qwen Code
+
+Este proyecto soporta trabajo con múltiples asistentes IA:
+
+| Asistente | Archivo de contexto | Config |
+|-----------|--------------------|----|
+| Claude Code | `CLAUDE.md` | `.claude/` |
+| Qwen Code | `QWEN.md` (este archivo) | `.qwen/settings.json` |
+
+**Ambos archivos deben mantenerse sincronizados** con el mismo estado del proyecto.
+
+---
+
+**ÚLTIMA ACTUALIZACIÓN:** 2026-04-13 (Sesión 4 — Documentación multi-IA sincronizada)
 **PRÓXIMA SESIÓN:** Instalar PocketBase y crear colecciones
 **VERSIÓN:** 0.3.0
 **ESTADO:** ✅ Listo para demo (con datos de ejemplo)

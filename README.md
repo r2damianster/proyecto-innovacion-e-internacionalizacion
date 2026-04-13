@@ -209,11 +209,26 @@ npm run start
 
 | Archivo | Descripción |
 |---------|-------------|
-| [QWEN.md](./QWEN.md) | Estado detallado y pendientes |
+| [CLAUDE.md](./CLAUDE.md) | Contexto completo para Claude Code |
+| [QWEN.md](./QWEN.md) | Contexto completo para Qwen Code |
 | [CHANGELOG.md](./CHANGELOG.md) | Historial de versiones |
 | [POCKETBASE_SETUP.md](./POCKETBASE_SETUP.md) | Guía paso a paso de PocketBase |
 | [RESUMEN.md](./RESUMEN.md) | Resumen ejecutivo del proyecto |
 | [README.md](./README.md) | Este archivo |
+
+---
+
+## 🤖 Asistentes IA Compatibles
+
+Este proyecto está configurado para trabajar con múltiples asistentes IA:
+
+| Asistente | Archivo de contexto | Cómo iniciar |
+|-----------|--------------------|----|
+| **Claude Code** | `CLAUDE.md` | `claude` en la terminal del proyecto |
+| **Qwen Code** | `QWEN.md` | Qwen carga este archivo automáticamente |
+
+Ambos archivos contienen el mismo contexto del proyecto y deben mantenerse sincronizados.
+Al iniciar sesión con cualquier IA, lee primero el archivo correspondiente para retomar el trabajo exactamente donde quedó.
 
 ---
 
@@ -286,8 +301,8 @@ Para preguntas o problemas técnicos:
 
 ---
 
-**Última actualización:** Abril 12, 2026  
-**Versión:** 0.3.0  
-**Estado:** ✅ Landing + Admin Listos - Falta PocketBase y contenido real  
+**Última actualización:** Abril 13, 2026  
+**Versión:** 0.3.1  
+**Estado:** ✅ Landing + Admin Listos — Falta PocketBase y contenido real  
 **Git:** ✅ Push completado a origin/main  
 **Próxima sesión:** Instalar PocketBase y crear colecciones
