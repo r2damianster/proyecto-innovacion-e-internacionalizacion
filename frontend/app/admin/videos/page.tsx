@@ -2,31 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import DataTable from '@/components/admin/DataTable';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
-
-interface Video {
-  id: string;
-  title: string;
-  youtube_url: string;
-  description?: string;
-  embed_id: string;
-  category: string;
-  published_date: string;
-  order: number;
-  is_featured: boolean;
-  category_name?: string;
-}
-
-interface Category {
-  id: string;
-  name: string;
-}
+import { getVideos, createVideo, updateVideo, deleteVideo, getAllVideoCategories } from '@/lib/db';
+import type { Video, VideoCategory } from '@/types';
 
 export default function AdminVideosPage() {
   const [videos, setVideos] = useState<Video[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<VideoCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingVideo, setEditingVideo] = useState<Video | null>(null);
@@ -47,32 +28,16 @@ export default function AdminVideosPage() {
 
   const loadData = async () => {
     try {
-      const pb = new PocketBase(PB_URL);
       const [videosRes, catsRes] = await Promise.all([
-        pb.collection('videos').getFullList({ sort: 'order', expand: 'category' }),
-        pb.collection('video_categories').getFullList({ sort: 'order' }),
+        getVideos(),
+        getAllVideoCategories(),
       ]);
       setVideos(videosRes as any);
       setCategories(catsRes as any);
     } catch (error) {
       console.error('Error loading videos:', error);
-      setVideos([
-        {
-          id: '1',
-          title: 'Episodio 1: Innovación en el Aula',
-          youtube_url: 'https://www.youtube.com/watch?v=example1',
-          description: 'Primer episodio',
-          embed_id: 'example1',
-          category: 'cat1',
-          published_date: '2025-01-15',
-          order: 1,
-          is_featured: true,
-        },
-      ]);
-      setCategories([
-        { id: 'cat1', name: 'Podcast - Innovación' },
-        { id: 'cat2', name: 'Podcast - Internacionalización' },
-      ]);
+      setVideos([]);
+      setCategories([]);
     } finally {
       setLoading(false);
     }
@@ -108,12 +73,11 @@ export default function AdminVideosPage() {
 
   const handleDelete = async (video: Video) => {
     try {
-      const pb = new PocketBase(PB_URL);
-      await pb.collection('videos').delete(video.id);
+      await deleteVideo(video.id);
       loadData();
     } catch (error) {
       console.error('Error deleting video:', error);
-      alert('Error al eliminar. Verifica que PocketBase esté configurado.');
+      alert('Error al eliminar video');
     }
   };
 
@@ -124,29 +88,28 @@ export default function AdminVideosPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const embed_id = extractEmbedId(formData.youtube_url);
-    
+
     if (!embed_id) {
       alert('URL de YouTube no válida');
       return;
     }
 
     try {
-      const pb = new PocketBase(PB_URL);
       const data = { ...formData, embed_id };
-      
+
       if (editingVideo) {
-        await pb.collection('videos').update(editingVideo.id, data);
+        await updateVideo(editingVideo.id, data as any);
       } else {
-        await pb.collection('videos').create(data);
+        await createVideo(data as any);
       }
-      
+
       resetForm();
       loadData();
     } catch (error) {
       console.error('Error saving video:', error);
-      alert('Error al guardar. Verifica que PocketBase esté configurado.');
+      alert('Error al guardar video');
     }
   };
 
@@ -155,11 +118,14 @@ export default function AdminVideosPage() {
     {
       key: 'category',
       label: 'Categoría',
-      render: (item: Video) => (
-        <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
-          {item.category_name || 'Sin categoría'}
-        </span>
-      ),
+      render: (item: Video) => {
+        const categoryName = (item as any).expand?.category?.name || 'Sin categoría';
+        return (
+          <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
+            {categoryName}
+          </span>
+        );
+      },
     },
     {
       key: 'published_date',

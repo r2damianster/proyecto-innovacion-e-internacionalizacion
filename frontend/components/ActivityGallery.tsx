@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { getActivities, type Activity } from '@/lib/pocketbase';
+import { getActivities } from '@/lib/db';
+import type { Activity } from '@/types';
 
 export default function ActivityGallery() {
   const [activities, setActivities] = useState<Activity[]>([]);

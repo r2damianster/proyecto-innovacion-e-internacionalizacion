@@ -2,14 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { getMembers, type Member } from '@/lib/pocketbase';
+import { getMembers } from '@/lib/db';
+import type { Member } from '@/types';
 
 export default function TeamSection() {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load members from PocketBase or use sample data
+    // Load members from static data or use sample data
     const loadMembers = async () => {
       try {
         const data = await getMembers();
@@ -64,7 +65,7 @@ export default function TeamSection() {
   const otherMembers = members.filter(m => !m.is_leader);
 
   return (
-    <section id="equipo" className="py-20 bg-gray-50">
+    <section id="equipo" className="py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -77,12 +78,15 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* Leaders */}
+        {/* Leaders with scrolling animation */}
         {leaders.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
-            {leaders.map((member) => (
-              <TeamCard key={member.id} member={member} featured />
-            ))}
+          <div className="mb-12">
+            <div className="animate-scroll-left flex gap-8 w-fit">
+              {/* Duplicate content for seamless loop */}
+              {[...leaders, ...leaders].map((member, idx) => (
+                <TeamCard key={`${member.id}-${idx}`} member={member} featured />
+              ))}
+            </div>
           </div>
         )}
 
@@ -118,12 +122,12 @@ export default function TeamSection() {
 function TeamCard({ member, featured = false }: { member: Member; featured?: boolean }) {
   return (
     <div
-      className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 ${
+      className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 flex-shrink-0 ${
         featured ? 'border-2 border-uleam-gold' : ''
       }`}
     >
-      {/* Photo */}
-      <div className={`relative ${featured ? 'h-80' : 'h-64'} bg-gray-200`}>
+      {/* Photo - smaller size */}
+      <div className={`relative ${featured ? 'h-48' : 'h-40'} bg-gray-200`}>
         {member.photo ? (
           <Image
             src={member.photo}
@@ -133,22 +137,22 @@ function TeamCard({ member, featured = false }: { member: Member; featured?: boo
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400">
-            <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
             </svg>
           </div>
         )}
         {featured && (
-          <div className="absolute top-4 right-4 bg-uleam-gold text-uleam-blue px-3 py-1 rounded-full text-sm font-bold">
+          <div className="absolute top-2 right-2 bg-uleam-gold text-uleam-blue px-2 py-0.5 rounded-full text-xs font-bold">
             {member.is_leader ? 'Líder' : 'Colíder'}
           </div>
         )}
       </div>
 
       {/* Info */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-uleam-blue mb-2">{member.name}</h3>
-        <p className="text-gray-600 mb-3">{member.role}</p>
+      <div className="p-4">
+        <h3 className="text-lg font-bold text-uleam-blue mb-1">{member.name}</h3>
+        <p className="text-gray-600 text-sm mb-2">{member.role}</p>
         
         {member.orcid && (
           <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">

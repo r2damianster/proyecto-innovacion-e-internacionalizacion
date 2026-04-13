@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
+import { getMembers, getVideos, getPublications, getNews, getActivities, getAllVideoCategories } from '@/lib/db';
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState({
@@ -20,27 +18,25 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     const loadStats = async () => {
       try {
-        const pb = new PocketBase(PB_URL);
-        const [members, videos, publications, news, activities, categories] = await Promise.all([
-          pb.collection('members').getList(1, 1),
-          pb.collection('videos').getList(1, 1),
-          pb.collection('publications').getList(1, 1),
-          pb.collection('news').getList(1, 1),
-          pb.collection('activities').getList(1, 1),
-          pb.collection('video_categories').getList(1, 1),
+        const [membersRes, videosRes, publicationsRes, newsRes, activitiesRes, categoriesRes] = await Promise.all([
+          getMembers(),
+          getVideos(),
+          getPublications(),
+          getNews(),
+          getActivities(),
+          getAllVideoCategories(),
         ]);
 
         setStats({
-          members: members.totalItems,
-          videos: videos.totalItems,
-          publications: publications.totalItems,
-          news: news.totalItems,
-          activities: activities.totalItems,
-          categories: categories.totalItems,
+          members: membersRes.length,
+          videos: videosRes.length,
+          publications: publicationsRes.length,
+          news: newsRes.length,
+          activities: activitiesRes.length,
+          categories: categoriesRes.length,
         });
       } catch (error) {
         console.error('Error loading stats:', error);
-        // Use zeros if PocketBase is not available
       } finally {
         setLoading(false);
       }
@@ -112,12 +108,8 @@ export default function AdminDashboardPage() {
       <div className="mt-8 bg-gradient-to-r from-uleam-blue to-primary-700 text-white rounded-xl p-6 shadow-md">
         <h3 className="text-xl font-bold mb-2">ℹ️ Información</h3>
         <p className="text-gray-200 text-sm">
-          Para que el panel funcione completamente, necesitas tener PocketBase configurado.
-          Descarga PocketBase desde{' '}
-          <a href="https://pocketbase.io/docs/" target="_blank" className="text-uleam-gold underline">
-            pocketbase.io
-          </a>{' '}
-          y crea las colecciones según el schema definido.
+          Los datos se almacenan en un archivo estático TypeScript. Para editar los datos, modifica el archivo <code className="bg-white/20 px-1 rounded">/lib/data.ts</code>.
+          Los cambios persistirán hasta que se reinicie el servidor.
         </p>
       </div>
     </div>

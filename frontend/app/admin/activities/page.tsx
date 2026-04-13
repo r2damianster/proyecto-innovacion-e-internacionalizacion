@@ -2,17 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import DataTable from '@/components/admin/DataTable';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
-
-interface Activity {
-  id: string;
-  title: string;
-  description?: string;
-  event_date: string;
-  category: string;
-}
+import { getActivities, createActivity, updateActivity, deleteActivity } from '@/lib/db';
+import type { Activity } from '@/types';
 
 export default function AdminActivitiesPage() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -33,8 +24,7 @@ export default function AdminActivitiesPage() {
 
   const loadActivities = async () => {
     try {
-      const pb = new PocketBase(PB_URL);
-      const records = await pb.collection('activities').getFullList({ sort: '-event_date' });
+      const records = await getActivities();
       setActivities(records as any);
     } catch (error) {
       console.error('Error loading activities:', error);
@@ -68,32 +58,29 @@ export default function AdminActivitiesPage() {
 
   const handleDelete = async (activity: Activity) => {
     try {
-      const pb = new PocketBase(PB_URL);
-      await pb.collection('activities').delete(activity.id);
+      await deleteActivity(activity.id);
       loadActivities();
     } catch (error) {
       console.error('Error deleting activity:', error);
-      alert('Error al eliminar. Verifica que PocketBase esté configurado.');
+      alert('Error al eliminar la actividad.');
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
-      const pb = new PocketBase(PB_URL);
-      
       if (editingActivity) {
-        await pb.collection('activities').update(editingActivity.id, formData);
+        await updateActivity(editingActivity.id, formData);
       } else {
-        await pb.collection('activities').create(formData);
+        await createActivity(formData as any);
       }
-      
+
       resetForm();
       loadActivities();
     } catch (error) {
       console.error('Error saving activity:', error);
-      alert('Error al guardar. Verifica que PocketBase esté configurado.');
+      alert('Error al guardar la actividad.');
     }
   };
 

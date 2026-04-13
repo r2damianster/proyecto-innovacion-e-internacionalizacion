@@ -2,24 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import DataTable from '@/components/admin/DataTable';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
-
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  description?: string;
-  order: number;
-  is_active: boolean;
-}
+import { getAllVideoCategories, createVideoCategory, updateVideoCategory, deleteVideoCategory } from '@/lib/db';
+import type { VideoCategory } from '@/types';
 
 export default function AdminCategoriesPage() {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<VideoCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [editingCategory, setEditingCategory] = useState<Category | null>(null);
+  const [editingCategory, setEditingCategory] = useState<VideoCategory | null>(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -35,37 +25,11 @@ export default function AdminCategoriesPage() {
 
   const loadCategories = async () => {
     try {
-      const pb = new PocketBase(PB_URL);
-      const records = await pb.collection('video_categories').getFullList({ sort: 'order' });
+      const records = await getAllVideoCategories();
       setCategories(records as any);
     } catch (error) {
       console.error('Error loading categories:', error);
-      setCategories([
-        {
-          id: '1',
-          name: 'Podcast - Innovación Pedagógica',
-          slug: 'podcast-innovacion',
-          description: 'Serie sobre innovaciones pedagógicas',
-          order: 1,
-          is_active: true,
-        },
-        {
-          id: '2',
-          name: 'Podcast - Internacionalización',
-          slug: 'podcast-internacionalizacion',
-          description: 'Serie sobre internacionalización',
-          order: 2,
-          is_active: true,
-        },
-        {
-          id: '3',
-          name: 'Entrevistas',
-          slug: 'entrevistas',
-          description: 'Entrevistas a investigadores',
-          order: 3,
-          is_active: true,
-        },
-      ]);
+      setCategories([]);
     } finally {
       setLoading(false);
     }
@@ -84,7 +48,7 @@ export default function AdminCategoriesPage() {
       .replace(/(^-|-$)/g, '');
   };
 
-  const handleEdit = (category: Category) => {
+  const handleEdit = (category: VideoCategory) => {
     setEditingCategory(category);
     setFormData({
       name: category.name,
@@ -96,37 +60,35 @@ export default function AdminCategoriesPage() {
     setShowForm(true);
   };
 
-  const handleDelete = async (category: Category) => {
+  const handleDelete = async (category: VideoCategory) => {
     try {
-      const pb = new PocketBase(PB_URL);
-      await pb.collection('video_categories').delete(category.id);
+      await deleteVideoCategory(category.id);
       loadCategories();
     } catch (error) {
       console.error('Error deleting category:', error);
-      alert('Error al eliminar. Verifica que PocketBase esté configurado.');
+      alert('Error al eliminar categoría');
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const slug = formData.slug || generateSlug(formData.name);
 
     try {
-      const pb = new PocketBase(PB_URL);
       const data = { ...formData, slug };
-      
+
       if (editingCategory) {
-        await pb.collection('video_categories').update(editingCategory.id, data);
+        await updateVideoCategory(editingCategory.id, data as any);
       } else {
-        await pb.collection('video_categories').create(data);
+        await createVideoCategory(data as any);
       }
-      
+
       resetForm();
       loadCategories();
     } catch (error) {
       console.error('Error saving category:', error);
-      alert('Error al guardar. Verifica que PocketBase esté configurado.');
+      alert('Error al guardar categoría');
     }
   };
 
@@ -136,7 +98,7 @@ export default function AdminCategoriesPage() {
     {
       key: 'is_active',
       label: 'Estado',
-      render: (item: Category) => (
+      render: (item: VideoCategory) => (
         <span className={`px-2 py-1 rounded text-xs font-bold ${item.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-700'}`}>
           {item.is_active ? 'Activo' : 'Inactivo'}
         </span>

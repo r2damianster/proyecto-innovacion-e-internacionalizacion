@@ -2,24 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import DataTable from '@/components/admin/DataTable';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
-
-interface NewsItem {
-  id: string;
-  title: string;
-  content: string;
-  published_date: string;
-  is_featured: boolean;
-  slug: string;
-}
+import { getNews, createNews, updateNews, deleteNews } from '@/lib/db';
+import type { News } from '@/types';
 
 export default function AdminNewsPage() {
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [editingNews, setEditingNews] = useState<NewsItem | null>(null);
+  const [editingNews, setEditingNews] = useState<News | null>(null);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -35,8 +25,7 @@ export default function AdminNewsPage() {
 
   const loadNews = async () => {
     try {
-      const pb = new PocketBase(PB_URL);
-      const records = await pb.collection('news').getFullList({ sort: '-published_date' });
+      const records = await getNews();
       setNews(records as any);
     } catch (error) {
       console.error('Error loading news:', error);
@@ -65,7 +54,7 @@ export default function AdminNewsPage() {
       .replace(/(^-|-$)/g, '');
   };
 
-  const handleEdit = (item: NewsItem) => {
+  const handleEdit = (item: News) => {
     setEditingNews(item);
     setFormData({
       title: item.title,
@@ -77,37 +66,35 @@ export default function AdminNewsPage() {
     setShowForm(true);
   };
 
-  const handleDelete = async (item: NewsItem) => {
+  const handleDelete = async (item: News) => {
     try {
-      const pb = new PocketBase(PB_URL);
-      await pb.collection('news').delete(item.id);
+      await deleteNews(item.id);
       loadNews();
     } catch (error) {
       console.error('Error deleting news:', error);
-      alert('Error al eliminar. Verifica que PocketBase esté configurado.');
+      alert('Error al eliminar noticia');
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const slug = formData.slug || generateSlug(formData.title);
 
     try {
-      const pb = new PocketBase(PB_URL);
       const data = { ...formData, slug };
-      
+
       if (editingNews) {
-        await pb.collection('news').update(editingNews.id, data);
+        await updateNews(editingNews.id, data as any);
       } else {
-        await pb.collection('news').create(data);
+        await createNews(data as any);
       }
-      
+
       resetForm();
       loadNews();
     } catch (error) {
       console.error('Error saving news:', error);
-      alert('Error al guardar. Verifica que PocketBase esté configurado.');
+      alert('Error al guardar noticia');
     }
   };
 
@@ -116,7 +103,7 @@ export default function AdminNewsPage() {
     {
       key: 'published_date',
       label: 'Fecha',
-      render: (item: NewsItem) => (
+      render: (item: News) => (
         <span className="text-sm text-gray-600">
           {new Date(item.published_date).toLocaleDateString('es-EC')}
         </span>
@@ -125,7 +112,7 @@ export default function AdminNewsPage() {
     {
       key: 'is_featured',
       label: 'Destacado',
-      render: (item: NewsItem) => (
+      render: (item: News) => (
         <span className={`px-2 py-1 rounded text-xs font-bold ${item.is_featured ? 'bg-uleam-gold text-uleam-blue' : 'bg-gray-200 text-gray-700'}`}>
           {item.is_featured ? 'Sí' : 'No'}
         </span>

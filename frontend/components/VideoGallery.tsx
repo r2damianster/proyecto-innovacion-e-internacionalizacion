@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import VideoCard from './VideoCard';
-import { getVideoCategories, getVideos, type VideoCategory, type Video } from '@/lib/pocketbase';
+import { getVideoCategories, getVideos } from '@/lib/db';
+import type { VideoCategory, Video } from '@/types';
 
 export default function VideoGallery() {
   const [categories, setCategories] = useState<VideoCategory[]>([]);

@@ -3,22 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import DataTable from '@/components/admin/DataTable';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
-
-interface Member {
-  id: string;
-  name: string;
-  role: string;
-  orcid?: string;
-  email: string;
-  photo?: string;
-  is_leader: boolean;
-  order: number;
-  created?: string;
-  updated?: string;
-}
+import { getMembers, createMember, updateMember, deleteMember } from '@/lib/db';
+import type { Member } from '@/types';
 
 export default function AdminMembersPage() {
   const [members, setMembers] = useState<Member[]>([]);
@@ -42,32 +28,11 @@ export default function AdminMembersPage() {
 
   const loadMembers = async () => {
     try {
-      const pb = new PocketBase(PB_URL);
-      const records = await pb.collection('members').getFullList({ sort: 'order' });
+      const records = await getMembers();
       setMembers(records as any);
     } catch (error) {
       console.error('Error loading members:', error);
-      // Sample data
-      setMembers([
-        {
-          id: '1',
-          name: 'Arturo Rodríguez',
-          role: 'Líder del Proyecto',
-          orcid: '0000-0000-0000-0000',
-          email: 'arturo.rodriguez@uleam.edu.ec',
-          is_leader: true,
-          order: 1,
-        },
-        {
-          id: '2',
-          name: 'Jhonny Villafuerte',
-          role: 'Colíder del Proyecto',
-          orcid: '0000-0000-0000-0000',
-          email: 'jhonny.villafuerte@uleam.edu.ec',
-          is_leader: false,
-          order: 2,
-        },
-      ]);
+      setMembers([]);
     } finally {
       setLoading(false);
     }
@@ -94,32 +59,29 @@ export default function AdminMembersPage() {
 
   const handleDelete = async (member: Member) => {
     try {
-      const pb = new PocketBase(PB_URL);
-      await pb.collection('members').delete(member.id);
+      await deleteMember(member.id);
       loadMembers();
     } catch (error) {
       console.error('Error deleting member:', error);
-      alert('Error al eliminar. Verifica que PocketBase esté configurado.');
+      alert('Error al eliminar miembro');
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
-      const pb = new PocketBase(PB_URL);
-      
       if (editingMember) {
-        await pb.collection('members').update(editingMember.id, formData);
+        await updateMember(editingMember.id, formData as any);
       } else {
-        await pb.collection('members').create(formData);
+        await createMember(formData as any);
       }
-      
+
       resetForm();
       loadMembers();
     } catch (error) {
       console.error('Error saving member:', error);
-      alert('Error al guardar. Verifica que PocketBase esté configurado.');
+      alert('Error al guardar miembro');
     }
   };
 

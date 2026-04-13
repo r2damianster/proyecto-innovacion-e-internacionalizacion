@@ -11,20 +11,20 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    // Check for auth token
-    const token = request.cookies.get('pb_auth')?.value;
-    
-    if (!token) {
+    // Check for admin session cookie
+    const adminSession = request.cookies.get('admin_session')?.value;
+
+    if (!adminSession) {
       // Redirect to login if not authenticated
       const loginUrl = new URL('/admin/login', request.url);
       loginUrl.searchParams.set('redirect', pathname);
       return NextResponse.redirect(loginUrl);
     }
 
-    // Verify token is valid
+    // Verify session is valid
     try {
-      const authData = JSON.parse(token);
-      if (!authData.token || !authData.model?.email) {
+      const sessionData = JSON.parse(adminSession);
+      if (!sessionData.email) {
         const loginUrl = new URL('/admin/login', request.url);
         return NextResponse.redirect(loginUrl);
       }
@@ -35,8 +35,7 @@ export function middleware(request: NextRequest) {
         'jhonny.villafuerte@uleam.edu.ec'
       ];
 
-      if (!authorizedEmails.includes(authData.model.email)) {
-        // Unauthorized user - redirect to login
+      if (!authorizedEmails.includes(sessionData.email)) {
         const loginUrl = new URL('/admin/login', request.url);
         return NextResponse.redirect(loginUrl);
       }

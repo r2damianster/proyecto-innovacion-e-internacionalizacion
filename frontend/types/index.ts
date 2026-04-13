@@ -20,6 +20,7 @@ export interface Publication {
   doi_link?: string;
   pdf_file?: string;
   type: 'article' | 'conference' | 'book' | 'other';
+  category: 'regional' | 'libros' | 'impacto';
   created: string;
   updated: string;
 }

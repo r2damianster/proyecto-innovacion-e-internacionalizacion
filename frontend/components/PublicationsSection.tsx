@@ -1,11 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getPublications, type Publication } from '@/lib/pocketbase';
+import { getPublications } from '@/lib/db';
+import type { Publication } from '@/types';
+
+type CategoryFilter = 'all' | 'regional' | 'libros' | 'impacto';
 
 export default function PublicationsSection() {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
 
   useEffect(() => {
     const loadPublications = async () => {
@@ -23,6 +27,7 @@ export default function PublicationsSection() {
             publication_date: '2025-03-15',
             doi_link: 'https://doi.org/10.xxxx/xxxxx',
             type: 'article',
+            category: 'impacto',
             created: '',
             updated: '',
           },
@@ -34,6 +39,7 @@ export default function PublicationsSection() {
             publication_date: '2025-02-10',
             doi_link: 'https://doi.org/10.xxxx/xxxxx',
             type: 'article',
+            category: 'regional',
             created: '',
             updated: '',
           },
@@ -44,6 +50,7 @@ export default function PublicationsSection() {
             abstract: 'Exploración del uso de podcasts como herramienta pedagógica en la educación superior.',
             publication_date: '2025-01-20',
             type: 'conference',
+            category: 'libros',
             created: '',
             updated: '',
           },
@@ -66,6 +73,28 @@ export default function PublicationsSection() {
     );
   }
 
+  const filteredPublications = activeCategory === 'all'
+    ? publications
+    : publications.filter(p => p.category === activeCategory);
+
+  const getCategoryLabel = (category: string) => {
+    const labels: Record<string, string> = {
+      regional: 'Regional',
+      libros: 'Libros',
+      impacto: 'De Impacto',
+    };
+    return labels[category] || category;
+  };
+
+  const getCategoryColor = (category: string) => {
+    const colors: Record<string, string> = {
+      regional: 'bg-blue-100 text-blue-700',
+      libros: 'bg-green-100 text-green-700',
+      impacto: 'bg-red-100 text-red-700',
+    };
+    return colors[category] || 'bg-gray-100 text-gray-700';
+  };
+
   const getTypeLabel = (type: string) => {
     const types: Record<string, string> = {
       article: 'Artículo Científico',
@@ -76,21 +105,11 @@ export default function PublicationsSection() {
     return types[type] || type;
   };
 
-  const getTypeColor = (type: string) => {
-    const colors: Record<string, string> = {
-      article: 'bg-blue-100 text-blue-700',
-      conference: 'bg-purple-100 text-purple-700',
-      book: 'bg-green-100 text-green-700',
-      other: 'bg-gray-100 text-gray-700',
-    };
-    return colors[type] || 'bg-gray-100 text-gray-700';
-  };
-
   return (
-    <section id="publicaciones" className="py-20 bg-gray-50">
+    <section id="publicaciones" className="py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
             Publicaciones Científicas
           </h2>
@@ -100,88 +119,108 @@ export default function PublicationsSection() {
           </p>
         </div>
 
-        {/* Publications List */}
-        <div className="space-y-6 max-w-5xl mx-auto">
-          {publications.map((pub) => (
-            <div
-              key={pub.id}
-              className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all border-l-4 border-uleam-gold"
+        {/* Category Filters */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {([['all', 'Todas'], ['regional', 'Regional'], ['libros', 'Libros'], ['impacto', 'De Impacto']] as [CategoryFilter, string][]).map(([key, label]) => (
+            <button
+              key={key}
+              onClick={() => setActiveCategory(key)}
+              className={`px-6 py-2 rounded-full font-medium transition-all ${
+                activeCategory === key
+                  ? 'bg-uleam-blue text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
             >
-              {/* Type Badge */}
-              <div className="mb-3">
-                <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${getTypeColor(pub.type)}`}>
-                  {getTypeLabel(pub.type)}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold text-uleam-blue mb-2">
-                {pub.title}
-              </h3>
-
-              {/* Authors */}
-              <p className="text-gray-700 font-medium mb-3">
-                {pub.authors}
-              </p>
-
-              {/* Abstract */}
-              <p className="text-gray-600 mb-4 line-clamp-3">
-                {pub.abstract}
-              </p>
-
-              {/* Footer */}
-              <div className="flex items-center justify-between flex-wrap gap-4">
-                <div className="text-sm text-gray-500">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span>
-                      {new Date(pub.publication_date).toLocaleDateString('es-EC', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  {pub.doi_link && (
-                    <a
-                      href={pub.doi_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-uleam-blue text-white text-sm font-medium rounded-lg hover:bg-uleam-blue/90 transition"
-                    >
-                      Ver Publicación →
-                    </a>
-                  )}
-                  {pub.pdf_file && (
-                    <a
-                      href={pub.pdf_file}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition flex items-center gap-2"
-                    >
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
-                      </svg>
-                      PDF
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
+              {label}
+            </button>
           ))}
         </div>
 
-        {publications.length === 0 && (
+        {/* Publications with scrolling animation */}
+        {filteredPublications.length > 0 ? (
+          <div className="animate-scroll-left flex gap-6 w-fit">
+            {[...filteredPublications, ...filteredPublications].map((pub, idx) => (
+              <div
+                key={`${pub.id}-${idx}`}
+                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all border-l-4 border-uleam-gold w-96 flex-shrink-0"
+              >
+                {/* Category Badge */}
+                <div className="mb-2">
+                  <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${getCategoryColor(pub.category)}`}>
+                    {getCategoryLabel(pub.category)}
+                  </span>
+                </div>
+
+                {/* Type Badge */}
+                <div className="mb-3">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-700">
+                    {getTypeLabel(pub.type)}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-bold text-uleam-blue mb-2 line-clamp-2">
+                  {pub.title}
+                </h3>
+
+                {/* Authors */}
+                <p className="text-gray-700 font-medium text-sm mb-2">
+                  {pub.authors}
+                </p>
+
+                {/* Abstract */}
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  {pub.abstract}
+                </p>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <div className="text-xs text-gray-500">
+                    <div className="flex items-center gap-1">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span>
+                        {new Date(pub.publication_date).toLocaleDateString('es-EC', {
+                          year: 'numeric',
+                          month: 'short',
+                        })}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    {pub.doi_link && (
+                      <a
+                        href={pub.doi_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1.5 bg-uleam-blue text-white text-xs font-medium rounded-lg hover:bg-uleam-blue/90 transition"
+                      >
+                        Ver →
+                      </a>
+                    )}
+                    {pub.pdf_file && (
+                      <a
+                        href={pub.pdf_file}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1.5 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700 transition flex items-center gap-1"
+                      >
+                        PDF
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
           <div className="text-center py-12">
             <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
-            <p className="text-gray-600 text-lg">No hay publicaciones aún</p>
+            <p className="text-gray-600 text-lg">No hay publicaciones en esta categoría</p>
           </div>
         )}
 

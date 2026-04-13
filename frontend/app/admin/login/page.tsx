@@ -2,9 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
+import { authenticateAdmin, isAdminAuthorized } from '@/lib/db';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -16,20 +14,13 @@ function LoginForm() {
   const redirect = searchParams.get('redirect') || '/admin/dashboard';
 
   useEffect(() => {
-    try {
-      const pb = new PocketBase(PB_URL);
-      if (pb.authStore.isValid) {
-        const authorizedEmails = [
-          'arturo.rodriguez@uleam.edu.ec',
-          'jhonny.villafuerte@uleam.edu.ec'
-        ];
-        
-        if (authorizedEmails.includes(pb.authStore.model?.email || '')) {
-          router.push('/admin/dashboard');
-        }
+    // Check if already logged in (session-based)
+    const session = sessionStorage.getItem('admin_auth');
+    if (session) {
+      const auth = JSON.parse(session);
+      if (isAdminAuthorized(auth.email)) {
+        router.push('/admin/dashboard');
       }
-    } catch (err) {
-      // Not logged in
     }
   }, [router]);
 
@@ -39,22 +30,17 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      const pb = new PocketBase(PB_URL);
-      const authData = await pb.collection('users').authWithPassword(email, password);
+      const authData = await authenticateAdmin(email, password);
 
-      const authorizedEmails = [
-        'arturo.rodriguez@uleam.edu.ec',
-        'jhonny.villafuerte@uleam.edu.ec'
-      ];
-
-      if (!authorizedEmails.includes(email)) {
+      if (!isAdminAuthorized(email)) {
         throw new Error('No autorizado. Solo el líder y colíder pueden acceder.');
       }
 
-      document.cookie = `pb_auth=${JSON.stringify({
-        token: authData.token,
-        model: authData.record
-      })}; path=/; max-age=${5 * 24 * 60 * 60}; samesite=strict`;
+      // Store in session storage (clears when browser closes)
+      sessionStorage.setItem('admin_auth', JSON.stringify(authData));
+      
+      // Also set cookie for middleware
+      document.cookie = `admin_session=${JSON.stringify(authData)}; path=/; max-age=${5 * 24 * 60 * 60}; samesite=strict`;
 
       router.push(redirect);
     } catch (err: any) {

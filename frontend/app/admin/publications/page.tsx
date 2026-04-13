@@ -2,19 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import DataTable from '@/components/admin/DataTable';
-import PocketBase from 'pocketbase';
-
-const PB_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8090';
-
-interface Publication {
-  id: string;
-  title: string;
-  authors: string;
-  abstract: string;
-  publication_date: string;
-  doi_link?: string;
-  type: 'article' | 'conference' | 'book' | 'other';
-}
+import { getPublications, createPublication, updatePublication, deletePublication } from '@/lib/db';
+import type { Publication } from '@/types';
 
 export default function AdminPublicationsPage() {
   const [publications, setPublications] = useState<Publication[]>([]);
@@ -29,6 +18,7 @@ export default function AdminPublicationsPage() {
     publication_date: new Date().toISOString().split('T')[0],
     doi_link: '',
     type: 'article' as Publication['type'],
+    category: 'regional' as Publication['category'],
   });
 
   useEffect(() => {
@@ -37,8 +27,7 @@ export default function AdminPublicationsPage() {
 
   const loadPublications = async () => {
     try {
-      const pb = new PocketBase(PB_URL);
-      const records = await pb.collection('publications').getFullList({ sort: '-publication_date' });
+      const records = await getPublications();
       setPublications(records as any);
     } catch (error) {
       console.error('Error loading publications:', error);
@@ -56,6 +45,7 @@ export default function AdminPublicationsPage() {
       publication_date: new Date().toISOString().split('T')[0],
       doi_link: '',
       type: 'article',
+      category: 'regional',
     });
     setEditingPub(null);
     setShowForm(false);
@@ -70,44 +60,63 @@ export default function AdminPublicationsPage() {
       publication_date: pub.publication_date,
       doi_link: pub.doi_link || '',
       type: pub.type,
+      category: pub.category,
     });
     setShowForm(true);
   };
 
   const handleDelete = async (pub: Publication) => {
     try {
-      const pb = new PocketBase(PB_URL);
-      await pb.collection('publications').delete(pub.id);
+      await deletePublication(pub.id);
       loadPublications();
     } catch (error) {
       console.error('Error deleting publication:', error);
-      alert('Error al eliminar. Verifica que PocketBase esté configurado.');
+      alert('Error al eliminar publicación');
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
-      const pb = new PocketBase(PB_URL);
-      
       if (editingPub) {
-        await pb.collection('publications').update(editingPub.id, formData);
+        await updatePublication(editingPub.id, formData as any);
       } else {
-        await pb.collection('publications').create(formData);
+        await createPublication(formData as any);
       }
-      
+
       resetForm();
       loadPublications();
     } catch (error) {
       console.error('Error saving publication:', error);
-      alert('Error al guardar. Verifica que PocketBase esté configurado.');
+      alert('Error al guardar publicación');
     }
   };
 
   const columns = [
     { key: 'title', label: 'Título' },
     { key: 'authors', label: 'Autores' },
+    {
+      key: 'category',
+      label: 'Categoría',
+      render: (item: Publication) => {
+        const labels: Record<string, string> = {
+          regional: 'Regional',
+          libros: 'Libros',
+          impacto: 'De Impacto',
+        };
+        const colors: Record<string, string> = {
+          regional: 'bg-blue-100 text-blue-700',
+          libros: 'bg-green-100 text-green-700',
+          impacto: 'bg-red-100 text-red-700',
+        };
+        return (
+          <span className={`px-2 py-1 rounded text-xs font-bold ${colors[item.category]}`}>
+            {labels[item.category]}
+          </span>
+        );
+      },
+    },
     {
       key: 'type',
       label: 'Tipo',
@@ -209,6 +218,21 @@ export default function AdminPublicationsPage() {
               </div>
 
               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Categoría</label>
+                <select
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-uleam-blue outline-none"
+                >
+                  <option value="regional">Regional</option>
+                  <option value="libros">Libros</option>
+                  <option value="impacto">De Impacto</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Fecha de publicación</label>
                 <input
                   type="date"
@@ -217,17 +241,17 @@ export default function AdminPublicationsPage() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-uleam-blue outline-none"
                 />
               </div>
-            </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Link DOI</label>
-              <input
-                type="url"
-                value={formData.doi_link}
-                onChange={(e) => setFormData({ ...formData, doi_link: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-uleam-blue outline-none"
-                placeholder="https://doi.org/..."
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Link DOI</label>
+                <input
+                  type="url"
+                  value={formData.doi_link}
+                  onChange={(e) => setFormData({ ...formData, doi_link: e.target.value })}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-uleam-blue outline-none"
+                  placeholder="https://doi.org/..."
+                />
+              </div>
             </div>
           </div>
 

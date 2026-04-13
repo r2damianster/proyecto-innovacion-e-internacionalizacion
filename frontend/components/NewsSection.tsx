@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { getNews, type News } from '@/lib/pocketbase';
+import { getNews } from '@/lib/db';
+import type { News } from '@/types';
 
 export default function NewsSection() {
   const [news, setNews] = useState<News[]>([]);
