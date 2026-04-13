@@ -10,8 +10,8 @@
 **Nombre:** Proyecto Innovaciones Pedagógicas e Internacionalización
 **Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
 **Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
-**Versión actual:** 0.5.0
-**Última sesión:** 2026-04-13 (Sesión 6 — Scroll animations, publication categories, Vercel bug)
+**Versión actual:** 0.6.0
+**Última sesión:** 2026-04-13 (Sesión 7 — Migración frontend/ → raíz, Vercel fix)
 
 ---
 
@@ -23,7 +23,7 @@
 | Estilos | TailwindCSS personalizado (colores ULEAM) |
 | Base de datos | Estática en `/lib/data.ts` (in-memory vía `/lib/db.ts`) |
 | Auth | Credenciales hardcodeadas + middleware Next.js cookies |
-| Deploy | ⏳ Pendiente — Vercel da 404 NOT_FOUND |
+| Deploy | ✅ Listo para Vercel — Next.js en raíz del repo |
 | CI/CD | GitHub Actions (planificado) |
 
 ### Colores ULEAM
@@ -44,13 +44,20 @@
 | Git + GitHub | ✅ Pusheado | 100% |
 | Base de datos estática | ✅ data.ts + db.ts in-memory | 100% |
 | **Contenido real** | ⏳ Pendiente | 0% |
-| **Deploy Vercel** | ❌ 404 NOT_FOUND | 0% |
+| **Deploy Vercel** | ✅ Listo — Push en raíz | 90% |
 
-**Progreso general: ~95%**
+**Progreso general: ~97%**
 
 ---
 
-## Cambios Recientes (Sesión 6)
+## Cambios Recientes (Sesión 7)
+
+- ✅ **Migración `frontend/` → raíz** para resolver Vercel 404
+- ✅ Build verificado en raíz: 14 páginas estáticas, sin errores
+- ✅ Push a GitHub completado (commit `7849234`)
+- ✅ Vercel detectará Next.js automáticamente desde la raíz
+
+## Cambios Anteriores (Sesión 6)
 
 - ✅ Team fotos más pequeñas (h-48) con animación scroll lento izquierda
 - ✅ Arturo ORCID: `0000-0002-7017-9443` | Jhonny ORCID: `0000-0001-6053-6307`
@@ -60,81 +67,48 @@
 - ✅ Publications con scroll animation + filter buttons por categoría
 - ✅ Admin panel actualizado con campo category
 - ⚠️ Admin panel NO escribe en data.ts: cambios se pierden al reiniciar
-- ❌ Vercel deploy: 404 NOT_FOUND persistente
 
 ---
 
 ## Estructura de Archivos
 
 ```
-proyecto-innovacion-e-internacionalizacion/
+proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 ├── .gitignore
 ├── .qwen/settings.json            # Permisos Qwen Code
-├── CHANGELOG.md                   # Historial de versiones
-├── CLAUDE.md                      # Este archivo (contexto para Claude Code)
-├── POCKETBASE_SETUP.md           # Guía paso a paso PocketBase
-├── QWEN.md                        # Contexto para Qwen (espejo de CLAUDE.md)
-├── README.md                      # Documentación general
-├── RESUMEN.md                     # Resumen ejecutivo
-├── DEPLOY_GUIDE.md               # Guía de despliegue
-├── setup-pocketbase.ps1          # Script PowerShell automatización
+├── CHANGELOG.md
+├── CLAUDE.md                      # Este archivo
+├── QWEN.md                        # Espejo para Qwen
+├── README.md
+├── RESUMEN.md
+├── DEPLOY_GUIDE.md
+├── package.json                   # ← Next.js en raíz (fix Vercel)
+├── next.config.js
+├── middleware.ts                  # Protección rutas /admin/*
+├── tailwind.config.ts
+├── tsconfig.json
+├── postcss.config.cjs
+├── .env.local.example
 │
-├── Imágenes (root):
-│   ├── LOGO_Proyectro.png
-│   ├── LOGO_PRogramadePodcast.jpeg
-│   ├── lider_arturo_rodriguez.jpg
-│   ├── colider_Jhonny_Villafuerte.jpg
-│   ├── Actividad_Podcast.jpeg
-│   └── actividad_previa_podcast.jpeg
+├── app/                           # Next.js App Router
+│   ├── layout.tsx
+│   ├── page.tsx                   # Landing page
+│   ├── globals.css
+│   └── admin/                     # Panel admin (11 páginas)
 │
-├── Word Documents (fuente del contenido real):
-│   ├── Proyecto_Innovaciones_Pedagógicas 2025.docx
-│   ├── contenidoYoube.docx
-│   ├── contactos.docx
-│   └── publicaciones.docx
+├── components/                    # 13 componentes React
+│   └── admin/DataTable.tsx
 │
-└── frontend/                      # Aplicación Next.js
-    ├── .env.local.example
-    ├── package.json
-    ├── tsconfig.json
-    ├── tailwind.config.ts
-    ├── postcss.config.cjs
-    ├── next.config.js
-    ├── middleware.ts               # Protección rutas /admin/*
-    ├── app/
-    │   ├── layout.tsx
-    │   ├── page.tsx               # Landing page (1 sola página con secciones)
-    │   ├── globals.css            # + animate-scroll-left keyframes
-    │   └── admin/                 # Panel admin (11 páginas)
-    │       ├── layout.tsx
-    │       ├── page.tsx
-    │       ├── login/page.tsx
-    │       ├── dashboard/page.tsx
-    │       ├── members/page.tsx
-    │       ├── videos/page.tsx
-    │       ├── categories/page.tsx
-    │       ├── publications/page.tsx  # + category field
-    │       ├── news/page.tsx
-    │       ├── activities/page.tsx
-    │       └── settings/page.tsx
-    ├── components/                # 13 componentes React
-    │   ├── Header.tsx
-    │   ├── Footer.tsx
-    │   ├── Hero.tsx
-    │   ├── About.tsx
-    │   ├── TeamSection.tsx        # + scroll animation
-    │   ├── VideoGallery.tsx
-    │   ├── VideoCard.tsx
-    │   ├── PublicationsSection.tsx  # + categories + scroll
-    │   ├── NewsSection.tsx
-    │   ├── ActivityGallery.tsx
-    │   ├── Contact.tsx
-    │   └── admin/DataTable.tsx
-    ├── lib/
-    │   ├── data.ts                # Datos estáticos (fuente de verdad)
-    │   └── db.ts                  # In-memory CRUD (se pierde al reiniciar)
-    ├── types/index.ts             # 9 interfaces TypeScript (+ category)
-    └── public/images/             # 6 imágenes estáticas
+├── lib/
+│   ├── data.ts                    # Datos estáticos (fuente de verdad)
+│   └── db.ts                      # In-memory CRUD
+│
+├── types/index.ts                 # 9 interfaces TypeScript
+├── public/images/                 # 6 imágenes estáticas
+│
+├── Imágenes (root):               # Logos y fotos del equipo
+├── Word Documents:                # Fuente de contenido real
+└── pocketbase/                    # Ignorar (legacy)
 ```
 
 ---
@@ -199,14 +173,13 @@ git push
 
 ## Tareas Pendientes (Próximas Sesiones)
 
-### Sesión 7 — Resolver Deploy Vercel
-- [ ] **Opción A (recomendada):** Mover contenido de `frontend/` a la raíz del proyecto
-- [ ] **Opción B:** Crear nuevo proyecto Vercel desde cero apuntando a `frontend/`
-- [ ] **Opción C:** Deploy en Railway o Netlify como alternativa
+### Sesión 7 — Deploy Vercel ✅ LISTO PARA DEPLOY
+- [x] Migrar `frontend/` a raíz del proyecto
+- [ ] **Abrir Vercel dashboard → importar desde GitHub → deploy automático**
 - [ ] Testing en producción
 - [ ] Dominio personalizado (opcional)
 
-### Sesión 5 — Contenido Real (de Word Docs)
+### Contenido Real (de Word Docs)
 - [ ] Extraer info de `Proyecto_Innovaciones_Pedagógicas 2025.docx` → sección About
 - [ ] Extraer videos de `contenidoYoube.docx` → CRUD Videos
 - [ ] Extraer contactos de `contactos.docx` → Configuración sitio
@@ -263,6 +236,6 @@ Este proyecto soporta trabajo con múltiples asistentes IA:
 
 ---
 
-**Última actualización:** 2026-04-13 (Sesión 6)
-**Versión:** 0.5.0
-**Estado:** App funcional en local ✅ — Deploy Vercel 404 ❌
+**Última actualización:** 2026-04-13 (Sesión 7)
+**Versión:** 0.6.0
+**Estado:** App funcional en local ✅ — Next.js en raíz ✅ — Deploy pendiente confirmar en Vercel

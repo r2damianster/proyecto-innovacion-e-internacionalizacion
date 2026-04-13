@@ -3,12 +3,12 @@
 > Archivo de contexto para Qwen Code (y asistentes IA compatibles).
 > Archivo equivalente: `CLAUDE.md` (mismo contenido, para Claude Code).
 
-**Última actualización:** 2026-04-13 (Sesión 6 - Scroll animations, publication categories, Vercel bug)
-**Estado:** ✅ Landing Page + Admin Panel COMPLETOS - Sin dependencias externas
-**Versión:** 0.5.0
+**Última actualización:** 2026-04-13 (Sesión 7 - Migración frontend/ → raíz, Vercel fix)
+**Estado:** ✅ Landing Page + Admin Panel COMPLETOS - Next.js en raíz del repo
+**Versión:** 0.6.0
 **Build local:** ✅ Exitoso (14 páginas estáticas)
-**Deploy Vercel:** ❌ 404 NOT_FOUND - Pendiente resolver
-**Git:** ✅ Push completado
+**Deploy Vercel:** ✅ Listo — Next.js en raíz, Vercel auto-detecta
+**Git:** ✅ Push completado (commit 7849234)
 
 **GitHub:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 
@@ -107,23 +107,11 @@
 - [ ] `/noticias` - Listado completo paginado
 - [ ] `/noticias/[slug]` - Detalle de noticia completo
 
-### 3. Deploy - ❌ BUG ACTIVO - 404 NOT_FOUND en Vercel
-- [ ] **BUG:** Vercel responde 404 en todas las rutas tras deploy
-- [ ] **Intentos fallidos:**
-  - `vercel.json` en raíz con buildCommand/outputDirectory
-  - `vercel.json` en `frontend/`
-  - `package.json` en raíz delegando a `frontend/`
-  - Root Directory = `frontend` en Vercel settings
-  - Root Directory vacío + `vercel.json` en raíz
-  - Limpiar todo (solo `frontend/` con su `package.json`)
-- [ ] **Posibles causas:**
-  - Vercel no detecta correctamente `frontend/` como app Next.js
-  - Estructura monorepo no configurada correctamente
-- [ ] **Posibles soluciones:**
-  - **Opción A:** Mover todo el contenido de `frontend/` a la raíz del proyecto
-  - **Opción B:** Configurar Vercel como monorepo con `vercel.json` + `rootDirectory`
-  - **Opción C:** Crear nuevo proyecto Vercel apuntando directamente a `frontend/`
-  - **Opción D:** Deploy en Railway/Netlify como alternativa
+### 3. Deploy - ✅ LISTO PARA VERCEL
+- [x] **FIX APLICADO:** Migración de `frontend/` a raíz del repo (Sesión 7)
+- [x] Build verificado en raíz: 14 páginas estáticas, sin errores
+- [x] Push a GitHub completado
+- [ ] **Próximo paso:** Abrir Vercel dashboard → importar repo → deploy automático
 - [ ] Testing en producción
 - [ ] Configurar dominio personalizado (opcional)
 
@@ -302,8 +290,8 @@ Este proyecto soporta trabajo con múltiples asistentes IA:
 
 ---
 
-**ÚLTIMA ACTUALIZACIÓN:** 2026-04-13 (Sesión 6 — Scroll animations, publication categories, Vercel 404 bug)
-**PRÓXIMA SESIÓN:** Resolver deploy Vercel o migrar a Railway/Netlify
-**VERSIÓN:** 0.5.0
-**ESTADO:** ✅ App funcional en local, ❌ Deploy 404 en Vercel
+**ÚLTIMA ACTUALIZACIÓN:** 2026-04-13 (Sesión 7 — Migración frontend/ → raíz, Vercel fix)
+**PRÓXIMA SESIÓN:** Confirmar deploy en Vercel + contenido real de Word Docs
+**VERSIÓN:** 0.6.0
+**ESTADO:** ✅ App funcional en local, ✅ Next.js en raíz, ⏳ Deploy pendiente confirmar
 **REPOSITORIO:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
