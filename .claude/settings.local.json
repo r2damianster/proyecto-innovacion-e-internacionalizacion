@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv frontend/app .)",
+      "Bash(mv frontend/components .)",
+      "Bash(mv frontend/lib .)",
+      "Bash(mv frontend/types .)",
+      "Bash(mv frontend/public .)",
+      "Bash(grep -E \"^app$|^components$|^lib$\")",
+      "Bash(cmd /c \"robocopy \\\\\"C:\\\\Users\\\\User\\\\Documents\\\\Desarrollo Web\\\\proyecto-innovacion-e-internacionalizacion\\\\frontend\\\\app\\\\\" \\\\\"C:\\\\Users\\\\User\\\\Documents\\\\Desarrollo Web\\\\proyecto-innovacion-e-internacionalizacion\\\\app\\\\\" /E /NFL /NDL /NJH /NJS /NC /NS /NP\")",
+      "Bash(cmd /c \"copy \\\\\"C:\\\\Users\\\\User\\\\Documents\\\\Desarrollo Web\\\\proyecto-innovacion-e-internacionalizacion\\\\frontend\\\\.env.local.example\\\\\" \\\\\"C:\\\\Users\\\\User\\\\Documents\\\\Desarrollo Web\\\\proyecto-innovacion-e-internacionalizacion\\\\.env.local.example\\\\\" /Y\")",
+      "Bash(cmd:*)",
+      "Bash(powershell:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(ollama run:*)"
+    ]
+  }
+}
