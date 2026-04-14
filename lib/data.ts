@@ -33,6 +33,7 @@ export const members: Member[] = [
     id: 'member_3',
     name: 'Mg. Cristina Basantes',
     role: 'Coordinadora del Podcast — Docente de Pedagogía de los Idiomas',
+    orcid: '0000-0001-5184-9643',
     email: '',
     photo: '/images/Cristina_CoordinadorPODCAST.jpeg',
     is_leader: false,
