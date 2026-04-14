@@ -76,7 +76,7 @@ export default function TeamSection() {
         </div>
 
         {/* All members side by side */}
-        <div className="flex flex-col sm:flex-row justify-center gap-6 md:gap-10 max-w-2xl mx-auto">
+        <div className="flex flex-col sm:flex-row justify-center gap-6 md:gap-8 max-w-4xl mx-auto">
           {members.map((member) => (
             <TeamCard key={member.id} member={member} />
           ))}

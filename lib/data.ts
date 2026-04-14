@@ -29,6 +29,17 @@ export const members: Member[] = [
     created: '2025-01-01T00:00:00Z',
     updated: '2025-01-01T00:00:00Z',
   },
+  {
+    id: 'member_3',
+    name: 'Mg. Cristina Basantes',
+    role: 'Coordinadora del Podcast — Docente de Pedagogía de los Idiomas',
+    email: '',
+    photo: '/images/Cristina_CoordinadorPODCAST.jpeg',
+    is_leader: false,
+    order: 3,
+    created: '2025-01-01T00:00:00Z',
+    updated: '2025-01-01T00:00:00Z',
+  },
 ];
 
 export const publications: Publication[] = [
