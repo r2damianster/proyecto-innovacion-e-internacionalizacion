@@ -69,6 +69,16 @@ export const videoCategories: VideoCategory[] = [
     created: '2026-04-08T00:00:00Z',
     updated: '2026-04-08T00:00:00Z',
   },
+  {
+    id: 'cat_2',
+    name: 'Podcast - Voces Fuera del Aula',
+    slug: 'voces-fuera-del-aula',
+    description: 'Desafíos y experiencias en el aprendizaje — podcast Voces Fuera del Aula',
+    order: 2,
+    is_active: true,
+    created: '2026-02-26T00:00:00Z',
+    updated: '2026-02-26T00:00:00Z',
+  },
 ];
 
 export const videos: Video[] = [
@@ -115,14 +125,14 @@ export const videos: Video[] = [
     id: 'video_4',
     title: 'Cursos vacacionales: ¿El propósito es realmente el aprendizaje?',
     youtube_url: 'https://youtu.be/XId0WxjAux0',
-    description: 'Podcast Educa PINE — Reflexión sobre la finalidad pedagógica de los cursos vacacionales.',
+    description: 'Podcast Voces Fuera del Aula — Reflexión sobre la finalidad pedagógica de los cursos vacacionales.',
     embed_id: 'XId0WxjAux0',
-    category: 'cat_1',
-    published_date: '2026-04-08',
-    order: 4,
-    is_featured: false,
-    created: '2026-04-08T00:00:00Z',
-    updated: '2026-04-08T00:00:00Z',
+    category: 'cat_2',
+    published_date: '2026-02-26',
+    order: 1,
+    is_featured: true,
+    created: '2026-02-26T00:00:00Z',
+    updated: '2026-02-26T00:00:00Z',
   },
 ];
 
