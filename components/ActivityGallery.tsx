@@ -49,7 +49,7 @@ export default function ActivityGallery() {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gray-50">
+      <section className="py-10 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           <div className="text-2xl font-bold text-uleam-blue">Cargando galería...</div>
         </div>
@@ -70,7 +70,7 @@ export default function ActivityGallery() {
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
             Galería de Actividades
           </h2>

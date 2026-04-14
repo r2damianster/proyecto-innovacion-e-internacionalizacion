@@ -30,8 +30,8 @@ export default function Hero() {
       {/* Content */}
       <div className={`relative z-10 container mx-auto px-4 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         {/* Logo */}
-        <div className="mb-8 flex justify-center">
-          <div className="relative w-48 h-48 md:w-64 md:h-64">
+        <div className="mb-4 md:mb-8 flex justify-center">
+          <div className="relative w-36 h-36 md:w-64 md:h-64">
             <Image
               src="/images/logo-proyecto.png"
               alt="Logo Proyecto Innovaciones Pedagógicas"
@@ -43,16 +43,16 @@ export default function Hero() {
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white mb-3 md:mb-6 leading-tight">
           Innovaciones Pedagógicas
           <span className="block text-uleam-gold">e Internacionalización</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-gray-200 mb-4 max-w-3xl mx-auto">
+        <p className="text-lg md:text-2xl text-gray-200 mb-2 md:mb-4 max-w-3xl mx-auto">
           Universidad Laica Eloy Alfaro de Manabí
         </p>
-        <p className="text-lg md:text-xl text-primary-200 mb-12 max-w-2xl mx-auto">
+        <p className="text-base md:text-xl text-primary-200 mb-6 md:mb-12 max-w-2xl mx-auto">
           Transformando la educación a través de la investigación, la innovación y la colaboración internacional
         </p>
 

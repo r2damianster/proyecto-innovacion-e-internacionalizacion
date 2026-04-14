@@ -65,7 +65,7 @@ export default function PublicationsSection() {
 
   if (loading) {
     return (
-      <section id="publicaciones" className="py-20 bg-gray-50">
+      <section id="publicaciones" className="py-10 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           <div className="text-2xl font-bold text-uleam-blue">Cargando publicaciones...</div>
         </div>
@@ -106,10 +106,10 @@ export default function PublicationsSection() {
   };
 
   return (
-    <section id="publicaciones" className="py-20 bg-gray-50 overflow-hidden">
+    <section id="publicaciones" className="py-10 md:py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 md:mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
             Publicaciones Científicas
           </h2>
@@ -120,7 +120,7 @@ export default function PublicationsSection() {
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-6 md:mb-10">
           {([['all', 'Todas'], ['regional', 'Regional'], ['libros', 'Libros'], ['impacto', 'De Impacto']] as [CategoryFilter, string][]).map(([key, label]) => (
             <button
               key={key}
@@ -225,7 +225,7 @@ export default function PublicationsSection() {
         )}
 
         {/* View All */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-6 md:mt-10">
           <a
             href="/publicaciones"
             className="inline-block px-8 py-4 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"

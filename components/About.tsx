@@ -39,10 +39,10 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-10 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
             Acerca del Proyecto
           </h2>
@@ -53,7 +53,7 @@ export default function About() {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-16">
           <div>
             <h3 className="text-2xl font-bold text-uleam-blue mb-4">
               Proyecto de Innovaciones Pedagógicas 2025

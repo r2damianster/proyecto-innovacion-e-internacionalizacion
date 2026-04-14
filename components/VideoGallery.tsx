@@ -71,7 +71,7 @@ export default function VideoGallery() {
 
   if (loading) {
     return (
-      <section id="videos" className="py-20 bg-white">
+      <section id="videos" className="py-10 md:py-20 bg-white">
         <div className="container mx-auto px-4 text-center">
           <div className="text-2xl font-bold text-uleam-blue">Cargando videos...</div>
         </div>
@@ -80,10 +80,10 @@ export default function VideoGallery() {
   }
 
   return (
-    <section id="videos" className="py-20 bg-white">
+    <section id="videos" className="py-10 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 md:mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
             Videos y Contenido Multimedia
           </h2>
@@ -95,7 +95,7 @@ export default function VideoGallery() {
 
         {/* Category Filters */}
         {categories.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-6 md:mb-10">
             <button
               onClick={() => setSelectedCategory('all')}
               className={`px-6 py-2 rounded-full font-medium transition-all ${
@@ -139,7 +139,7 @@ export default function VideoGallery() {
         )}
 
         {/* View All Button */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-6 md:mt-10">
           <a
             href="/videos"
             className="inline-block px-8 py-4 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"

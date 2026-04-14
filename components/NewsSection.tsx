@@ -60,7 +60,7 @@ export default function NewsSection() {
 
   if (loading) {
     return (
-      <section id="noticias" className="py-20 bg-white">
+      <section id="noticias" className="py-10 md:py-20 bg-white">
         <div className="container mx-auto px-4 text-center">
           <div className="text-2xl font-bold text-uleam-blue">Cargando noticias...</div>
         </div>
@@ -72,7 +72,7 @@ export default function NewsSection() {
     <section id="noticias" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
             Últimas Noticias
           </h2>
@@ -99,7 +99,7 @@ export default function NewsSection() {
         )}
 
         {/* View All */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 md:mt-12">
           <a
             href="/noticias"
             className="inline-block px-8 py-4 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
