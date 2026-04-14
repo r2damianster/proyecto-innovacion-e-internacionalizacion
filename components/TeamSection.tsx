@@ -76,7 +76,7 @@ export default function TeamSection() {
         </div>
 
         {/* All members side by side */}
-        <div className="flex flex-col sm:flex-row justify-center gap-6 md:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto justify-items-center">
           {members.map((member) => (
             <TeamCard key={member.id} member={member} />
           ))}
@@ -88,7 +88,7 @@ export default function TeamSection() {
 
 function TeamCard({ member }: { member: Member }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 flex-shrink-0 border-2 border-uleam-gold w-full sm:w-64">
+    <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border-2 border-uleam-gold w-full">
       {/* Photo */}
       <div className="relative h-48 bg-gray-200">
         {member.photo ? (
@@ -106,7 +106,7 @@ function TeamCard({ member }: { member: Member }) {
           </div>
         )}
         <div className="absolute top-2 right-2 bg-uleam-gold text-uleam-blue px-2 py-0.5 rounded-full text-xs font-bold">
-          {member.is_leader ? 'Líder' : 'Colíder'}
+          {member.is_leader ? 'Líder' : member.order === 2 ? 'Colíder' : 'Participante'}
         </div>
       </div>
 
