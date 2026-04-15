@@ -67,7 +67,7 @@ export default function DocumentsPage() {
                 <p className="mt-2 text-sm text-gray-600">{doc.description}</p>
                 <div className="mt-4 flex gap-3">
                   <a
-                    href={`/api/protected/assets/${doc.filename}`}
+                    href={`/admin-assets/${doc.filename}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-uleam-blue text-white rounded-lg hover:bg-blue-800 transition text-sm"
@@ -79,7 +79,7 @@ export default function DocumentsPage() {
                     Ver PDF
                   </a>
                   <a
-                    href={`/api/protected/assets/${doc.filename}`}
+                    href={`/admin-assets/${doc.filename}`}
                     download
                     className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition text-sm"
                   >
