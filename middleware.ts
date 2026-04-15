@@ -45,9 +45,32 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Protect /admin-assets folder (static files)
+  if (pathname.startsWith('/admin-assets')) {
+    const adminSession = request.cookies.get('admin_session')?.value;
+
+    if (!adminSession) {
+      return new NextResponse('Unauthorized', { status: 401 });
+    }
+
+    try {
+      const sessionData = JSON.parse(adminSession);
+      const authorizedEmails = [
+        'arturo.rodriguez@uleam.edu.ec',
+        'jhonny.villafuerte@uleam.edu.ec'
+      ];
+
+      if (!sessionData.email || !authorizedEmails.includes(sessionData.email)) {
+        return new NextResponse('Unauthorized', { status: 401 });
+      }
+    } catch {
+      return new NextResponse('Unauthorized', { status: 401 });
+    }
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/admin-assets/:path*'],
 };

@@ -5,7 +5,11 @@
       "Bash(mkdir *)",
       "Bash(copy *)",
       "Bash(npm run *)",
-      "Bash(git reset)"
+      "Bash(git reset)",
+      "Bash(move *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push)"
     ]
   },
   "$version": 3

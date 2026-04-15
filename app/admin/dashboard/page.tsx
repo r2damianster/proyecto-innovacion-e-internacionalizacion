@@ -83,6 +83,21 @@ export default function AdminDashboardPage() {
             <p className="text-sm text-gray-500 mt-1">Click para gestionar</p>
           </Link>
         ))}
+
+        {/* Documents Card */}
+        <Link
+          href="/admin/documents"
+          className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all hover:-translate-y-1"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-4xl">📑</span>
+            <div className="bg-uleam-blue text-white px-3 py-1 rounded-full text-sm font-bold">
+              2
+            </div>
+          </div>
+          <h3 className="text-lg font-bold text-gray-800">Documentos</h3>
+          <p className="text-sm text-gray-500 mt-1">Documentos del proyecto</p>
+        </Link>
       </div>
 
       {/* Quick Actions */}

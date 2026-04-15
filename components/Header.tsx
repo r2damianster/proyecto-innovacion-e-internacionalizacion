@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import AdminLoginModal from './AdminLoginModal';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showAdminModal, setShowAdminModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +27,12 @@ export default function Header() {
     { href: '#noticias', label: 'Noticias' },
     { href: '#contacto', label: 'Contacto' },
   ];
+
+  const handleAdminClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowAdminModal(true);
+    setIsMenuOpen(false);
+  };
 
   return (
     <header
@@ -64,8 +72,8 @@ export default function Header() {
               </li>
             ))}
             <li>
-              <Link
-                href="/admin"
+              <button
+                onClick={handleAdminClick}
                 className={`px-4 py-2 rounded-md font-medium transition ${
                   scrolled
                     ? 'bg-uleam-blue text-white hover:bg-uleam-blue/90'
@@ -73,7 +81,7 @@ export default function Header() {
                 }`}
               >
                 Admin
-              </Link>
+              </button>
             </li>
           </ul>
 
@@ -108,17 +116,17 @@ export default function Header() {
               </li>
             ))}
             <li>
-              <Link
-                href="/admin"
-                className="block py-2 px-4 text-uleam-blue hover:bg-gray-100 rounded font-medium"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={handleAdminClick}
+                className="w-full text-left py-2 px-4 text-uleam-blue hover:bg-gray-100 rounded font-medium"
               >
                 Admin
-              </Link>
+              </button>
             </li>
           </ul>
         )}
       </nav>
+      <AdminLoginModal isOpen={showAdminModal} onClose={() => setShowAdminModal(false)} />
     </header>
   );
 }
