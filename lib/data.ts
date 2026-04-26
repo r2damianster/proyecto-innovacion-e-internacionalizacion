@@ -53,6 +53,18 @@ export const members: Member[] = [
     created: '2025-01-01T00:00:00Z',
     updated: '2025-01-01T00:00:00Z',
   },
+  {
+    id: 'member_5',
+    name: 'Andy Fernando Castillo Menéndez',
+    role: 'Estudiante — Pedagogía de los Idiomas Nacionales y Extranjeros',
+    orcid: '0009-0009-8630-7444',
+    email: '',
+    photo: '/images/ANdyCastilo.png',
+    is_leader: false,
+    order: 5,
+    created: '2025-01-01T00:00:00Z',
+    updated: '2025-01-01T00:00:00Z',
+  },
 ];
 
 export const publications: Publication[] = [
