@@ -1,7 +1,6 @@
 # CLAUDE.md — Proyecto Innovaciones Pedagógicas e Internacionalización
 
-> Instrucciones de contexto para Claude Code (y asistentes IA compatibles).
-> Archivo equivalente: `QWEN.md` (mismo contenido, para Qwen/otros modelos).
+> Instrucciones de contexto para Claude Code. Único asistente IA activo.
 
 ---
 
@@ -10,8 +9,8 @@
 **Nombre:** Proyecto Innovaciones Pedagógicas e Internacionalización
 **Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
 **Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
-**Versión actual:** 0.6.0
-**Última sesión:** 2026-04-13 (Sesión 7 — Migración frontend/ → raíz, Vercel fix)
+**Versión actual:** 0.7.0
+**Última sesión:** 2026-04-26 (Sesión 8 — Limpieza estructura, miembros, publicaciones)
 
 ---
 
@@ -23,8 +22,7 @@
 | Estilos | TailwindCSS personalizado (colores ULEAM) |
 | Base de datos | Estática en `/lib/data.ts` (in-memory vía `/lib/db.ts`) |
 | Auth | Credenciales hardcodeadas + middleware Next.js cookies |
-| Deploy | ✅ Listo para Vercel — Next.js en raíz del repo |
-| CI/CD | GitHub Actions (planificado) |
+| Deploy | Vercel — Next.js en raíz del repo |
 
 ### Colores ULEAM
 - Azul institucional: `#003366`
@@ -32,41 +30,38 @@
 
 ---
 
-## Estado Actual (2026-04-13)
+## Estado Actual (2026-04-26)
 
 | Módulo | Estado | % |
 |--------|--------|---|
 | Landing Page | ✅ Completo + scroll animations | 100% |
-| Admin Panel (CRUD) | ✅ Completo + categoría publicaciones | 100% |
+| Admin Panel (CRUD) | ✅ Completo | 100% |
 | Middleware / Auth | ✅ Completo | 100% |
-| TypeScript Types | ✅ Completo (Publication.category added) | 100% |
-| Documentación | ✅ Actualizada | 100% |
-| Git + GitHub | ✅ Pusheado | 100% |
+| TypeScript Types | ✅ Completo | 100% |
 | Base de datos estática | ✅ data.ts + db.ts in-memory | 100% |
-| **Contenido real** | ⏳ Pendiente | 0% |
-| **Deploy Vercel** | ✅ Listo — Push en raíz | 90% |
+| Miembros del equipo | ✅ 5 miembros con fotos reales | 100% |
+| Publicaciones | ✅ 7 publicaciones (1 libro + 6 artículos) | 100% |
+| Videos / Podcast | ✅ 4 videos (Educa PINE + Voces Fuera del Aula) | 100% |
+| Estructura del repo | ✅ Limpia — sin legacy | 100% |
+| **Deploy Vercel** | ⏳ Pendiente confirmar en dashboard | 90% |
 
-**Progreso general: ~97%**
+**Progreso general: ~98%**
 
 ---
 
-## Cambios Recientes (Sesión 7)
+## Cambios Recientes (Sesión 8 — 2026-04-26)
 
-- ✅ **Migración `frontend/` → raíz** para resolver Vercel 404
-- ✅ Build verificado en raíz: 14 páginas estáticas, sin errores
-- ✅ Push a GitHub completado (commit `7849234`)
-- ✅ Vercel detectará Next.js automáticamente desde la raíz
-
-## Cambios Anteriores (Sesión 6)
-
-- ✅ Team fotos más pequeñas (h-48) con animación scroll lento izquierda
-- ✅ Arturo ORCID: `0000-0002-7017-9443` | Jhonny ORCID: `0000-0001-6053-6307`
-- ✅ Jhonny es "Colíder del Proyecto"
-- ✅ Placeholder videos eliminados (Episodio 1 y 2)
-- ✅ Publications ahora tienen `category`: `regional` | `libros` | `impacto`
-- ✅ Publications con scroll animation + filter buttons por categoría
-- ✅ Admin panel actualizado con campo category
-- ⚠️ Admin panel NO escribe en data.ts: cambios se pierden al reiniciar
+- ✅ Foto de Johana Bello actualizada (`JohanaBello.jpeg`)
+- ✅ Andy Castillo agregado como Estudiante Investigador (`ANdyCastilo.png`)
+- ✅ 5 nuevas publicaciones agregadas (libro + 4 artículos científicos)
+- ✅ Libro descargable en PDF: `public/files/Libro-Innovaciones-Educativas.pdf`
+- ✅ QWEN.md eliminado (ya no se usa Qwen)
+- ✅ Carpeta `.qwen/` eliminada
+- ✅ PocketBase eliminado completamente (`pocketbase/`, `.zip`, scripts, docs)
+- ✅ Carpeta `frontend/` legacy eliminada
+- ✅ Imágenes duplicadas de raíz eliminadas (todas en `public/images/`)
+- ✅ Docs Word organizados en `docs/`
+- ✅ Push a GitHub completado (commit `759f9e9`)
 
 ---
 
@@ -74,20 +69,18 @@
 
 ```
 proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
-├── .gitignore
-├── .qwen/settings.json            # Permisos Qwen Code
 ├── CHANGELOG.md
 ├── CLAUDE.md                      # Este archivo
-├── QWEN.md                        # Espejo para Qwen
+├── DEPLOY_GUIDE.md
 ├── README.md
 ├── RESUMEN.md
-├── DEPLOY_GUIDE.md
-├── package.json                   # ← Next.js en raíz (fix Vercel)
+├── package.json
 ├── next.config.js
 ├── middleware.ts                  # Protección rutas /admin/*
 ├── tailwind.config.ts
 ├── tsconfig.json
 ├── postcss.config.cjs
+├── vercel.json
 ├── .env.local.example
 │
 ├── app/                           # Next.js App Router
@@ -96,146 +89,162 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 │   ├── globals.css
 │   └── admin/                     # Panel admin (11 páginas)
 │
-├── components/                    # 13 componentes React
+├── components/                    # Componentes React
 │   └── admin/DataTable.tsx
 │
 ├── lib/
-│   ├── data.ts                    # Datos estáticos (fuente de verdad)
+│   ├── data.ts                    # ← FUENTE DE VERDAD (editar aquí)
 │   └── db.ts                      # In-memory CRUD
 │
-├── types/index.ts                 # 9 interfaces TypeScript
-├── public/images/                 # 6 imágenes estáticas
+├── types/index.ts                 # Interfaces TypeScript
 │
-├── Imágenes (root):               # Logos y fotos del equipo
-├── Word Documents:                # Fuente de contenido real
-└── pocketbase/                    # Ignorar (legacy)
+├── public/
+│   ├── images/                    # Fotos del equipo + logos
+│   └── files/                     # PDFs descargables
+│
+└── docs/                          # Documentos Word de referencia
+    ├── contactos.docx
+    ├── contenidoYoube.docx
+    ├── publicaciones.docx
+    └── Proyecto_Innovaciones_Pedagógicas 2025.docx
 ```
+
+---
+
+## Equipo actual (`/lib/data.ts` → `members`)
+
+| ID | Nombre | Rol | Orden |
+|----|--------|-----|-------|
+| member_1 | Dr. Arturo Rodríguez | Líder del Proyecto | 1 |
+| member_2 | Dr. Jhonny Villafuerte | Colíder del Proyecto | 2 |
+| member_3 | Mg. Cristina Basantes | Coordinadora de Productos Educomunicacionales | 3 |
+| member_4 | Psi. Johana Bello, Mg. | Coordinadora de Internacionalización | 4 |
+| member_5 | Andy Castillo | Estudiante Investigador | 5 |
+
+---
+
+## Publicaciones actuales (`/lib/data.ts` → `publications`)
+
+| ID | Título (abrev.) | Tipo | Categoría | Fecha |
+|----|----------------|------|-----------|-------|
+| pub_3 | Innovaciones Educativas (libro) | book | libros | 2026-04 |
+| pub_62 | Total Physical Response… | article | impacto | 2026-04 |
+| pub_60 | Microenseñanza con tecnologías… | article | regional | 2026-03 |
+| pub_58 | Comparación nivel de lectura… | article | impacto | 2026-03 |
+| pub_61 | Identifying Main Causes… | article | regional | en prensa |
+| pub_1 | Innovaciones Pedagógicas Ed. Superior | article | impacto | 2025-03 |
+| pub_2 | Internacionalización y Cooperación | conference | regional | 2025-02 |
+
+**Categorías de publicaciones:** `regional` | `libros` | `impacto`
+**Índices:** ErihPlus → impacto | Latindex/Dialnet → regional
 
 ---
 
 ## Base de Datos Estática
 
-> **Estado:** Migrado de PocketBase a datos estáticos en Sesión 5.
+> La fuente de verdad es `/lib/data.ts`. El admin panel NO es persistente (usa db.ts en memoria).
 
-### Estructura (`/lib/data.ts`)
+### Entidades disponibles
 
-| Entidad | Campos | Notas |
-|---------|--------|-------|
-| `members` | name, role, orcid, email, photo, is_leader, order | 2 miembros |
-| `publications` | title, authors, abstract, publication_date, doi_link, type, **category** | category: regional/libros/impacto |
-| `videos` | title, youtube_url, embed_id, category, is_featured | ⚠️ Vacío actualmente |
-| `video_categories` | name, slug, description, order, is_active | 3 categorías |
-| `news` | title, content, published_date, is_featured, slug | 2 noticias |
-| `activities` | title, description, photos[], event_date, category | 2 actividades |
-| `site_settings` | key, value, section | 6 settings |
-| `adminUsers` | email, password, role | 2 usuarios |
+| Entidad | Notas |
+|---------|-------|
+| `members` | Equipo del proyecto |
+| `publications` | Artículos, libros, conferencias |
+| `videos` | Podcasts (Educa PINE + Voces Fuera del Aula) |
+| `video_categories` | Categorías de videos |
+| `news` | Noticias del proyecto |
+| `activities` | Actividades/eventos |
+| `site_settings` | URLs sociales, email de contacto |
+| `adminUsers` | Usuarios del panel admin |
 
-### Cómo editar datos permanentes
-1. Abrir `/lib/data.ts`
-2. Modificar los arrays directamente
-3. El servidor reinicia y carga los nuevos datos
+---
 
-### ⚠️ Admin panel no es persistente
-Los cambios desde el admin se guardan en memoria (db.ts) y se pierden al reiniciar el servidor. Para datos permanentes, editar `data.ts` directamente.
+## Flujos de Trabajo Recurrentes
+
+### Agregar publicación con enlace únicamente
+1. Abrir `lib/data.ts`
+2. Agregar entrada en el array `publications` con:
+   - `id`: `pub_XX` (número correlativo)
+   - `type`: `'article'` | `'conference'` | `'book'` | `'other'`
+   - `category`: `'impacto'` (ErihPlus, Scopus, WoS) | `'regional'` (Latindex, Dialnet) | `'libros'`
+   - `doi_link`: URL del artículo o DOI
+   - Omitir `pdf_file` si no hay PDF
+3. Verificar TypeScript: `npx tsc --noEmit`
+
+### Agregar publicación descargable (PDF)
+1. Colocar el PDF en `public/files/` (nombre sin espacios, ej. `Nombre-Articulo.pdf`)
+2. Agregar entrada en `publications` con `pdf_file: '/files/Nombre-Articulo.pdf'`
+3. El componente `PublicationsSection.tsx` renderiza automáticamente el botón **PDF**
+
+### Actualizar o agregar miembro del equipo
+1. Colocar la foto en `public/images/` (puede partir de la raíz del proyecto — moverla aquí)
+2. Agregar/editar entrada en el array `members` de `lib/data.ts`
+3. Campos: `name`, `role`, `orcid` (opcional), `email`, `photo: '/images/archivo.jpg'`, `order`
+4. Para diferenciar estudiantes usar `role: 'Estudiante Investigador'`
+
+### Leer documentos Word para actualizar contenido
+- Los `.docx` de referencia están en `docs/`
+- Para extraer texto usar el skill `plugin:anthropic-skills:docx`
+- Contenido a completar:
+  - `docs/Proyecto_Innovaciones_Pedagógicas 2025.docx` → sección "Sobre el Proyecto" en landing
+  - `docs/contenidoYoube.docx` → videos adicionales
+  - `docs/contactos.docx` → site_settings (email, redes sociales)
+  - `docs/publicaciones.docx` → publicaciones adicionales
+
+### Reorganizar/limpiar estructura
+- Imágenes: siempre en `public/images/` (nunca en raíz)
+- PDFs descargables: `public/files/`
+- Documentos de referencia: `docs/`
+- No crear carpetas adicionales sin necesidad
 
 ---
 
 ## Autenticación Admin
 
-- **Solo 2 emails autorizados:**
-  - `arturo.rodriguez@uleam.edu.ec`
-  - `jhonny.villafuerte@uleam.edu.ec`
+- **Emails autorizados:** `arturo.rodriguez@uleam.edu.ec` | `jhonny.villafuerte@uleam.edu.ec`
 - **Password:** `Pine2026`
-- **Middleware:** `frontend/middleware.ts` protege todas las rutas `/admin/*`
-- **Almacenamiento:** JWT token en cookies httpOnly
+- **Middleware:** `middleware.ts` protege todas las rutas `/admin/*`
 
 ---
 
 ## Comandos Útiles
 
 ```bash
-# Desarrollo
-cd frontend
+# Desarrollo (desde la raíz del proyecto)
 npm run dev           # http://localhost:3000
 
-# Build
+# Build y verificación
 npm run build
-npm run start
+npx tsc --noEmit      # Solo verificar TypeScript
 
 # Git
 git status
-git add .
-git commit -m "mensaje"
+git add <archivos>
+git commit -m "feat: descripción"
 git push
 ```
 
 ---
 
-## Tareas Pendientes (Próximas Sesiones)
-
-### Sesión 7 — Deploy Vercel ✅ LISTO PARA DEPLOY
-- [x] Migrar `frontend/` a raíz del proyecto
-- [ ] **Abrir Vercel dashboard → importar desde GitHub → deploy automático**
-- [ ] Testing en producción
-- [ ] Dominio personalizado (opcional)
-
-### Contenido Real (de Word Docs)
-- [ ] Extraer info de `Proyecto_Innovaciones_Pedagógicas 2025.docx` → sección About
-- [ ] Extraer videos de `contenidoYoube.docx` → CRUD Videos
-- [ ] Extraer contactos de `contactos.docx` → Configuración sitio
-- [ ] Extraer publicaciones de `publicaciones.docx` → CRUD Publicaciones
-
-### Sesión 6 — Páginas Adicionales (Opcional)
-- [ ] `/videos` — galería completa con filtros
-- [ ] `/publicaciones` — listado paginado
-- [ ] `/noticias` — listado paginado
-- [ ] `/noticias/[slug]` — detalle de noticia
-
----
-
 ## Instrucciones para el Asistente IA
 
-### Cuando trabajes en este proyecto:
 1. **Lee este archivo primero** para entender el contexto completo
-2. **El frontend usa App Router** de Next.js 14 — no usar `pages/`
-3. **TypeScript estricto** — siempre tipar correctamente, sin `any`
-4. **TailwindCSS** — no añadir CSS inline salvo casos muy específicos
-5. **Colores ULEAM:** usar `#003366` (azul) y `#FFD700` (dorado) con las clases definidas en `tailwind.config.ts`
-6. **No tocar `middleware.ts`** sin entender la lógica de auth completa
-7. **Actualizar documentación** cuando hagas cambios significativos
-8. **Sincronizar CLAUDE.md y QWEN.md** con los mismos cambios
+2. **App Router de Next.js 14** — no usar `pages/`
+3. **TypeScript estricto** — sin `any`
+4. **TailwindCSS** — no añadir CSS inline salvo excepciones
+5. **Colores ULEAM:** clases definidas en `tailwind.config.ts`
+6. **No tocar `middleware.ts`** sin entender la lógica de auth
+7. **La fuente de verdad es `lib/data.ts`** — editar ahí para cambios permanentes
+8. **Actualizar este CLAUDE.md** cuando cambien el equipo, publicaciones o estructura
 
-### Convenciones de código:
+### Convenciones de código
 - Componentes: PascalCase (`TeamSection.tsx`)
 - Funciones/variables: camelCase
 - Constantes: UPPER_SNAKE_CASE
-- Archivos de config: kebab-case
-- Commits: Conventional Commits (`feat:`, `fix:`, `docs:`, etc.)
-
-### Build stats (v0.5.0 — referencia):
-```
-✓ 14 páginas estáticas generadas
-✓ First Load JS: 87.3 kB - 110 kB
-✓ Middleware: 26.6 kB
-✓ Sin errores
-```
+- Commits: Conventional Commits (`feat:`, `fix:`, `docs:`)
 
 ---
 
-## Multi-IA: Claude Code + Qwen Code
-
-Este proyecto soporta trabajo con múltiples asistentes IA:
-
-| Asistente | Archivo de contexto | Config |
-|-----------|--------------------|----|
-| Claude Code | `CLAUDE.md` (este archivo) | `.claude/` |
-| Qwen Code | `QWEN.md` | `.qwen/settings.json` |
-| Otros | Consultar `README.md` | — |
-
-**Ambos archivos (`CLAUDE.md` y `QWEN.md`) deben mantenerse sincronizados** con el mismo estado del proyecto.
-
----
-
-**Última actualización:** 2026-04-13 (Sesión 7)
-**Versión:** 0.6.0
-**Estado:** App funcional en local ✅ — Next.js en raíz ✅ — Deploy pendiente confirmar en Vercel
+**Última actualización:** 2026-04-26 (Sesión 8)
+**Versión:** 0.7.0
+**Estado:** App funcional ✅ — Repo limpio ✅ — Pusheado ✅ — Deploy Vercel pendiente confirmar
