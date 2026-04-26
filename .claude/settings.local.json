@@ -14,11 +14,19 @@
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(ollama run:*)",
-      "Bash(python3 -c ':*)",
-      "Bash(python -c ':*)",
-      "Bash(npx next:*)",
-      "Bash(./node_modules/.bin/tsc --noEmit)",
-      "Bash(node_modules/.bin/tsc.cmd --noEmit)"
+      "mcp__0ce0591e-5cce-4ee9-afd9-80965f1ac690__list_teams",
+      "Bash(cp \"c:/Users/User/Documents/Desarrollo Web/proyecto-innovacion-e-internacionalizacion/JohanaBello.jpeg\" \"c:/Users/User/Documents/Desarrollo Web/proyecto-innovacion-e-internacionalizacion/public/images/JohanaBello.jpeg\")",
+      "Bash(cp \"c:/Users/User/Documents/Desarrollo Web/proyecto-innovacion-e-internacionalizacion/ANdyCastilo.png\" \"c:/Users/User/Documents/Desarrollo Web/proyecto-innovacion-e-internacionalizacion/public/images/ANdyCastilo.png\")",
+      "Bash(rm -rf .qwen pocketbase frontend)",
+      "Bash(rm -f pocketbase.zip POCKETBASE_SETUP.md setup-pocketbase.ps1)",
+      "Bash(rm -f Actividad_Podcast.jpeg actividad_previa_podcast.jpeg colider_Jhonny_Villafuerte.jpg lider_arturo_rodriguez.jpg LOGO_PRogramadePodcast.jpeg LOGO_Proyectro.png)",
+      "Bash(mkdir -p docs)",
+      "Bash(mv \"contactos.docx\" \"contenidoYoube.docx\" \"publicaciones.docx\" \"Proyecto_Innovaciones_Pedagógicas 2025.docx\" docs/)",
+      "Bash(grep -v \"^node_modules$\\\\|^\\\\.next$\\\\|^\\\\.git$\\\\|^\\\\.claude$\")",
+      "Bash(npx tsc *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
