@@ -26,7 +26,8 @@
       "Bash(npx tsc *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git commit -m 'docs: update CLAUDE.md to v0.7.0 with recurring workflows and current state *)"
     ]
   }
 }

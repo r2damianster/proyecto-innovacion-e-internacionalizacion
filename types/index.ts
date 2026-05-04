@@ -60,6 +60,7 @@ export interface News {
   published_date: string;
   is_featured: boolean;
   slug: string;
+  external_link?: string;
   created: string;
   updated: string;
 }

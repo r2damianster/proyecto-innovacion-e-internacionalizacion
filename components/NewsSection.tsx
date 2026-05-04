@@ -82,10 +82,12 @@ export default function NewsSection() {
           </p>
         </div>
 
-        {/* News Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* News Horizontal Scroll */}
+        <div className="flex overflow-x-auto space-x-8 pb-4">
           {news.map((item) => (
-            <NewsCard key={item.id} news={item} />
+            <div key={item.id} className="flex-shrink-0 w-80">
+              <NewsCard news={item} />
+            </div>
           ))}
         </div>
 
@@ -154,15 +156,19 @@ function NewsCard({ news }: { news: News }) {
         </p>
 
         {/* Read More */}
-        <a
-          href={`/noticias/${news.slug}`}
-          className="text-primary-600 hover:text-primary-700 font-medium text-sm inline-flex items-center gap-1 transition"
-        >
-          Leer más
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        {news.external_link && (
+          <a
+            href={news.external_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-600 hover:text-primary-700 font-medium text-sm inline-flex items-center gap-1 transition"
+          >
+            Leer más
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        )}
       </div>
     </article>
   );

@@ -232,16 +232,6 @@ export const news: News[] = [
     updated: '2025-04-01T00:00:00Z',
   },
   {
-    id: 'news_2',
-    title: 'Taller de Internacionalización Académica',
-    content: 'Se realizó exitosamente el taller de internacionalización académica con la participación de representantes de universidades de España, México y Colombia. El evento permitió establecer alianzas estratégicas para futuros proyectos de cooperación.',
-    published_date: '2025-03-20',
-    is_featured: false,
-    slug: 'taller-internacionalizacion',
-    created: '2025-03-20T00:00:00Z',
-    updated: '2025-03-20T00:00:00Z',
-  },
-  {
     id: 'news_3',
     title: 'Evento: Fomento de la Escritura Creativa en Innovaciones Pedagógicas',
     content: 'evento donde estudiantes y docentes universitarios y del colegio Juan Montalvo presentaron productos y estrategias de lectura creativa.',
