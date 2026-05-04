@@ -241,6 +241,17 @@ export const news: News[] = [
     created: '2025-03-20T00:00:00Z',
     updated: '2025-03-20T00:00:00Z',
   },
+  {
+    id: 'news_3',
+    title: 'Evento: Fomento de la Escritura Creativa en Innovaciones Pedagógicas',
+    content: 'evento donde estudiantes y docentes universitarios y del colegio Juan Montalvo presentaron productos y estrategias de lectura creativa.',
+    featured_image: '/images/IMG_20260428_131116_176.jpg',
+    published_date: '2026-04-28',
+    is_featured: false,
+    slug: 'fomento-escritura-creativa',
+    created: '2026-05-04T00:00:00Z',
+    updated: '2026-05-04T00:00:00Z',
+  },
 ];
 
 export const activities: Activity[] = [
