@@ -239,7 +239,6 @@ export const news: News[] = [
     published_date: '2026-04-28',
     is_featured: false,
     slug: 'fomento-escritura-creativa',
-    pdf_file: '/files/Fomento-Escritura-Creativa-2026.pdf',
     created: '2026-05-04T00:00:00Z',
     updated: '2026-05-04T00:00:00Z',
   },

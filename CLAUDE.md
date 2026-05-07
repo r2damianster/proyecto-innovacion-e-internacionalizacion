@@ -159,6 +159,24 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 
 ---
 
+## Gestión de Archivos — Regla de Ubicación
+
+> **CRÍTICO:** Antes de colocar cualquier archivo, determinar si debe ser público o privado.
+
+| Carpeta | Acceso | Usar para |
+|---------|--------|-----------|
+| `public/images/` | **Público** (cualquier URL) | Fotos de miembros, logos, imágenes de noticias/actividades |
+| `public/files/` | **Público** (cualquier URL) | PDFs de **publicaciones científicas** descargables desde la landing |
+| `public/admin-assets/` | **Privado** (requiere sesión admin) | PDFs confidenciales: presupuestos, informes internos, documentos de actividades del proyecto |
+
+### Reglas de oro
+- **Nunca** poner documentos internos del proyecto (presupuestos, actas, informes de actividades) en `public/files/` ni en `public/images/` — quedan expuestos a internet.
+- Solo van a `public/files/` los PDFs que el equipo quiere que el público general descargue (artículos científicos, libro del proyecto).
+- Para agregar a la sección admin Documentos: copiar a `public/admin-assets/` y agregar entrada en `app/admin/documents/page.tsx`.
+- Las noticias y actividades **no** llevan link de descarga pública — sus documentos van a `public/admin-assets/`.
+
+---
+
 ## Flujos de Trabajo Recurrentes
 
 ### Agregar publicación con enlace únicamente

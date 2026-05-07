@@ -61,7 +61,6 @@ export interface News {
   is_featured: boolean;
   slug: string;
   external_link?: string;
-  pdf_file?: string;
   created: string;
   updated: string;
 }
