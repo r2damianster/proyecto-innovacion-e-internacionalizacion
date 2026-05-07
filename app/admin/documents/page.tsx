@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-type Doc = { id: string; title: string; filename: string; description: string; icon: string };
+type Doc = { id: string; title: string; filename: string; description: string; icon: string; date: string };
 
 function DocCard({ doc }: { doc: Doc }) {
   return (
@@ -9,6 +9,12 @@ function DocCard({ doc }: { doc: Doc }) {
         <div className="text-5xl">{doc.icon}</div>
         <div className="flex-1">
           <h3 className="text-xl font-semibold text-gray-900">{doc.title}</h3>
+          <p className="mt-1 text-xs text-gray-400 flex items-center gap-1">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {new Date(doc.date).toLocaleDateString('es-EC', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
           <p className="mt-2 text-sm text-gray-600">{doc.description}</p>
           <div className="mt-4 flex gap-3">
             <a
@@ -48,6 +54,7 @@ const documents = {
       filename: '2025_FICHA_PRESUPUESTARIA.pdf',
       description: 'Documento oficial de la ficha presupuestaria del proyecto 2025',
       icon: '💰',
+      date: '2025-01-01',
     },
     {
       id: 'proyecto-actualizado',
@@ -55,6 +62,7 @@ const documents = {
       filename: '2025_ProyectoActualizado.pdf',
       description: 'Versión actualizada del proyecto de innovaciones pedagógicas e internacionalización',
       icon: '📄',
+      date: '2025-01-01',
     },
   ],
   actividades: [
@@ -64,6 +72,7 @@ const documents = {
       filename: '2026_FomentoEscrituraCreativa.pdf',
       description: 'Evento donde estudiantes y docentes universitarios y del colegio Juan Montalvo presentaron productos y estrategias de lectura creativa.',
       icon: '✍️',
+      date: '2026-04-28',
     },
   ],
 };
