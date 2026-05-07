@@ -1,21 +1,72 @@
 import Link from 'next/link';
 
-const documents = [
-  {
-    id: 'ficha-presupuestaria',
-    title: 'Ficha Presupuestaria 2025',
-    filename: '2025_FICHA_PRESUPUESTARIA.pdf',
-    description: 'Documento oficial de la ficha presupuestaria del proyecto 2025',
-    icon: '💰',
-  },
-  {
-    id: 'proyecto-actualizado',
-    title: 'Proyecto Actualizado 2025',
-    filename: '2025_ProyectoActualizado.pdf',
-    description: 'Versión actualizada del proyecto de innovaciones pedagógicas e internacionalización',
-    icon: '📄',
-  },
-];
+type Doc = { id: string; title: string; filename: string; description: string; icon: string };
+
+function DocCard({ doc }: { doc: Doc }) {
+  return (
+    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition">
+      <div className="flex items-start space-x-4">
+        <div className="text-5xl">{doc.icon}</div>
+        <div className="flex-1">
+          <h3 className="text-xl font-semibold text-gray-900">{doc.title}</h3>
+          <p className="mt-2 text-sm text-gray-600">{doc.description}</p>
+          <div className="mt-4 flex gap-3">
+            <a
+              href={`/admin-assets/${doc.filename}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-uleam-blue text-white rounded-lg hover:bg-blue-800 transition text-sm"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Ver PDF
+            </a>
+            <a
+              href={`/admin-assets/${doc.filename}`}
+              download
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition text-sm"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Descargar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const documents = {
+  proyecto: [
+    {
+      id: 'ficha-presupuestaria',
+      title: 'Ficha Presupuestaria 2025',
+      filename: '2025_FICHA_PRESUPUESTARIA.pdf',
+      description: 'Documento oficial de la ficha presupuestaria del proyecto 2025',
+      icon: '💰',
+    },
+    {
+      id: 'proyecto-actualizado',
+      title: 'Proyecto Actualizado 2025',
+      filename: '2025_ProyectoActualizado.pdf',
+      description: 'Versión actualizada del proyecto de innovaciones pedagógicas e internacionalización',
+      icon: '📄',
+    },
+  ],
+  actividades: [
+    {
+      id: 'fomento-escritura-creativa',
+      title: 'Fomento de la Escritura Creativa 2026',
+      filename: '2026_FomentoEscrituraCreativa.pdf',
+      description: 'Evento donde estudiantes y docentes universitarios y del colegio Juan Montalvo presentaron productos y estrategias de lectura creativa.',
+      icon: '✍️',
+    },
+  ],
+};
 
 export default function DocumentsPage() {
   return (
@@ -53,49 +104,32 @@ export default function DocumentsPage() {
         </div>
       </div>
 
-      {/* Documents Grid */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {documents.map((doc) => (
-          <div
-            key={doc.id}
-            className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition"
-          >
-            <div className="flex items-start space-x-4">
-              <div className="text-5xl">{doc.icon}</div>
-              <div className="flex-1">
-                <h2 className="text-xl font-semibold text-gray-900">{doc.title}</h2>
-                <p className="mt-2 text-sm text-gray-600">{doc.description}</p>
-                <div className="mt-4 flex gap-3">
-                  <a
-                    href={`/admin-assets/${doc.filename}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-uleam-blue text-white rounded-lg hover:bg-blue-800 transition text-sm"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                    Ver PDF
-                  </a>
-                  <a
-                    href={`/admin-assets/${doc.filename}`}
-                    download
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition text-sm"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Descargar
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+      {/* Documentos del Proyecto */}
+      <div>
+        <h2 className="text-xl font-bold text-gray-700 mb-4 flex items-center gap-2">
+          <span>📁</span> Documentos Generales
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {documents.proyecto.map((doc) => (
+            <DocCard key={doc.id} doc={doc} />
+          ))}
+        </div>
+      </div>
+
+      {/* Actividades */}
+      <div>
+        <h2 className="text-xl font-bold text-gray-700 mb-4 flex items-center gap-2">
+          <span>🗂️</span> Actividades
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {documents.actividades.map((doc) => (
+            <DocCard key={doc.id} doc={doc} />
+          ))}
+        </div>
       </div>
 
       {/* Info Section */}
+
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
         <h3 className="text-lg font-semibold text-blue-900 mb-2">ℹ️ Información</h3>
         <ul className="space-y-2 text-sm text-blue-800">
