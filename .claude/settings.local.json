@@ -27,7 +27,8 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "Bash(git commit -m 'docs: update CLAUDE.md to v0.7.0 with recurring workflows and current state *)"
+      "Bash(git commit -m 'docs: update CLAUDE.md to v0.7.0 with recurring workflows and current state *)",
+      "mcp__claude_ai_Vercel__list_projects"
     ]
   }
 }
