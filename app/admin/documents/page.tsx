@@ -74,6 +74,8 @@ const documents = {
       icon: '✍️',
       date: '2026-04-28',
     },
+  ],
+  informes: [
     {
       id: 'informe-actividades-abril-2026',
       title: 'Informe de Actividades — Abril 2026',
@@ -140,6 +142,18 @@ export default function DocumentsPage() {
         </h2>
         <div className="grid gap-6 md:grid-cols-2">
           {documents.actividades.map((doc) => (
+            <DocCard key={doc.id} doc={doc} />
+          ))}
+        </div>
+      </div>
+
+      {/* Informes Mensuales */}
+      <div>
+        <h2 className="text-xl font-bold text-gray-700 mb-4 flex items-center gap-2">
+          <span>📊</span> Informes Mensuales
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {documents.informes.map((doc) => (
             <DocCard key={doc.id} doc={doc} />
           ))}
         </div>
