@@ -74,6 +74,14 @@ const documents = {
       icon: '✍️',
       date: '2026-04-28',
     },
+    {
+      id: 'informe-actividades-abril-2026',
+      title: 'Informe de Actividades — Abril 2026',
+      filename: '2026_InformeActividadesAbril.pdf',
+      description: 'Informe mensual de actividades del proyecto correspondiente a abril 2026.',
+      icon: '📋',
+      date: '2026-04-30',
+    },
   ],
 };
 
