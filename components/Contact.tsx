@@ -4,13 +4,13 @@ export default function Contact() {
       name: 'Arturo Rodríguez',
       role: 'Líder del Proyecto',
       email: 'arturo.rodriguez@uleam.edu.ec',
-      orcid: '0000-0000-0000-0000',
+      orcid: '0000-0002-7017-9443',
     },
     {
       name: 'Jhonny Villafuerte',
       role: 'Colíder del Proyecto',
       email: 'jhonny.villafuerte@uleam.edu.ec',
-      orcid: '0000-0000-0000-0000',
+      orcid: '0000-0001-6053-6307',
     },
   ];
 
