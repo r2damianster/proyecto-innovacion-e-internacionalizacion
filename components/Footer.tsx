@@ -1,7 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useLanguage } from '@/lib/i18n';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   const socialLinks = [
     {
@@ -49,11 +53,10 @@ export default function Footer() {
           {/* About */}
           <div className="md:col-span-2">
             <h3 className="text-xl font-bold mb-4 text-uleam-gold">
-              Innovaciones Pedagógicas e Internacionalización
+              {t.hero.title1} {t.hero.title2}
             </h3>
             <p className="text-gray-300 mb-4">
-              Proyecto de investigación dedicado a la transformación de las prácticas pedagógicas
-              y la internacionalización en la Universidad Laica Eloy Alfaro de Manabí (ULEAM).
+              {t.footer.description}
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -73,31 +76,31 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-uleam-gold">Enlaces Rápidos</h4>
+            <h4 className="text-lg font-semibold mb-4 text-uleam-gold">{t.footer.quickLinks}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="#inicio" className="text-gray-300 hover:text-white transition">
-                  Inicio
+                  {t.footer.links.home}
                 </Link>
               </li>
               <li>
                 <Link href="#equipo" className="text-gray-300 hover:text-white transition">
-                  Equipo
+                  {t.footer.links.team}
                 </Link>
               </li>
               <li>
                 <Link href="#videos" className="text-gray-300 hover:text-white transition">
-                  Videos
+                  {t.footer.links.videos}
                 </Link>
               </li>
               <li>
                 <Link href="#publicaciones" className="text-gray-300 hover:text-white transition">
-                  Publicaciones
+                  {t.footer.links.publications}
                 </Link>
               </li>
               <li>
                 <Link href="#noticias" className="text-gray-300 hover:text-white transition">
-                  Noticias
+                  {t.footer.links.news}
                 </Link>
               </li>
             </ul>
@@ -105,10 +108,10 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-uleam-gold">Contacto</h4>
+            <h4 className="text-lg font-semibold mb-4 text-uleam-gold">{t.footer.contact}</h4>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <strong>Líder:</strong> Arturo Rodríguez
+                <strong>{t.footer.leader}</strong> Arturo Rodríguez
               </li>
               <li>
                 <a href="mailto:arturo.rodriguez@uleam.edu.ec" className="hover:text-uleam-gold transition">
@@ -116,7 +119,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <strong>Colíder:</strong> Jhonny Villafuerte
+                <strong>{t.footer.coleader}</strong> Jhonny Villafuerte
               </li>
               <li>
                 <a href="mailto:jhonny.villafuerte@uleam.edu.ec" className="hover:text-uleam-gold transition">
@@ -133,7 +136,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {currentYear} ULEAM - Innovaciones Pedagógicas. Todos los derechos reservados.</p>
+          <p>&copy; {currentYear} ULEAM - Innovaciones Pedagógicas. {t.footer.rights}</p>
         </div>
       </div>
     </footer>

@@ -1,14 +1,19 @@
+'use client';
+
+import { useLanguage } from '@/lib/i18n';
+
 export default function Contact() {
+  const { t } = useLanguage();
   const teamContacts = [
     {
       name: 'Arturo Rodríguez',
-      role: 'Líder del Proyecto',
+      role: t.contact.leader,
       email: 'arturo.rodriguez@uleam.edu.ec',
       orcid: '0000-0002-7017-9443',
     },
     {
       name: 'Jhonny Villafuerte',
-      role: 'Colíder del Proyecto',
+      role: t.contact.coleader,
       email: 'jhonny.villafuerte@uleam.edu.ec',
       orcid: '0000-0001-6053-6307',
     },
@@ -68,7 +73,7 @@ export default function Contact() {
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
-            Contacto
+            {t.contact.sectionTitle}
           </h2>
           <div className="w-24 h-1 bg-uleam-gold mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -80,7 +85,7 @@ export default function Contact() {
           {/* Team Contacts */}
           <div>
             <h3 className="text-2xl font-bold text-uleam-blue mb-6">
-              Equipo de Contacto
+              {t.contact.teamTitle}
             </h3>
             <div className="space-y-4">
               {teamContacts.map((contact, index) => (
@@ -126,7 +131,7 @@ export default function Contact() {
           {/* Social Links & Info */}
           <div>
             <h3 className="text-2xl font-bold text-uleam-blue mb-6">
-              Redes Sociales y Enlaces
+              {t.contact.socialTitle}
             </h3>
             
             {/* Social Links */}
@@ -170,25 +175,25 @@ export default function Contact() {
 
             {/* Quick Contact Form */}
             <div className="mt-6 bg-gray-50 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-uleam-blue mb-4">Envíanos un mensaje</h4>
+              <h4 className="text-lg font-semibold text-uleam-blue mb-4">{t.contact.formTitle}</h4>
               <form className="space-y-4">
                 <div>
                   <input
                     type="text"
-                    placeholder="Tu nombre"
+                    placeholder={t.contact.namePlaceholder}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-uleam-blue focus:ring-2 focus:ring-uleam-blue/20 outline-none transition"
                   />
                 </div>
                 <div>
                   <input
                     type="email"
-                    placeholder="Tu correo electrónico"
+                    placeholder={t.contact.emailPlaceholder}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-uleam-blue focus:ring-2 focus:ring-uleam-blue/20 outline-none transition"
                   />
                 </div>
                 <div>
                   <textarea
-                    placeholder="Tu mensaje"
+                    placeholder={t.contact.messagePlaceholder}
                     rows={4}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-uleam-blue focus:ring-2 focus:ring-uleam-blue/20 outline-none transition resize-none"
                   ></textarea>
@@ -197,7 +202,7 @@ export default function Contact() {
                   type="submit"
                   className="w-full px-6 py-3 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
                 >
-                  Enviar Mensaje
+                  {t.contact.sendBtn}
                 </button>
               </form>
             </div>

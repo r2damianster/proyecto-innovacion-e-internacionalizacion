@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import AdminLoginModal from './AdminLoginModal';
+import { useLanguage } from '@/lib/i18n';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showAdminModal, setShowAdminModal] = useState(false);
+  const { lang, t, toggle } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,13 +21,13 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: '#inicio', label: 'Inicio' },
-    { href: '#about', label: 'Acerca de' },
-    { href: '#equipo', label: 'Equipo' },
-    { href: '#videos', label: 'Videos' },
-    { href: '#publicaciones', label: 'Publicaciones' },
-    { href: '#noticias', label: 'Noticias' },
-    { href: '#contacto', label: 'Contacto' },
+    { href: '#inicio', label: t.nav.home },
+    { href: '#about', label: t.nav.about },
+    { href: '#equipo', label: t.nav.team },
+    { href: '#videos', label: t.nav.videos },
+    { href: '#publicaciones', label: t.nav.publications },
+    { href: '#noticias', label: t.nav.news },
+    { href: '#contacto', label: t.nav.contact },
   ];
 
   const handleAdminClick = (e: React.MouseEvent) => {
@@ -73,6 +75,18 @@ export default function Header() {
             ))}
             <li>
               <button
+                onClick={toggle}
+                className={`px-3 py-1.5 rounded-md font-bold text-sm border-2 transition ${
+                  scrolled
+                    ? 'border-uleam-blue text-uleam-blue hover:bg-uleam-blue hover:text-white'
+                    : 'border-white text-white hover:bg-white hover:text-uleam-blue'
+                }`}
+              >
+                {lang === 'es' ? 'EN' : 'ES'}
+              </button>
+            </li>
+            <li>
+              <button
                 onClick={handleAdminClick}
                 className={`px-4 py-2 rounded-md font-medium transition ${
                   scrolled
@@ -115,6 +129,14 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <button
+                onClick={toggle}
+                className="w-full text-left py-2 px-4 text-uleam-blue hover:bg-gray-100 rounded font-bold"
+              >
+                {lang === 'es' ? '🌐 English' : '🌐 Español'}
+              </button>
+            </li>
             <li>
               <button
                 onClick={handleAdminClick}

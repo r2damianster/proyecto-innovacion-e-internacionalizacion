@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/i18n';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     setIsVisible(true);
@@ -44,16 +46,16 @@ export default function Hero() {
 
         {/* Title */}
         <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white mb-3 md:mb-6 leading-tight">
-          Innovaciones Pedagógicas
-          <span className="block text-uleam-gold">e Internacionalización</span>
+          {t.hero.title1}
+          <span className="block text-uleam-gold">{t.hero.title2}</span>
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg md:text-2xl text-gray-200 mb-2 md:mb-4 max-w-3xl mx-auto">
-          Universidad Laica Eloy Alfaro de Manabí
+          {t.hero.subtitle}
         </p>
         <p className="text-base md:text-xl text-primary-200 mb-6 md:mb-12 max-w-2xl mx-auto">
-          Transformando la educación a través de la investigación, la innovación y la colaboración internacional
+          {t.hero.description}
         </p>
 
         {/* CTA Buttons */}
@@ -62,13 +64,13 @@ export default function Hero() {
             href="#about"
             className="px-8 py-4 bg-uleam-gold text-uleam-blue font-bold rounded-lg hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-lg"
           >
-            Conoce el Proyecto
+            {t.hero.ctaProject}
           </a>
           <a
             href="#videos"
             className="px-8 py-4 bg-white/10 text-white font-bold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all transform hover:scale-105 backdrop-blur-sm"
           >
-            Ver Videos
+            {t.hero.ctaVideos}
           </a>
         </div>
 

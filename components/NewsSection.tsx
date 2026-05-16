@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { getNews } from '@/lib/db';
 import type { News } from '@/types';
+import { useLanguage } from '@/lib/i18n';
 
 export default function NewsSection() {
   const [news, setNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const loadNews = async () => {
@@ -74,7 +76,7 @@ export default function NewsSection() {
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
-            Últimas Noticias
+            {t.news.sectionTitle}
           </h2>
           <div className="w-24 h-1 bg-uleam-gold mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -106,7 +108,7 @@ export default function NewsSection() {
             href="/noticias"
             className="inline-block px-8 py-4 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
           >
-            Ver Todas las Noticias →
+            {t.news.viewAll}
           </a>
         </div>
       </div>
@@ -115,6 +117,7 @@ export default function NewsSection() {
 }
 
 function NewsCard({ news }: { news: News }) {
+  const { t } = useLanguage();
   return (
     <article className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 border border-gray-100">
       {/* Featured Image */}
@@ -163,7 +166,7 @@ function NewsCard({ news }: { news: News }) {
             rel="noopener noreferrer"
             className="text-primary-600 hover:text-primary-700 font-medium text-sm inline-flex items-center gap-1 transition"
           >
-            Leer más
+            {t.news.readMore}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { getMembers } from '@/lib/db';
 import type { Member } from '@/types';
+import { useLanguage } from '@/lib/i18n';
 
 export default function TeamSection() {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Load members from static data or use sample data
@@ -67,7 +69,7 @@ export default function TeamSection() {
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
-            Nuestro Equipo
+            {t.team.sectionTitle}
           </h2>
           <div className="w-24 h-1 bg-uleam-gold mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">

@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import VideoCard from './VideoCard';
 import { getVideoCategories, getVideos } from '@/lib/db';
 import type { VideoCategory, Video } from '@/types';
+import { useLanguage } from '@/lib/i18n';
 
 export default function VideoGallery() {
   const [categories, setCategories] = useState<VideoCategory[]>([]);
   const [videos, setVideos] = useState<Video[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const loadData = async () => {
@@ -85,7 +87,7 @@ export default function VideoGallery() {
         {/* Header */}
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
-            Videos y Contenido Multimedia
+            {t.videos.sectionTitle}
           </h2>
           <div className="w-24 h-1 bg-uleam-gold mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -104,7 +106,7 @@ export default function VideoGallery() {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              Todos
+              {t.videos.filterAll}
             </button>
             {categories.map((cat) => (
               <button

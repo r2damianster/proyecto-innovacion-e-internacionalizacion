@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { getPublications } from '@/lib/db';
 import type { Publication } from '@/types';
+import { useLanguage } from '@/lib/i18n';
 
 type CategoryFilter = 'all' | 'regional' | 'libros' | 'impacto';
 
@@ -10,6 +11,7 @@ export default function PublicationsSection() {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
+  const { t } = useLanguage();
 
   useEffect(() => {
     const loadPublications = async () => {
@@ -111,7 +113,7 @@ export default function PublicationsSection() {
         {/* Header */}
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-uleam-blue mb-4">
-            Publicaciones Científicas
+            {t.publications.sectionTitle}
           </h2>
           <div className="w-24 h-1 bg-uleam-gold mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -121,7 +123,7 @@ export default function PublicationsSection() {
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-4 mb-6 md:mb-10">
-          {([['all', 'Todas'], ['regional', 'Regional'], ['libros', 'Libros'], ['impacto', 'De Impacto']] as [CategoryFilter, string][]).map(([key, label]) => (
+          {([['all', t.publications.filters.all], ['regional', t.publications.filters.regional], ['libros', t.publications.filters.libros], ['impacto', t.publications.filters.impacto]] as [CategoryFilter, string][]).map(([key, label]) => (
             <button
               key={key}
               onClick={() => setActiveCategory(key)}
@@ -197,7 +199,7 @@ export default function PublicationsSection() {
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 bg-uleam-blue text-white text-xs font-medium rounded-lg hover:bg-uleam-blue/90 transition"
                       >
-                        Ver →
+                        {t.publications.viewBtn}
                       </a>
                     )}
                     {pub.pdf_file && (
@@ -207,7 +209,7 @@ export default function PublicationsSection() {
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700 transition flex items-center gap-1"
                       >
-                        PDF
+                        {t.publications.pdfBtn}
                       </a>
                     )}
                   </div>
@@ -230,7 +232,7 @@ export default function PublicationsSection() {
             href="/publicaciones"
             className="inline-block px-8 py-4 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
           >
-            Ver Todas las Publicaciones →
+            {t.publications.viewAll}
           </a>
         </div>
       </div>
