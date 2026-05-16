@@ -57,7 +57,7 @@ export const members: Member[] = [
     id: 'member_5',
     name: 'Andy Castillo',
     role: 'Estudiante Investigador',
-    orcid: '',
+    orcid: '0009-0009-8630-7444',
     email: '',
     photo: '/images/ANdyCastilo.png',
     is_leader: false,
