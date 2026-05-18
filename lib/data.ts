@@ -332,4 +332,16 @@ export const adminUsers = [
     password: 'Pine2026',
     role: 'admin' as const,
   },
+  {
+    id: 'admin_3',
+    email: 'german.carrera@uleam.edu.ec',
+    password: 'Pine2026',
+    role: 'admin' as const,
+  },
+  {
+    id: 'admin_4',
+    email: 'veronica.chavez@uleam.edu.ec',
+    password: 'Pine2026',
+    role: 'admin' as const,
+  },
 ];

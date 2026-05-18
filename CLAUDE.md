@@ -219,7 +219,7 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 
 ## Autenticación Admin
 
-- **Emails autorizados:** `arturo.rodriguez@uleam.edu.ec` | `jhonny.villafuerte@uleam.edu.ec`
+- **Emails autorizados:** `arturo.rodriguez@uleam.edu.ec` | `jhonny.villafuerte@uleam.edu.ec` | `german.carrera@uleam.edu.ec` | `veronica.chavez@uleam.edu.ec`
 - **Password:** `Pine2026`
 - **Middleware:** `middleware.ts` protege todas las rutas `/admin/*`
 
