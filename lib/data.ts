@@ -65,6 +65,18 @@ export const members: Member[] = [
     created: '2026-04-26T00:00:00Z',
     updated: '2026-04-26T00:00:00Z',
   },
+  {
+    id: 'member_6',
+    name: 'Josselyn Mera Rivas',
+    role: 'Estudiante Investigadora',
+    orcid: '',
+    email: '',
+    photo: '/images/Josselyn_Mera.jpg',
+    is_leader: false,
+    order: 6,
+    created: '2026-05-20T00:00:00Z',
+    updated: '2026-05-20T00:00:00Z',
+  },
 ];
 
 export const publications: Publication[] = [
