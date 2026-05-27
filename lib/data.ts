@@ -230,6 +230,19 @@ export const videos: Video[] = [
     created: '2026-02-26T00:00:00Z',
     updated: '2026-02-26T00:00:00Z',
   },
+  {
+    id: 'video_5',
+    title: 'La procrastinación, el enemigo silencioso de nuestros sueños',
+    youtube_url: 'https://youtu.be/firVFL67s04',
+    description: 'Podcast Educa PINE — Episodio sobre la procrastinación y su impacto en el rendimiento académico y personal.',
+    embed_id: 'firVFL67s04',
+    category: 'cat_1',
+    published_date: '2026-05-27',
+    order: 4,
+    is_featured: true,
+    created: '2026-05-27T00:00:00Z',
+    updated: '2026-05-27T00:00:00Z',
+  },
 ];
 
 export const news: News[] = [
