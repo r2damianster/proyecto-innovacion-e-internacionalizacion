@@ -78,7 +78,7 @@ export default function TeamSection() {
         </div>
 
         {/* All members side by side */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6 max-w-5xl mx-auto justify-items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto justify-items-center">
           {members.map((member) => (
             <TeamCard key={member.id} member={member} />
           ))}
@@ -92,13 +92,13 @@ function TeamCard({ member }: { member: Member }) {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border-2 border-uleam-gold w-full">
       {/* Photo */}
-      <div className="relative h-28 sm:h-36 md:h-48 bg-gray-200">
+      <div className="relative h-48 sm:h-56 md:h-64 bg-gray-200">
         {member.photo ? (
           <Image
             src={member.photo}
             alt={member.name}
             fill
-            className="object-cover"
+            className="object-cover object-top"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400">
