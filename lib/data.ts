@@ -68,14 +68,26 @@ export const members: Member[] = [
   {
     id: 'member_6',
     name: 'Josselyn Mera Rivas',
-    role: 'Estudiante Investigadora',
+    role: 'Estudiante Investigadora / Equipo de Podcast',
     orcid: '',
     email: '',
     photo: '/images/Josselyn_Mera.jpg',
     is_leader: false,
     order: 6,
     created: '2026-05-20T00:00:00Z',
-    updated: '2026-05-20T00:00:00Z',
+    updated: '2026-05-27T00:00:00Z',
+  },
+  {
+    id: 'member_7',
+    name: 'Doménica Valeska Vélez Bravo',
+    role: 'Equipo de Podcast',
+    orcid: '0009-0009-3023-0564',
+    email: '',
+    photo: '/images/Domenica_Velez.jpeg',
+    is_leader: false,
+    order: 7,
+    created: '2026-05-27T00:00:00Z',
+    updated: '2026-05-27T00:00:00Z',
   },
 ];
 
