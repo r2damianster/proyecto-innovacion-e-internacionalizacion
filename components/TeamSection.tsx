@@ -78,7 +78,7 @@ export default function TeamSection() {
         </div>
 
         {/* All members side by side */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto justify-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6 max-w-5xl mx-auto justify-items-center">
           {members.map((member) => (
             <TeamCard key={member.id} member={member} />
           ))}
@@ -92,7 +92,7 @@ function TeamCard({ member }: { member: Member }) {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border-2 border-uleam-gold w-full">
       {/* Photo */}
-      <div className="relative h-48 bg-gray-200">
+      <div className="relative h-28 sm:h-36 md:h-48 bg-gray-200">
         {member.photo ? (
           <Image
             src={member.photo}
@@ -107,18 +107,18 @@ function TeamCard({ member }: { member: Member }) {
             </svg>
           </div>
         )}
-        <div className="absolute top-2 right-2 bg-uleam-gold text-uleam-blue px-2 py-0.5 rounded-full text-xs font-bold">
+        <div className="absolute top-1 right-1 md:top-2 md:right-2 bg-uleam-gold text-uleam-blue px-1.5 md:px-2 py-0.5 rounded-full text-[10px] md:text-xs font-bold">
           {member.is_leader ? 'Líder' : member.order === 2 ? 'Colíder' : 'Participante'}
         </div>
       </div>
 
       {/* Info */}
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-uleam-blue mb-1">{member.name}</h3>
-        <p className="text-gray-600 text-sm mb-3">{member.role}</p>
+      <div className="p-2 md:p-4">
+        <h3 className="text-xs sm:text-sm md:text-lg font-bold text-uleam-blue mb-0.5 md:mb-1 leading-tight">{member.name}</h3>
+        <p className="text-gray-600 text-xs md:text-sm mb-1 md:mb-3 leading-tight">{member.role}</p>
 
         {member.orcid && (
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="hidden md:flex items-center gap-2 text-sm text-gray-500">
             <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 01-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-1.913-1.237-3.722-3.984-3.722h-2.335z" />
             </svg>
