@@ -49,6 +49,14 @@ function DocCard({ doc }: { doc: Doc }) {
 const documents = {
   proyecto: [
     {
+      id: 'acta-tecnica-reunion-01',
+      title: 'Acta Técnica de Reunión N°1 — 2025',
+      filename: '2025_ActaTecnicaReunion01.pdf',
+      description: 'Reasignación del liderazgo del proyecto e incorporación de nuevos integrantes al equipo. Regularización de la participación del Dr. Arturo Rodríguez Zambrano en el sistema institucional.',
+      icon: '📝',
+      date: '2025-05-22',
+    },
+    {
       id: 'ficha-presupuestaria',
       title: 'Ficha Presupuestaria 2025',
       filename: '2025_FICHA_PRESUPUESTARIA.pdf',
