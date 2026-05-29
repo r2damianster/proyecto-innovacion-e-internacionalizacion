@@ -92,6 +92,14 @@ const documents = {
       icon: '📋',
       date: '2026-04-30',
     },
+    {
+      id: 'informe-mensual-comision-mayo-2026',
+      title: 'Informe Mensual de Comisión — Mayo 2026',
+      filename: '2026_InformeMensualComision_Mayo.pdf',
+      description: 'Informe mensual de comisión correspondiente a mayo 2026.',
+      icon: '📋',
+      date: '2026-05-31',
+    },
   ],
 };
 
