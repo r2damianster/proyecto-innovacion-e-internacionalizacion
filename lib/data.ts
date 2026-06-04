@@ -271,6 +271,17 @@ export const videos: Video[] = [
 
 export const news: News[] = [
   {
+    id: 'news_4',
+    title: 'Mes de la Magia: Trucos como Recurso Didáctico',
+    content: 'En la próxima InterClass cada estudiante presentará un truco de magia como recurso didáctico innovador. Este reto surge del primer encuentro InterClass del proyecto, donde se trabajó el diagnóstico comunitario a través de un workshop debate. La magia como estrategia pedagógica invita a explorar la creatividad, la atención y el aprendizaje experiencial.',
+    featured_image: '/images/InterClass.jpeg',
+    published_date: '2026-06-02',
+    is_featured: true,
+    slug: 'mes-de-la-magia',
+    created: '2026-06-02T00:00:00Z',
+    updated: '2026-06-02T00:00:00Z',
+  },
+  {
     id: 'news_1',
     title: 'Inicio del Proyecto de Innovación Pedagógica',
     content: 'La ULEAM ha lanzado oficialmente el proyecto de innovaciones pedagógicas con el objetivo de transformar los procesos de enseñanza-aprendizaje en la institución. Este proyecto contará con la participación de docentes de diferentes facultades y la colaboración de universidades internacionales.',
@@ -313,6 +324,16 @@ export const activities: Activity[] = [
     category: 'grabacion',
     created: '2025-03-01T00:00:00Z',
     updated: '2025-03-01T00:00:00Z',
+  },
+  {
+    id: 'activity_3',
+    title: 'InterClass: Diagnóstico Comunitario y Workshop Debate',
+    description: 'Clase innovadora entre varios cursos donde se abordó el diagnóstico comunitario mediante un workshop debate. Se anunció el Mes de la Magia: en la próxima InterClass cada estudiante presentará un truco de magia como recurso didáctico.',
+    photos: ['/images/InterClass.jpeg'],
+    event_date: '2026-06-02',
+    category: 'interclass',
+    created: '2026-06-02T00:00:00Z',
+    updated: '2026-06-02T00:00:00Z',
   },
 ];
 
