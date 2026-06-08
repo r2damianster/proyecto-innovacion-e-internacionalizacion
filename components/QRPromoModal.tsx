@@ -1,0 +1,73 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
+const SITE_URL = 'https://proyecto-innovacion-e-internacional.vercel.app/';
+const SESSION_KEY = 'qr_promo_seen';
+
+export default function QRPromoModal() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!sessionStorage.getItem(SESSION_KEY)) {
+      setIsOpen(true);
+    }
+  }, []);
+
+  const handleClose = () => {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    setIsOpen(false);
+  };
+
+  const handleShare = () => {
+    const text = encodeURIComponent(
+      `¡Descubre el Proyecto de Innovaciones Pedagógicas e Internacionalización de la ULEAM! ${SITE_URL}`
+    );
+    window.open(`https://web.whatsapp.com/send?text=${text}`, '_blank', 'noopener,noreferrer');
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl">
+        <button
+          onClick={handleClose}
+          aria-label="Cerrar"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#003366] text-white transition hover:bg-[#FFD700] hover:text-[#003366]"
+        >
+          ✕
+        </button>
+
+        <h2 className="mb-1 text-lg font-bold text-[#003366]">
+          Visítanos también desde tu celular
+        </h2>
+        <p className="mb-4 text-sm text-gray-600">
+          Escanea el código QR para acceder a nuestro proyecto
+        </p>
+
+        <div className="mx-auto mb-4 w-full max-w-[260px]">
+          <Image
+            src="/images/QR_web.png"
+            alt="Código QR del Proyecto Innovaciones Pedagógicas e Internacionalización"
+            width={260}
+            height={260}
+            className="h-auto w-full rounded-lg border border-gray-200"
+          />
+        </div>
+
+        <button
+          onClick={handleShare}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-2.5 font-semibold text-white transition hover:bg-[#1ebe5a]"
+        >
+          Compartir vía WhatsApp
+        </button>
+      </div>
+    </div>
+  );
+}

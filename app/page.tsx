@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import QRPromoModal from '@/components/QRPromoModal';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -12,6 +13,7 @@ import Contact from '@/components/Contact';
 export default function Home() {
   return (
     <>
+      <QRPromoModal />
       <Header />
       <main>
         <Hero />

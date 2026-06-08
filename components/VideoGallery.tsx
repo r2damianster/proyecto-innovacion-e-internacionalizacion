@@ -11,7 +11,10 @@ export default function VideoGallery() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(6);
   const { t } = useLanguage();
+
+  const PAGE_SIZE = 6;
 
   useEffect(() => {
     const loadData = async () => {
@@ -71,6 +74,14 @@ export default function VideoGallery() {
     ? videos
     : videos.filter(v => v.category === selectedCategory);
 
+  const visibleVideos = filteredVideos.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredVideos.length;
+
+  const handleSelectCategory = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    setVisibleCount(PAGE_SIZE);
+  };
+
   if (loading) {
     return (
       <section id="videos" className="py-10 md:py-20 bg-white">
@@ -94,8 +105,8 @@ export default function VideoGallery() {
             Explora nuestra colección de podcasts, entrevistas y materiales educativos
           </p>
           {videos.length > 0 && (
-            <p className="mt-3 inline-block px-4 py-1 bg-uleam-blue/10 text-uleam-blue text-sm font-semibold rounded-full">
-              {videos.length} episodios publicados
+            <p className="mt-3 inline-flex items-center gap-2 px-5 py-2 bg-uleam-gold text-uleam-blue text-base font-extrabold rounded-full shadow-md">
+              🎙️ {videos.length} episodios publicados
             </p>
           )}
         </div>
@@ -104,7 +115,7 @@ export default function VideoGallery() {
         {categories.length > 0 && (
           <div className="flex flex-wrap justify-center gap-3 mb-6 md:mb-10">
             <button
-              onClick={() => setSelectedCategory('all')}
+              onClick={() => handleSelectCategory('all')}
               className={`px-6 py-2 rounded-full font-medium transition-all ${
                 selectedCategory === 'all'
                   ? 'bg-uleam-blue text-white shadow-lg'
@@ -116,7 +127,7 @@ export default function VideoGallery() {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => handleSelectCategory(cat.id)}
                 className={`px-6 py-2 rounded-full font-medium transition-all ${
                   selectedCategory === cat.id
                     ? 'bg-uleam-blue text-white shadow-lg'
@@ -131,11 +142,23 @@ export default function VideoGallery() {
 
         {/* Videos Grid */}
         {filteredVideos.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredVideos.map((video) => (
-              <VideoCard key={video.id} video={video} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {visibleVideos.map((video) => (
+                <VideoCard key={video.id} video={video} />
+              ))}
+            </div>
+            {hasMore && (
+              <div className="text-center mt-8">
+                <button
+                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                  className="px-8 py-3 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all"
+                >
+                  Cargar más episodios
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-12">
             <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

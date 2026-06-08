@@ -21,7 +21,7 @@ export default function VideoCard({ video }: VideoProps) {
   return (
     <div
       className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
-        isInterdisciplinary ? 'ring-2 ring-fuchsia-500 md:col-span-2 lg:col-span-2' : ''
+        isInterdisciplinary ? 'ring-2 ring-green-500 md:col-span-2 lg:col-span-2' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -41,11 +41,16 @@ export default function VideoCard({ video }: VideoProps) {
       <div className="p-6">
         {/* Category Badge */}
         {video.category?.name && (
-          <div className="mb-3">
+          <div className="mb-3 flex items-center gap-2">
+            {isInterdisciplinary && (
+              <svg className="w-6 h-6 text-green-500 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 7.1-1.01L12 2z" />
+              </svg>
+            )}
             <span
               className={
                 isInterdisciplinary
-                  ? 'inline-block px-4 py-1.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-bold rounded-full shadow-md'
+                  ? 'inline-block px-4 py-1.5 bg-green-600 text-white text-sm font-bold rounded-full shadow-md'
                   : 'inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full'
               }
             >
