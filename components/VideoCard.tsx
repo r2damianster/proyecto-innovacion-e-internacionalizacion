@@ -56,7 +56,7 @@ export default function VideoCard({ video, isLatest }: VideoProps) {
   return (
     <div
       className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
-        isInterdisciplinary ? 'ring-2 ring-green-500 md:col-span-2 lg:col-span-2' : ''
+        isInterdisciplinary ? 'ring-2 ring-green-500' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -124,7 +124,7 @@ export default function VideoCard({ video, isLatest }: VideoProps) {
         )}
 
         {/* Title */}
-        <h3 className={`font-bold text-uleam-blue mb-2 line-clamp-2 ${isInterdisciplinary ? 'text-2xl' : 'text-lg'}`}>
+        <h3 className="text-lg font-bold text-uleam-blue mb-2 line-clamp-2">
           {video.title}
         </h3>
 

@@ -214,7 +214,7 @@ export const videoCategories: VideoCategory[] = [
   },
   {
     id: 'cat_3',
-    name: 'PsicoEducarte',
+    name: 'Podcast PsicoEducarte',
     slug: 'psicoeducarte',
     description: 'Programa PsicoEducarte — colaboración interdisciplinaria entre Psicología Educativa y el proyecto PINE',
     order: 3,
