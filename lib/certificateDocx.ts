@@ -169,7 +169,7 @@ export async function buildCertificateDocument(data: CertificateData, recipientN
             spacing: { before: 160 },
             children: [
               new TextRun({
-                text: 'Facultad de Educación, Turismo, Artes y Humanidades de la Universidad Laica Eloy Alfaro de Manabí',
+                text: 'Facultad de Educación y Turismo de la Universidad Laica Eloy Alfaro de Manabí',
                 color: BLUE,
                 size: 20,
               }),

@@ -58,7 +58,7 @@ export default function CertificateTemplate({ data }: { data: CertificateData })
             CERTIFICADO
           </h1>
           <p className="mt-3 text-sm leading-snug max-w-2xl" style={{ color: '#003366' }}>
-            Facultad de Educación, Turismo, Artes y Humanidades de la Universidad Laica Eloy Alfaro de Manabí
+            Facultad de Educación y Turismo de la Universidad Laica Eloy Alfaro de Manabí
           </p>
           <p className="mt-1 text-sm font-semibold leading-snug max-w-2xl" style={{ color: '#003366' }}>
             {ENTITY_LABELS[data.entity]}
