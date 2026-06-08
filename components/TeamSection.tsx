@@ -108,7 +108,7 @@ function TeamCard({ member }: { member: Member }) {
           </div>
         )}
         <div className="absolute top-1 right-1 md:top-2 md:right-2 bg-uleam-gold text-uleam-blue px-1.5 md:px-2 py-0.5 rounded-full text-[10px] md:text-xs font-bold">
-          {member.is_leader ? 'Líder' : member.order === 2 ? 'Colíder' : 'Participante'}
+          {member.is_leader ? 'Líder' : member.order === 2 ? 'Colíder' : member.id === 'member_7' ? 'Vinculación' : 'Participante'}
         </div>
       </div>
 
