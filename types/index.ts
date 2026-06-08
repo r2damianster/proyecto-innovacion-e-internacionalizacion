@@ -100,10 +100,12 @@ export interface CertificateSigner {
 
 export type CertificateType = 'participacion' | 'expositor' | 'reconocimiento';
 export type CertificateEntity = 'carrera' | 'proyecto' | 'grupo_investigacion';
+export type CertificateLogo = 'proyecto' | 'grupo_investigacion' | 'red_lea' | 'ninguno';
 
 export interface CertificateData {
   type: CertificateType;
   entity: CertificateEntity;
+  secondaryLogo: CertificateLogo;
   recipientName: string;
   motiveText: string;
   eventName: string;
