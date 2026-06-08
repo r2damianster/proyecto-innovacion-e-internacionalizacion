@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-uleam-blue via-primary-800 to-uleam-blue overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-24 md:pt-28 bg-gradient-to-br from-uleam-blue via-primary-800 to-uleam-blue overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
