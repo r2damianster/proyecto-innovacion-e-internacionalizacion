@@ -70,9 +70,14 @@ export default function VideoGallery() {
     loadData();
   }, []);
 
+  const sortedVideos = [...videos].sort(
+    (a, b) => new Date(b.published_date).getTime() - new Date(a.published_date).getTime()
+  );
+  const latestIds = new Set(sortedVideos.slice(0, 3).map((v) => v.id));
+
   const filteredVideos = selectedCategory === 'all'
-    ? videos
-    : videos.filter(v => v.category === selectedCategory);
+    ? sortedVideos
+    : sortedVideos.filter(v => v.category === selectedCategory);
 
   const visibleVideos = filteredVideos.slice(0, visibleCount);
   const hasMore = visibleCount < filteredVideos.length;
@@ -145,7 +150,7 @@ export default function VideoGallery() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {visibleVideos.map((video) => (
-                <VideoCard key={video.id} video={video} />
+                <VideoCard key={video.id} video={video} isLatest={latestIds.has(video.id)} />
               ))}
             </div>
             {hasMore && (

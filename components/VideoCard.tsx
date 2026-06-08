@@ -12,9 +12,10 @@ interface VideoProps {
     published_date: string;
     category?: any;
   };
+  isLatest?: boolean;
 }
 
-export default function VideoCard({ video }: VideoProps) {
+export default function VideoCard({ video, isLatest }: VideoProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isInterdisciplinary = video.category?.slug === 'psicoeducarte';
 
@@ -28,6 +29,14 @@ export default function VideoCard({ video }: VideoProps) {
     >
       {/* Video Embed */}
       <div className="relative aspect-video bg-gray-900">
+        {isLatest && (
+          <span className="absolute top-2 right-2 z-10 flex items-center gap-1 px-2.5 py-1 bg-uleam-gold text-uleam-blue text-xs font-extrabold rounded-full shadow-md">
+            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 7.1-1.01L12 2z" />
+            </svg>
+            Nuevo
+          </span>
+        )}
         <iframe
           src={`https://www.youtube.com/embed/${video.embed_id}`}
           title={video.title}
