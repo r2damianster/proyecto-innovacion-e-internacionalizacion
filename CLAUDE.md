@@ -11,7 +11,7 @@
 **Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
 **Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 **Versión actual:** 0.7.0
-**Última sesión:** 2026-04-26 (Sesión 8 — Limpieza estructura, miembros, publicaciones)
+**Última sesión:** 2026-06-07 (Sesión 10 — Fix overlap logo/header, QR sharing, equipo Podcast)
 
 ---
 
@@ -31,7 +31,7 @@
 
 ---
 
-## Estado Actual (2026-04-26)
+## Estado Actual (2026-06-07)
 
 | Módulo | Estado | % |
 |--------|--------|---|
@@ -40,9 +40,10 @@
 | Middleware / Auth | ✅ Completo | 100% |
 | TypeScript Types | ✅ Completo | 100% |
 | Base de datos estática | ✅ data.ts + db.ts in-memory | 100% |
-| Miembros del equipo | ✅ 5 miembros con fotos reales | 100% |
-| Publicaciones | ✅ 7 publicaciones (1 libro + 6 artículos) | 100% |
+| Miembros del equipo | ✅ 8 miembros (incluye equipo Podcast) | 100% |
+| Publicaciones | ✅ 7 publicaciones (2 libros + 5 artículos) | 100% |
 | Videos / Podcast | ✅ 4 videos (Educa PINE + Voces Fuera del Aula) | 100% |
+| Compartir vía QR | ✅ QRFloatingButton + QRModal + QRPromoModal | 100% |
 | Estructura del repo | ✅ Limpia — sin legacy | 100% |
 | **Deploy Vercel** | ⏳ Pendiente confirmar en dashboard | 90% |
 
@@ -71,6 +72,17 @@
 - ✅ Nombre del Grupo de Investigación actualizado: "Innovaciones pedagógicas para el desarrollo sostenible: inclusión, interculturalidad e interdisciplinaridad" (doc oficial 2026-05-15)
 - ✅ Documento `2026_GrupoInvestigacion.pdf` agregado a `public/admin-assets/` y registrado en `app/admin/documents/page.tsx`
 - ✅ Nueva publicación `pub_64`: libro-podcast "An educational innovation in foreign Languages instruction" (Villafuerte-Holguín et al., 2026, Ediciones ULEAM), PDF descargable en `public/files/Libro-Podcast-Educacion-Innovadora.pdf`
+
+---
+
+## Cambios Recientes (Sesión 10 — 2026-06-07)
+
+- ✅ Nuevos componentes de difusión QR: `QRFloatingButton.tsx` (botón flotante), `QRModal.tsx` (modal con QR + compartir WhatsApp), `QRPromoModal.tsx` (modal promocional auto-abierto)
+- ✅ `ActivityGallery.tsx` y `SubstantiveFunctionsSection.tsx` agregados a la landing (galería de actividades + sección de funciones sustantivas — Docencia/Investigación/Vinculación)
+- ✅ 3 nuevos miembros del **Equipo de Podcast**: Josselyn Mera Rivas, Doménica Valeska Vélez Bravo, Ailys Jordana Bailón Borja (`member_6`–`member_8`)
+- ✅ Publicaciones `pub_1` y `pub_2` retiradas; nueva `pub_63` agregada: "Transition from Regular English Instruction to Bilingual Education: An Experience Using Gamification" (Piloso-Cedeño & Villafuerte-Holguín, regional)
+- ✅ Fix: logo del Hero (256px) se solapaba con el texto del nav (`Inicio`, `Acerca de`, `Equipo`...) en pantallas PC de poca altura (~768px) — `Hero.tsx` ahora usa `pt-24 md:pt-28` para reservar espacio bajo el header; `Header.tsx` cambia `bg-transparent` por degradado translúcido (`from-uleam-blue/70...to-transparent backdrop-blur-sm`) y ajusta breakpoints del nombre/nav para que no se encimen en anchos medianos
+- ✅ PDF "Informe Mensual Comisión Mayo" agregado a `public/admin-assets/`
 
 ---
 
@@ -129,6 +141,9 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 | member_3 | Mg. Cristina Basantes | Coordinadora de Productos Educomunicacionales | 3 |
 | member_4 | Psi. Johana Bello, Mg. | Coordinadora de Internacionalización | 4 |
 | member_5 | Andy Castillo | Estudiante Investigador | 5 |
+| member_6 | Josselyn Mera Rivas | Estudiante Investigadora / Equipo de Podcast | 6 |
+| member_8 | Ailys Jordana Bailón Borja | Estudiante Investigadora / Equipo de Podcast | 7 |
+| member_7 | Doménica Valeska Vélez Bravo | Equipo de Podcast | 8 |
 
 ---
 
@@ -141,9 +156,8 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 | pub_62 | Total Physical Response… | article | impacto | 2026-04 |
 | pub_60 | Microenseñanza con tecnologías… | article | regional | 2026-03 |
 | pub_58 | Comparación nivel de lectura… | article | impacto | 2026-03 |
-| pub_61 | Identifying Main Causes… | article | regional | en prensa |
-| pub_1 | Innovaciones Pedagógicas Ed. Superior | article | impacto | 2025-03 |
-| pub_2 | Internacionalización y Cooperación | conference | regional | 2025-02 |
+| pub_61 | Identifying Main Causes… | article | regional | 2026-06 |
+| pub_63 | Transition from Regular English Instruction to Bilingual Education… | article | regional | 2025-01 |
 
 **Categorías de publicaciones:** `regional` | `libros` | `impacto`
 **Índices:** ErihPlus → impacto | Latindex/Dialnet → regional
@@ -273,6 +287,6 @@ git push
 
 ---
 
-**Última actualización:** 2026-04-26 (Sesión 8)
+**Última actualización:** 2026-06-07 (Sesión 10)
 **Versión:** 0.7.0
 **Estado:** App funcional ✅ — Repo limpio ✅ — Pusheado ✅ — Deploy Vercel pendiente confirmar
