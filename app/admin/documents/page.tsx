@@ -108,6 +108,14 @@ const documents = {
       icon: '📋',
       date: '2026-05-31',
     },
+    {
+      id: 'logo-grupo-investigacion-completo',
+      title: 'Logo Completo — Grupo de Investigación',
+      filename: '2026_LogoGrupoCompleto.png',
+      description: 'Versión completa del logo del Grupo de Investigación (uso interno/oficial, no para difusión web).',
+      icon: '🖼️',
+      date: '2026-06-08',
+    },
   ],
 };
 

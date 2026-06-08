@@ -64,6 +64,20 @@ const translations = {
       sectionTitle: 'Videos y Contenido Multimedia',
       filterAll: 'Todos',
     },
+    connections: {
+      sectionTitle: 'Alianzas y Apoyo',
+      sectionSubtitle: 'Redes y grupos que respaldan y articulan el trabajo del proyecto',
+      group: {
+        name: 'Grupo de Investigación',
+        title: 'Innovaciones pedagógicas para el desarrollo sostenible: inclusión, interculturalidad e interdisciplinaridad',
+        description: 'El proyecto PINE se desarrolla bajo el aval de este grupo de investigación de la ULEAM, que articula líneas de trabajo en inclusión educativa, diálogo intercultural y colaboración interdisciplinaria.',
+      },
+      redLea: {
+        name: 'RED LEA',
+        title: 'Red de Cooperación para la Investigación Científica sobre Lectura y Escritura Académica',
+        description: 'Red interinstitucional que articula proyectos de investigación, publicaciones conjuntas y producción académica sobre lectura y escritura en contextos universitarios.',
+      },
+    },
     activities: {
       sectionTitle: 'Galería de Actividades',
       empty: 'No hay fotos de actividades aún',
@@ -148,6 +162,20 @@ const translations = {
     videos: {
       sectionTitle: 'Videos and Multimedia Content',
       filterAll: 'All',
+    },
+    connections: {
+      sectionTitle: 'Partnerships & Support',
+      sectionSubtitle: 'Networks and groups that endorse and articulate the project\'s work',
+      group: {
+        name: 'Research Group',
+        title: 'Pedagogical innovations for sustainable development: inclusion, interculturality and interdisciplinarity',
+        description: 'The PINE project operates under the endorsement of this ULEAM research group, which articulates work on educational inclusion, intercultural dialogue and interdisciplinary collaboration.',
+      },
+      redLea: {
+        name: 'RED LEA',
+        title: 'Cooperation Network for Scientific Research on Academic Reading and Writing',
+        description: 'An inter-institutional network articulating research projects, joint publications and academic production on reading and writing in university contexts.',
+      },
     },
     activities: {
       sectionTitle: 'Activities Gallery',
