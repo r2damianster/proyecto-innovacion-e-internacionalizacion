@@ -16,10 +16,13 @@ interface VideoProps {
 
 export default function VideoCard({ video }: VideoProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const isInterdisciplinary = video.category?.slug === 'psicoeducarte';
 
   return (
     <div
-      className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+      className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
+        isInterdisciplinary ? 'ring-2 ring-fuchsia-500 md:col-span-2 lg:col-span-2' : ''
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -39,14 +42,20 @@ export default function VideoCard({ video }: VideoProps) {
         {/* Category Badge */}
         {video.category?.name && (
           <div className="mb-3">
-            <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">
+            <span
+              className={
+                isInterdisciplinary
+                  ? 'inline-block px-4 py-1.5 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white text-sm font-bold rounded-full shadow-md'
+                  : 'inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full'
+              }
+            >
               {video.category.name}
             </span>
           </div>
         )}
 
         {/* Title */}
-        <h3 className="text-lg font-bold text-uleam-blue mb-2 line-clamp-2">
+        <h3 className={`font-bold text-uleam-blue mb-2 line-clamp-2 ${isInterdisciplinary ? 'text-2xl' : 'text-lg'}`}>
           {video.title}
         </h3>
 

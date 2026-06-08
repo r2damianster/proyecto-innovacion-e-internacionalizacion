@@ -93,6 +93,11 @@ export default function VideoGallery() {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Explora nuestra colección de podcasts, entrevistas y materiales educativos
           </p>
+          {videos.length > 0 && (
+            <p className="mt-3 inline-block px-4 py-1 bg-uleam-blue/10 text-uleam-blue text-sm font-semibold rounded-full">
+              {videos.length} episodios publicados
+            </p>
+          )}
         </div>
 
         {/* Category Filters */}
