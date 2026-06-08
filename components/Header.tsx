@@ -45,8 +45,8 @@ export default function Header() {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-12 h-12">
+          <Link href="/" className="flex items-center gap-3 shrink-0">
+            <div className="relative w-12 h-12 shrink-0">
               <Image
                 src="/images/logo-proyecto.png"
                 alt="Logo Proyecto"
@@ -54,18 +54,18 @@ export default function Header() {
                 className="object-contain"
               />
             </div>
-            <span className={`font-bold text-lg hidden sm:block ${scrolled ? 'text-uleam-blue' : 'text-white'}`}>
+            <span className={`font-bold text-lg hidden lg:block whitespace-nowrap ${scrolled ? 'text-uleam-blue' : 'text-white'}`}>
               Innovaciones Pedagógicas - ULEAM
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-6">
+          <ul className="hidden md:flex items-center gap-4 lg:gap-6 flex-wrap justify-end">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`font-medium hover:opacity-80 transition ${
+                  className={`font-medium hover:opacity-80 transition whitespace-nowrap ${
                     scrolled ? 'text-uleam-blue' : 'text-white'
                   }`}
                 >
