@@ -176,10 +176,12 @@ export default function VideoGallery() {
         {/* View All Button */}
         <div className="text-center mt-6 md:mt-10">
           <a
-            href="/videos"
+            href="https://www.youtube.com/@PINEInvestigacion"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
           >
-            Ver Todos los Videos →
+            Ver Canal de PINE en YouTube →
           </a>
         </div>
       </div>
