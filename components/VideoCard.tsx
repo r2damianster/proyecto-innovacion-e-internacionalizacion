@@ -100,6 +100,24 @@ export default function VideoCard({ video, isLatest }: VideoProps) {
           </div>
         )}
 
+        {/* Substantive Function Badges */}
+        {functionTags.length > 0 && (
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            {functionTags.map((tag) => {
+              const badge = FUNCTION_BADGES[tag];
+              return (
+                <span
+                  key={tag}
+                  className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full ${badge.className}`}
+                >
+                  {badge.icon}
+                  {badge.label}
+                </span>
+              );
+            })}
+          </div>
+        )}
+
         {/* Title */}
         <h3 className={`font-bold text-uleam-blue mb-2 line-clamp-2 ${isInterdisciplinary ? 'text-2xl' : 'text-lg'}`}>
           {video.title}
