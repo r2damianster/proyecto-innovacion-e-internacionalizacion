@@ -11,7 +11,7 @@ const TYPE_OPTIONS: { value: CertificateType; label: string }[] = [
 ];
 
 const ENTITY_OPTIONS: { value: CertificateEntity; label: string }[] = [
-  { value: 'proyecto', label: 'Proyecto PINE' },
+  { value: 'proyecto', label: 'Proyecto de Innovaciones Pedagógicas e Internacionalización' },
   { value: 'grupo_investigacion', label: 'Grupo de Investigación' },
   { value: 'carrera', label: 'Carrera de Pedagogía de los Idiomas (PINE)' },
 ];
