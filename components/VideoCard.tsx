@@ -82,12 +82,7 @@ export default function VideoCard({ video, isLatest }: VideoProps) {
       <div className="p-6">
         {/* Category Badge */}
         {video.category?.name && (
-          <div className="mb-3 flex items-center gap-2">
-            {isInterdisciplinary && (
-              <svg className="w-6 h-6 text-green-500 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 7.1-1.01L12 2z" />
-              </svg>
-            )}
+          <div className="mb-3 flex flex-wrap items-center gap-2">
             <span
               className={
                 isInterdisciplinary
@@ -97,6 +92,14 @@ export default function VideoCard({ video, isLatest }: VideoProps) {
             >
               {video.category.name}
             </span>
+            {isInterdisciplinary && (
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 7.1-1.01L12 2z" />
+                </svg>
+                Interdisciplinario
+              </span>
+            )}
           </div>
         )}
 
