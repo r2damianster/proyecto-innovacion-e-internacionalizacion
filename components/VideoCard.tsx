@@ -12,6 +12,7 @@ interface VideoProps {
     published_date: string;
     category?: any;
     tags?: string[];
+    expand?: { category?: { name: string; slug: string } };
   };
   isLatest?: boolean;
 }
@@ -48,7 +49,8 @@ const FUNCTION_BADGES: Record<string, { label: string; className: string; icon: 
 
 export default function VideoCard({ video, isLatest }: VideoProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const isInterdisciplinary = video.category?.slug === 'psicoeducarte';
+  const categoryInfo = video.expand?.category ?? (typeof video.category === 'object' ? video.category : undefined);
+  const isInterdisciplinary = categoryInfo?.slug === 'psicoeducarte';
   const functionTags = (video.tags ?? []).filter((tag) => FUNCTION_BADGES[tag]);
 
   return (
@@ -81,7 +83,7 @@ export default function VideoCard({ video, isLatest }: VideoProps) {
       {/* Content */}
       <div className="p-6">
         {/* Category Badge */}
-        {video.category?.name && (
+        {categoryInfo?.name && (
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <span
               className={
@@ -90,7 +92,7 @@ export default function VideoCard({ video, isLatest }: VideoProps) {
                   : 'inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full'
               }
             >
-              {video.category.name}
+              {categoryInfo.name}
             </span>
             {isInterdisciplinary && (
               <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
