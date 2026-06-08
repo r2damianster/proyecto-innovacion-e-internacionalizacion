@@ -11,13 +11,45 @@ interface VideoProps {
     embed_id: string;
     published_date: string;
     category?: any;
+    tags?: string[];
   };
   isLatest?: boolean;
 }
 
+const FUNCTION_BADGES: Record<string, { label: string; className: string; icon: JSX.Element }> = {
+  docencia: {
+    label: 'Docencia',
+    className: 'bg-uleam-blue/10 text-uleam-blue',
+    icon: (
+      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 9.5L4.5 8.6 12 4.7l7.5 3.9-7.5 3.9zM5 13.18v4.32L12 21l7-3.5v-4.32l-7 3.82-7-3.82z" />
+      </svg>
+    ),
+  },
+  vinculacion: {
+    label: 'Vinculación',
+    className: 'bg-orange-100 text-orange-700',
+    icon: (
+      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3a3 3 0 110 6 3 3 0 010-6zm0 14.2a7.2 7.2 0 01-6-3.22c.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08a7.2 7.2 0 01-6 3.22z" />
+      </svg>
+    ),
+  },
+  investigacion: {
+    label: 'Investigación',
+    className: 'bg-uleam-gold/20 text-yellow-700',
+    icon: (
+      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 1015 15.5l.27.28v.79l5 4.99L21.49 19l-4.99-5zm-6 0A4.5 4.5 0 1114 9.5 4.5 4.5 0 019.5 14z" />
+      </svg>
+    ),
+  },
+};
+
 export default function VideoCard({ video, isLatest }: VideoProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isInterdisciplinary = video.category?.slug === 'psicoeducarte';
+  const functionTags = (video.tags ?? []).filter((tag) => FUNCTION_BADGES[tag]);
 
   return (
     <div

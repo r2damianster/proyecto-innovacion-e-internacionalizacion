@@ -7,6 +7,7 @@
 ## Identidad del Proyecto
 
 **Nombre:** Proyecto Innovaciones Pedagógicas e Internacionalización
+**Grupo de Investigación:** Innovaciones pedagógicas para el desarrollo sostenible: inclusión, interculturalidad e interdisciplinaridad (actualización 2026-05-15, doc en `public/admin-assets/2026_GrupoInvestigacion.pdf`)
 **Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
 **Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 **Versión actual:** 0.7.0
@@ -62,6 +63,14 @@
 - ✅ Imágenes duplicadas de raíz eliminadas (todas en `public/images/`)
 - ✅ Docs Word organizados en `docs/`
 - ✅ Push a GitHub completado (commit `759f9e9`)
+
+---
+
+## Cambios Recientes (Sesión 9 — 2026-06-07)
+
+- ✅ Nombre del Grupo de Investigación actualizado: "Innovaciones pedagógicas para el desarrollo sostenible: inclusión, interculturalidad e interdisciplinaridad" (doc oficial 2026-05-15)
+- ✅ Documento `2026_GrupoInvestigacion.pdf` agregado a `public/admin-assets/` y registrado en `app/admin/documents/page.tsx`
+- ✅ Nueva publicación `pub_64`: libro-podcast "An educational innovation in foreign Languages instruction" (Villafuerte-Holguín et al., 2026, Ediciones ULEAM), PDF descargable en `public/files/Libro-Podcast-Educacion-Innovadora.pdf`
 
 ---
 
@@ -127,6 +136,7 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 
 | ID | Título (abrev.) | Tipo | Categoría | Fecha |
 |----|----------------|------|-----------|-------|
+| pub_64 | Podcast: An educational innovation in foreign Languages instruction (libro) | book | libros | 2026-01 |
 | pub_3 | Innovaciones Educativas (libro) | book | libros | 2026-04 |
 | pub_62 | Total Physical Response… | article | impacto | 2026-04 |
 | pub_60 | Microenseñanza con tecnologías… | article | regional | 2026-03 |
