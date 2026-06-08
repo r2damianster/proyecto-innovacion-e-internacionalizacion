@@ -92,3 +92,22 @@ export interface AdminUser {
   created: string;
   updated: string;
 }
+
+export interface CertificateSigner {
+  name: string;
+  role: string;
+}
+
+export type CertificateType = 'participacion' | 'expositor' | 'reconocimiento';
+export type CertificateEntity = 'carrera' | 'proyecto' | 'grupo_investigacion';
+
+export interface CertificateData {
+  type: CertificateType;
+  entity: CertificateEntity;
+  recipientName: string;
+  motiveText: string;
+  eventName: string;
+  date: string;
+  place: string;
+  signers: CertificateSigner[];
+}
