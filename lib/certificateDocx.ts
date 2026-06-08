@@ -11,9 +11,13 @@ import {
   BorderStyle,
   VerticalAlign,
   PageOrientation,
+  VerticalAlignSection,
 } from 'docx';
 import type { CertificateData } from '@/types';
 import { ULEAM_LOGO_PATH, SECONDARY_LOGO_PATHS } from '@/components/CertificateTemplate';
+
+const NO_BORDER = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
+const NO_BORDERS = { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER };
 
 const BLUE = '003366';
 const GOLD = 'B8860B'; // dorado legible sobre fondo blanco en Word
@@ -42,7 +46,7 @@ function formatFromPath(path: string): ImageFormat {
   return 'png';
 }
 
-async function loadImage(path: string, targetHeight = 55): Promise<LoadedImage | null> {
+async function loadImage(path: string, targetHeight = 90): Promise<LoadedImage | null> {
   try {
     const [buffer, dims] = await Promise.all([
       fetch(path).then((res) => res.arrayBuffer()),
@@ -126,26 +130,39 @@ export async function buildCertificateDocument(data: CertificateData, recipientN
 
   const { intro, showMotive } = bodyText(data);
 
-  const logoRowChildren: Paragraph[] = [];
-  if (uleamLogo || secondaryLogo) {
-    const runs = [];
-    if (uleamLogo) runs.push(imageRun(uleamLogo));
-    if (uleamLogo && secondaryLogo) runs.push(new TextRun({ text: '          ' }));
-    if (secondaryLogo) runs.push(imageRun(secondaryLogo));
-    logoRowChildren.push(new Paragraph({ alignment: AlignmentType.CENTER, children: runs, spacing: { after: 200 } }));
+  const logos = [uleamLogo, secondaryLogo].filter((img): img is LoadedImage => img !== null);
+  let logoBlock: Paragraph | Table | null = null;
+  if (logos.length === 1) {
+    logoBlock = new Paragraph({
+      alignment: AlignmentType.CENTER,
+      spacing: { after: 240 },
+      children: [imageRun(logos[0])],
+    });
+  } else if (logos.length === 2) {
+    logoBlock = new Table({
+      width: { size: 60, type: WidthType.PERCENTAGE },
+      alignment: AlignmentType.CENTER,
+      borders: { ...NO_BORDERS, insideHorizontal: NO_BORDER, insideVertical: NO_BORDER },
+      rows: [
+        new TableRow({
+          children: logos.map(
+            (img) =>
+              new TableCell({
+                width: { size: 50, type: WidthType.PERCENTAGE },
+                verticalAlign: VerticalAlign.CENTER,
+                borders: NO_BORDERS,
+                children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [imageRun(img)] })],
+              }),
+          ),
+        }),
+      ],
+    });
   }
 
   const signerRow = new TableRow({ children: data.signers.map(signerCell) });
   const signerTable = new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
-    borders: {
-      top: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-      bottom: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-      left: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-      right: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-      insideHorizontal: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-      insideVertical: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-    },
+    borders: { ...NO_BORDERS, insideHorizontal: NO_BORDER, insideVertical: NO_BORDER },
     rows: [signerRow],
   });
 
@@ -157,9 +174,10 @@ export async function buildCertificateDocument(data: CertificateData, recipientN
             size: { orientation: PageOrientation.LANDSCAPE },
             margin: { top: 720, bottom: 720, left: 1080, right: 1080 },
           },
+          verticalAlign: VerticalAlignSection.CENTER,
         },
         children: [
-          ...logoRowChildren,
+          ...(logoBlock ? [logoBlock, new Paragraph({ children: [], spacing: { after: 160 } })] : []),
           new Paragraph({
             alignment: AlignmentType.CENTER,
             children: [new TextRun({ text: 'CERTIFICADO', bold: true, color: BLUE, size: 44, characterSpacing: 60 })],
@@ -210,7 +228,7 @@ export async function buildCertificateDocument(data: CertificateData, recipientN
             spacing: { before: 240 },
             children: [new TextRun({ text: `${data.place || 'Manta'}, ${data.date || 'fecha'}`, color: '1a1a1a', size: 20 })],
           }),
-          new Paragraph({ spacing: { before: 480 }, children: [] }),
+          new Paragraph({ spacing: { before: 280 }, children: [] }),
           signerTable,
         ],
       },

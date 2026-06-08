@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node /c/tmp/gen_cert_test.mjs)",
+      "Bash(cp /c/tmp/gen_cert_test.mjs \"c:/Users/User/Documents/Desarrollo Web/proyecto-innovacion-e-internacionalizacion/gen_cert_test.mjs\")",
+      "Bash(node gen_cert_test.mjs)",
+      "Bash(rm gen_cert_test.mjs)",
+      "Bash(python -c ' *)",
+      "Read(//c/Program Files/Microsoft Office/root/Office16/**)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Program Files \\(x86\\)/**)",
+      "Bash(powershell.exe -Command \"Get-ChildItem C:\\\\tmp\\\\test_cert*\")"
+    ]
+  }
+}
