@@ -47,17 +47,22 @@ const FUNCTION_BADGES: Record<string, { label: string; className: string; icon: 
   },
 };
 
+const CATEGORY_RING: Record<string, string> = {
+  'educa-pine': 'ring-2 ring-uleam-blue',
+  'voces-fuera-del-aula': 'ring-2 ring-uleam-gold',
+  psicoeducarte: 'ring-2 ring-green-500',
+};
+
 export default function VideoCard({ video, isLatest }: VideoProps) {
   const [isHovered, setIsHovered] = useState(false);
   const categoryInfo = video.expand?.category ?? (typeof video.category === 'object' ? video.category : undefined);
   const isInterdisciplinary = categoryInfo?.slug === 'psicoeducarte';
   const functionTags = (video.tags ?? []).filter((tag) => FUNCTION_BADGES[tag]);
+  const categoryRing = categoryInfo?.slug ? CATEGORY_RING[categoryInfo.slug] ?? '' : '';
 
   return (
     <div
-      className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
-        isInterdisciplinary ? 'ring-2 ring-green-500' : ''
-      }`}
+      className={`bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${categoryRing}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
