@@ -101,16 +101,6 @@ export default function NewsSection() {
             <p className="text-gray-600 text-lg">No hay noticias aún</p>
           </div>
         )}
-
-        {/* View All */}
-        <div className="text-center mt-8 md:mt-12">
-          <a
-            href="/noticias"
-            className="inline-block px-8 py-4 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
-          >
-            {t.news.viewAll}
-          </a>
-        </div>
       </div>
     </section>
   );
