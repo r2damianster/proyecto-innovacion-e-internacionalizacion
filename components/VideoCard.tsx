@@ -49,7 +49,7 @@ const FUNCTION_BADGES: Record<string, { label: string; className: string; icon: 
 
 const CATEGORY_RING: Record<string, string> = {
   'educa-pine': 'ring-2 ring-uleam-blue',
-  'voces-fuera-del-aula': 'ring-2 ring-uleam-gold',
+  'voces-fuera-del-aula': 'ring-2 ring-orange-500',
   psicoeducarte: 'ring-2 ring-green-500',
 };
 
