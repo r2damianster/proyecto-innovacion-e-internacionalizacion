@@ -194,7 +194,7 @@ export const publications: Publication[] = [
 export const videoCategories: VideoCategory[] = [
   {
     id: 'cat_1',
-    name: 'Podcast - Educa PINE',
+    name: 'Educa PINE',
     slug: 'educa-pine',
     description: 'Episodios del podcast Educa PINE sobre pedagogía e innovación educativa',
     order: 1,
@@ -204,7 +204,7 @@ export const videoCategories: VideoCategory[] = [
   },
   {
     id: 'cat_2',
-    name: 'Podcast - Voces Fuera del Aula',
+    name: 'Voces Fuera del Aula',
     slug: 'voces-fuera-del-aula',
     description: 'Desafíos y experiencias en el aprendizaje — podcast Voces Fuera del Aula',
     order: 2,
@@ -214,7 +214,7 @@ export const videoCategories: VideoCategory[] = [
   },
   {
     id: 'cat_3',
-    name: 'Podcast PsicoEducarte',
+    name: 'PsicoEducarte',
     slug: 'psicoeducarte',
     description: 'Programa PsicoEducarte — colaboración interdisciplinaria entre Psicología Educativa y el proyecto PINE',
     order: 3,
