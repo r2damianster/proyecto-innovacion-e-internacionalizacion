@@ -1,9 +1,27 @@
 'use client';
 
+import { useState } from 'react';
 import { useLanguage } from '@/lib/i18n';
 
+const CONTACT_EMAIL = 'arturo.rodriguez@uleam.edu.ec';
+
 export default function Contact() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+
+  const buildMailUrl = (provider: 'gmail' | 'outlook') => {
+    const subject = `Contacto desde sitio web${form.name ? ` - ${form.name}` : ''}`;
+    const body = `${form.message}\n\n---\nNombre: ${form.name}\nCorreo: ${form.email}`;
+    if (provider === 'gmail') {
+      return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONTACT_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+    return `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(CONTACT_EMAIL)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const openMailProvider = (provider: 'gmail' | 'outlook') => {
+    window.open(buildMailUrl(provider), '_blank', 'noopener,noreferrer');
+  };
+
   const teamContacts = [
     {
       name: 'Arturo Rodríguez',
@@ -176,10 +194,12 @@ export default function Contact() {
             {/* Quick Contact Form */}
             <div className="mt-6 bg-gray-50 rounded-lg p-6">
               <h4 className="text-lg font-semibold text-uleam-blue mb-4">{t.contact.formTitle}</h4>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div>
                   <input
                     type="text"
+                    value={form.name}
+                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                     placeholder={t.contact.namePlaceholder}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-uleam-blue focus:ring-2 focus:ring-uleam-blue/20 outline-none transition"
                   />
@@ -187,23 +207,44 @@ export default function Contact() {
                 <div>
                   <input
                     type="email"
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                     placeholder={t.contact.emailPlaceholder}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-uleam-blue focus:ring-2 focus:ring-uleam-blue/20 outline-none transition"
                   />
                 </div>
                 <div>
                   <textarea
+                    value={form.message}
+                    onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                     placeholder={t.contact.messagePlaceholder}
                     rows={4}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-uleam-blue focus:ring-2 focus:ring-uleam-blue/20 outline-none transition resize-none"
                   ></textarea>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
-                >
-                  {t.contact.sendBtn}
-                </button>
+                <p className="text-sm text-gray-500">{t.contact.sendBtn} {lang === 'en' ? 'with:' : 'con:'}</p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    type="button"
+                    onClick={() => openMailProvider('gmail')}
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-300 text-gray-700 font-bold rounded-lg hover:shadow-md hover:border-uleam-blue transition-all"
+                  >
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-.527.255-.962.598-1.222.286-.214.609-.295.957-.295.388 0 .815.116 1.247.435L12 11.273l9.198-6.898c.432-.319.859-.435 1.247-.435.348 0 .671.081.957.295.343.26.598.695.598 1.222z" />
+                    </svg>
+                    Gmail
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => openMailProvider('outlook')}
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-uleam-blue text-white font-bold rounded-lg hover:bg-uleam-blue/90 transition-all transform hover:scale-105"
+                  >
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87q.1-.43.34-.76.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46 0-.8-.33-.32-.33-.32-.8V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h11.13V2.62q0-.46.32-.8.34-.32.8-.32H23.13q.47 0 .8.33.33.33.33.8V12zM6.7 12.06q0-.7-.2-1.32-.21-.62-.59-1.08-.39-.46-.96-.72-.57-.27-1.32-.27-.78 0-1.36.27-.58.26-.96.74-.38.47-.57 1.1-.19.62-.19 1.34 0 .7.2 1.31.18.62.57 1.08.38.46.95.72.58.26 1.34.26.77 0 1.35-.27.58-.27.96-.74.38-.48.57-1.1.2-.61.2-1.32zM23 7.55l-5.5 4.07v-4.07H23zm0 11.83V12.4l-5.5 4.07-2.5-1.83V19.4h8z" />
+                    </svg>
+                    Outlook
+                  </button>
+                </div>
               </form>
             </div>
           </div>

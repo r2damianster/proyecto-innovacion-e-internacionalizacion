@@ -72,6 +72,14 @@ const documents = {
       icon: '📄',
       date: '2025-01-01',
     },
+    {
+      id: 'grupo-investigacion-2026',
+      title: 'Grupo de Investigación — Actualización 2026',
+      filename: '2026_GrupoInvestigacion.pdf',
+      description: 'Actualización del grupo de investigación "Innovaciones pedagógicas para el desarrollo sostenible: inclusión, interculturalidad e interdisciplinaridad".',
+      icon: '🔬',
+      date: '2026-05-15',
+    },
   ],
   actividades: [
     {

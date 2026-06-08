@@ -176,6 +176,18 @@ export const publications: Publication[] = [
     created: '2026-04-27T00:00:00Z',
     updated: '2026-04-27T00:00:00Z',
   },
+  {
+    id: 'pub_64',
+    title: 'Podcast: An educational innovation in foreign Languages instruction',
+    authors: 'Villafuerte-Holguín, J., Cevallos Zambrano, D. P., Rodríguez Zambrano, A. D., Escalantes Delgado, J. N., Bailón Delgado, O. E., Guaranda Paredes, F. D., Calderón Pino, C. V., Palma Cedeño, N. N., Macías Mendoza, A. F., Mendoza García, K. M., Mendoza Palma, J. A., Moreno Álava, K. J., Quiroz Velásquez, J. M., Carranza Coronel, E. J., Piloso Cedeño, J. P., Lorente Tello, S. A., Barcia Espinales, M. A.',
+    abstract: 'Resultado de la integración de tres proyectos de investigación: (1) Innovación educativa a través de podcast: Impacto en el Aprendizaje de Estudiantes Universitarios con Enfoque de Género y (2) Innovaciones pedagógicas e internacionalización de la formación de docentes para el desarrollo humano y sostenible, ambos desarrollados en la carrera de Pedagogía de los Idiomas Nacionales y Extranjeros (PINE) de la Universidad Laica Eloy Alfaro de Manabí. Estudiantes y docentes investigaron los aportes del podcast a procesos de enseñanza innovadores en el contexto universitario, con un enfoque multidisciplinario e integral. Editorial: Ediciones ULEAM.',
+    publication_date: '2026-01-01',
+    pdf_file: '/files/Libro-Podcast-Educacion-Innovadora.pdf',
+    type: 'book',
+    category: 'libros',
+    created: '2026-06-07T00:00:00Z',
+    updated: '2026-06-07T00:00:00Z',
+  },
 ];
 
 export const videoCategories: VideoCategory[] = [
