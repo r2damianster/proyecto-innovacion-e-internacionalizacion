@@ -11,7 +11,7 @@
 **Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
 **Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 **Versión actual:** 0.7.0
-**Última sesión:** 2026-06-07 (Sesión 10 — Fix overlap logo/header, QR sharing, equipo Podcast)
+**Última sesión:** 2026-06-09 (Sesión 11 — 6 nuevas publicaciones + DOI actualizado pub_63)
 
 ---
 
@@ -83,6 +83,14 @@
 - ✅ Publicaciones `pub_1` y `pub_2` retiradas; nueva `pub_63` agregada: "Transition from Regular English Instruction to Bilingual Education: An Experience Using Gamification" (Piloso-Cedeño & Villafuerte-Holguín, regional)
 - ✅ Fix: logo del Hero (256px) se solapaba con el texto del nav (`Inicio`, `Acerca de`, `Equipo`...) en pantallas PC de poca altura (~768px) — `Hero.tsx` ahora usa `pt-24 md:pt-28` para reservar espacio bajo el header; `Header.tsx` cambia `bg-transparent` por degradado translúcido (`from-uleam-blue/70...to-transparent backdrop-blur-sm`) y ajusta breakpoints del nombre/nav para que no se encimen en anchos medianos
 - ✅ PDF "Informe Mensual Comisión Mayo" agregado a `public/admin-assets/`
+
+---
+
+## Cambios Recientes (Sesión 11 — 2026-06-09)
+
+- ✅ 6 nuevas publicaciones agregadas (`pub_65`–`pub_70`): solo `pub_66` (Profesorado, Comunicación asertiva y gamificación) categorizada `impacto`; resto `regional` (Education Quarterly Reviews, Sapienza, Technium)
+- ✅ `pub_63` (Piloso-Cedeño & Villafuerte-Holguín) DOI actualizado: preprint OSF → DOI publicado `10.31014/aior.1993.08.02.588`
+- ℹ️ Diagrama de Venn (`SubstantiveFunctionsSection.tsx`) cuenta `publications.length` automáticamente — no requiere actualización manual al agregar publicaciones
 
 ---
 
@@ -158,6 +166,13 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 | pub_58 | Comparación nivel de lectura… | article | impacto | 2026-03 |
 | pub_61 | Identifying Main Causes… | article | regional | 2026-06 |
 | pub_63 | Transition from Regular English Instruction to Bilingual Education… | article | regional | 2025-01 |
+| pub_64 | Podcast: An educational innovation in foreign Languages instruction (libro) | book | libros | 2026-01 |
+| pub_65 | Use of Podcasts for Leadership and Emotional Intelligence Development… | article | regional | 2026-01 |
+| pub_66 | Comunicación asertiva y gamificación: docentes y síndrome de Down | article | impacto | 2025-07 |
+| pub_67 | Inclusive Education and the Use of Assistive Technologies… | article | regional | 2025-05 |
+| pub_68 | Educational technology and teachers: effective teaching time… | article | regional | 2025-01 |
+| pub_69 | Implementing Project-Based Learning in English Classes | article | regional | 2025-09 |
+| pub_70 | Podcasting to sensitize gender equity in English language student teachers | article | regional | 2025-01 |
 
 **Categorías de publicaciones:** `regional` | `libros` | `impacto`
 **Índices:** ErihPlus → impacto | Latindex/Dialnet → regional
