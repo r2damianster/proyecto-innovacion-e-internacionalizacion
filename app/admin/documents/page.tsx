@@ -90,6 +90,14 @@ const documents = {
       icon: '✍️',
       date: '2026-04-28',
     },
+    {
+      id: 'acta-interclase-2-junio-2026',
+      title: 'Acta Interclase 2 — 2 de junio del 2026',
+      filename: '2026_ActaInterclase2_02Junio.pdf',
+      description: 'Acta de la sesión Interclase 2 donde se anunció el tema de la magia y se presentó el diagnóstico del proyecto.',
+      icon: '📝',
+      date: '2026-06-02',
+    },
   ],
   informes: [
     {
