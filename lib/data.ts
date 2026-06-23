@@ -261,6 +261,18 @@ export const publications: Publication[] = [
     created: '2026-06-09T00:00:00Z',
     updated: '2026-06-09T00:00:00Z',
   },
+  {
+    id: 'pub_71',
+    title: 'El tamaño de lo que sentimos',
+    authors: 'Castillo Menéndez, A. F., Rodríguez Zambrano, A. D. & Cedeño Briones, M. J.',
+    abstract: 'Libro ilustrado sobre el complejo de inferioridad. Ediciones ULEAM.',
+    publication_date: '2026-06-01',
+    pdf_file: '/files/DIPSB-PUB2026-024-El-tamano-de-lo-que-sentimos.pdf',
+    type: 'book',
+    category: 'libros',
+    created: '2026-06-23T00:00:00Z',
+    updated: '2026-06-23T00:00:00Z',
+  },
 ];
 
 export const videoCategories: VideoCategory[] = [
@@ -406,9 +418,47 @@ export const videos: Video[] = [
     created: '2026-06-02T00:00:00Z',
     updated: '2026-06-02T00:00:00Z',
   },
+  {
+    id: 'video_9',
+    title: 'EDUCAPINE | Vinculación y experiencias de los estudiantes de PINE',
+    youtube_url: 'https://youtu.be/Nj2TFVY7GFs',
+    description: 'Podcast Educa PINE — Estudiantes de la carrera de Pedagogía de Idiomas Nacionales y Extranjeros comparten sus experiencias y reflexiones en el marco del proyecto de vinculación con la sociedad.',
+    embed_id: 'Nj2TFVY7GFs',
+    category: 'cat_1',
+    published_date: '2026-06-23',
+    order: 7,
+    is_featured: false,
+    tags: ['vinculacion'],
+    created: '2026-06-23T00:00:00Z',
+    updated: '2026-06-23T00:00:00Z',
+  },
+  {
+    id: 'video_10',
+    title: 'EducaPine | Innovación Educativa y las nuevas metodologías',
+    youtube_url: 'https://youtu.be/DcH6yM8jaaU',
+    description: 'Podcast Educa PINE — Episodio sobre innovación educativa y las nuevas metodologías de enseñanza-aprendizaje. Producto del proyecto de vinculación con la sociedad de la carrera de Pedagogía de Idiomas Nacionales y Extranjeros.',
+    embed_id: 'DcH6yM8jaaU',
+    category: 'cat_1',
+    published_date: '2026-06-23',
+    order: 8,
+    is_featured: false,
+    tags: ['vinculacion', 'innovacion'],
+    created: '2026-06-23T00:00:00Z',
+    updated: '2026-06-23T00:00:00Z',
+  },
 ];
 
 export const news: News[] = [
+  {
+    id: 'news_5',
+    title: '¡Nuevo libro publicado! "El tamaño de lo que sentimos"',
+    content: 'El proyecto PINE celebra la publicación del libro ilustrado "El tamaño de lo que sentimos" — una obra sobre el complejo de inferioridad, escrita por Andy Fernando Castillo Menéndez, Arturo Damián Rodríguez Zambrano y Mikel Jarvin Cedeño Briones. Publicado en junio de 2026 por Ediciones ULEAM. Dos de sus autores son miembros activos de nuestro grupo de investigación.',
+    published_date: '2026-06-23',
+    is_featured: true,
+    slug: 'libro-el-tamano-de-lo-que-sentimos',
+    created: '2026-06-23T00:00:00Z',
+    updated: '2026-06-23T00:00:00Z',
+  },
   {
     id: 'news_4',
     title: 'Mes de la Magia: Trucos como Recurso Didáctico',

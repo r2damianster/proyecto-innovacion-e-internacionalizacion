@@ -11,7 +11,7 @@
 **Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
 **Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 **Versión actual:** 0.7.0
-**Última sesión:** 2026-06-09 (Sesión 11 — 6 nuevas publicaciones + DOI actualizado pub_63)
+**Última sesión:** 2026-06-23 (Sesión 12 — 2 nuevos videos + libro pub_71 + noticia news_5)
 
 ---
 
@@ -83,6 +83,15 @@
 - ✅ Publicaciones `pub_1` y `pub_2` retiradas; nueva `pub_63` agregada: "Transition from Regular English Instruction to Bilingual Education: An Experience Using Gamification" (Piloso-Cedeño & Villafuerte-Holguín, regional)
 - ✅ Fix: logo del Hero (256px) se solapaba con el texto del nav (`Inicio`, `Acerca de`, `Equipo`...) en pantallas PC de poca altura (~768px) — `Hero.tsx` ahora usa `pt-24 md:pt-28` para reservar espacio bajo el header; `Header.tsx` cambia `bg-transparent` por degradado translúcido (`from-uleam-blue/70...to-transparent backdrop-blur-sm`) y ajusta breakpoints del nombre/nav para que no se encimen en anchos medianos
 - ✅ PDF "Informe Mensual Comisión Mayo" agregado a `public/admin-assets/`
+
+---
+
+## Cambios Recientes (Sesión 12 — 2026-06-23)
+
+- ✅ `video_9`: "EDUCAPINE | Vinculación y experiencias de los estudiantes de PINE" (embed: `Nj2TFVY7GFs`, cat_1)
+- ✅ `video_10`: "EducaPine | Innovación Educativa y las nuevas metodologías" (embed: `DcH6yM8jaaU`, cat_1)
+- ✅ `pub_71`: libro "El tamaño de lo que sentimos" — Castillo Menéndez, Rodríguez Zambrano & Cedeño Briones — Ediciones ULEAM, junio 2026 — PDF: `public/files/DIPSB-PUB2026-024-El-tamano-de-lo-que-sentimos.pdf`
+- ✅ `news_5`: noticia destacada sobre publicación del libro (is_featured: true)
 
 ---
 
@@ -173,6 +182,7 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 | pub_68 | Educational technology and teachers: effective teaching time… | article | regional | 2025-01 |
 | pub_69 | Implementing Project-Based Learning in English Classes | article | regional | 2025-09 |
 | pub_70 | Podcasting to sensitize gender equity in English language student teachers | article | regional | 2025-01 |
+| pub_71 | El tamaño de lo que sentimos (libro ilustrado) | book | libros | 2026-06 |
 
 **Categorías de publicaciones:** `regional` | `libros` | `impacto`
 **Índices:** ErihPlus → impacto | Latindex/Dialnet → regional
