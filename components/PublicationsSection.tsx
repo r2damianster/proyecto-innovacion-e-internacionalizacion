@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { getPublications } from '@/lib/db';
 import type { Publication } from '@/types';
 import { useLanguage } from '@/lib/i18n';
@@ -144,8 +145,20 @@ export default function PublicationsSection() {
             {[...filteredPublications, ...filteredPublications].map((pub, idx) => (
               <div
                 key={`${pub.id}-${idx}`}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all border-l-4 border-uleam-gold w-96 flex-shrink-0"
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all border-l-4 border-uleam-gold w-96 flex-shrink-0"
               >
+                {/* Cover Image */}
+                {pub.cover_image && (
+                  <div className="relative h-48 bg-gray-100">
+                    <Image
+                      src={pub.cover_image}
+                      alt={pub.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className="p-6">
                 {/* Category Badge */}
                 <div className="mb-2">
                   <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${getCategoryColor(pub.category)}`}>
@@ -213,6 +226,7 @@ export default function PublicationsSection() {
                       </a>
                     )}
                   </div>
+                </div>
                 </div>
               </div>
             ))}
