@@ -98,6 +98,14 @@ const documents = {
       icon: '📝',
       date: '2026-06-02',
     },
+    {
+      id: 'acta-interclase-3-30-junio-2026',
+      title: 'Acta Interclase 3 — 30 de junio del 2026',
+      filename: '2026_ActaInterclase3_30Junio.pdf',
+      description: 'Convocatoria y registro de asistencia de la InterClass de Innovación Didáctica en Educación Inicial y Pedagogía de Idiomas, con la docente Lucy López Bermeo.',
+      icon: '📝',
+      date: '2026-06-30',
+    },
   ],
   informes: [
     {

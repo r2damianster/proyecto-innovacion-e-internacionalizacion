@@ -493,6 +493,17 @@ export const videos: Video[] = [
 
 export const news: News[] = [
   {
+    id: 'news_6',
+    title: 'InterClass: Innovación Didáctica en Educación Inicial y Pedagogía de Idiomas',
+    content: 'Una nueva InterClass reunió a las asignaturas de Innovación Didáctica en Educación Inicial, junto a la docente Lucy López Bermeo, y Pedagogía de Idiomas. Los estudiantes de Educación Inicial presentaron cuentos elaborados desde la asignatura de Literatura Infantil, compartiendo recursos didácticos creativos con sus compañeros de Pedagogía de Idiomas.',
+    featured_image: '/images/InterClass-30Junio.jpeg',
+    published_date: '2026-06-30',
+    is_featured: true,
+    slug: 'interclass-educacion-inicial-pedagogia-idiomas',
+    created: '2026-06-30T00:00:00Z',
+    updated: '2026-06-30T00:00:00Z',
+  },
+  {
     id: 'news_5',
     title: '¡Nuevo libro publicado! "El tamaño de lo que sentimos"',
     content: 'El proyecto PINE celebra la publicación del libro ilustrado "El tamaño de lo que sentimos" — una obra sobre el complejo de inferioridad, escrita por Andy Fernando Castillo Menéndez, Arturo Damián Rodríguez Zambrano y Mikel Jarvin Cedeño Briones. Publicado en junio de 2026 por Ediciones ULEAM. Dos de sus autores son miembros activos de nuestro grupo de investigación.',
@@ -567,6 +578,16 @@ export const activities: Activity[] = [
     category: 'interclass',
     created: '2026-06-02T00:00:00Z',
     updated: '2026-06-02T00:00:00Z',
+  },
+  {
+    id: 'activity_4',
+    title: 'InterClass: Innovación Didáctica en Educación Inicial y Pedagogía de Idiomas',
+    description: 'Encuentro entre las asignaturas de Innovación Didáctica en Educación Inicial (docente Lucy López Bermeo) y Pedagogía de Idiomas. Estudiantes de Educación Inicial presentaron cuentos desde la asignatura de Literatura Infantil como recurso didáctico.',
+    photos: ['/images/InterClass-30Junio.jpeg'],
+    event_date: '2026-06-30',
+    category: 'interclass',
+    created: '2026-06-30T00:00:00Z',
+    updated: '2026-06-30T00:00:00Z',
   },
 ];
 
