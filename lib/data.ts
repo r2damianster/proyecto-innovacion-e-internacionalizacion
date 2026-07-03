@@ -504,6 +504,17 @@ export const news: News[] = [
     updated: '2026-06-30T00:00:00Z',
   },
   {
+    id: 'news_7',
+    title: 'Socialización de Proyectos de Investigación, Vinculación y Tesis Doctorales',
+    content: 'El miércoles 10 de junio, de 10h00 a 14h30, se realizó la socialización de proyectos de investigación y vinculación junto a tesis doctorales, con la participación de estudiantes, docentes y autoridades de la ULEAM. El evento reunió a representantes de distintas facultades para compartir avances y resultados de los proyectos en curso.',
+    featured_image: '/images/Socializacion-Proyectos-10Junio.jpeg',
+    published_date: '2026-06-10',
+    is_featured: true,
+    slug: 'socializacion-proyectos-investigacion-10junio',
+    created: '2026-06-10T00:00:00Z',
+    updated: '2026-06-10T00:00:00Z',
+  },
+  {
     id: 'news_5',
     title: '¡Nuevo libro publicado! "El tamaño de lo que sentimos"',
     content: 'El proyecto PINE celebra la publicación del libro ilustrado "El tamaño de lo que sentimos" — una obra sobre el complejo de inferioridad, escrita por Andy Fernando Castillo Menéndez, Arturo Damián Rodríguez Zambrano y Mikel Jarvin Cedeño Briones. Publicado en junio de 2026 por Ediciones ULEAM. Dos de sus autores son miembros activos de nuestro grupo de investigación.',

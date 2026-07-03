@@ -106,6 +106,22 @@ const documents = {
       icon: '📝',
       date: '2026-06-30',
     },
+    {
+      id: 'convocatoria-docentes-10-junio-2026',
+      title: 'Convocatoria Docentes — Socialización 10 de junio del 2026',
+      filename: '2026_ConvocatoriaDocentes.pdf',
+      description: 'Convocatoria docente para la socialización de proyectos de investigación, vinculación y tesis doctorales, realizada el miércoles 10 de junio de 2026 (10h00–14h30).',
+      icon: '📢',
+      date: '2026-06-10',
+    },
+    {
+      id: 'convocatoria-estudiantes-delegados-10-junio-2026',
+      title: 'Convocatoria Estudiantes Delegados — Socialización 10 de junio del 2026',
+      filename: '2026_ConvocatoriaEstudiantesDelegados.pdf',
+      description: 'Convocatoria a estudiantes delegados para la socialización de proyectos de investigación, vinculación y tesis doctorales del 10 de junio de 2026, con registro fotográfico del evento.',
+      icon: '📢',
+      date: '2026-06-10',
+    },
   ],
   informes: [
     {
