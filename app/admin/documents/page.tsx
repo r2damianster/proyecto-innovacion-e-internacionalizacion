@@ -122,6 +122,14 @@ const documents = {
       icon: '📢',
       date: '2026-06-10',
     },
+    {
+      id: 'asistencia-capacitacion-redaccion-articulos-02-julio-2026',
+      title: 'Asistencia — Capacitación Redacción de Artículos Científicos, 2 de julio del 2026',
+      filename: '2026_AsistenciaCapacitacionRedaccionArticulosCientificos.pdf',
+      description: 'Registro de asistencia de la capacitación sobre redacción de artículos científicos, dictada por los docentes Jhonny Villafuerte y Arturo Rodríguez a la carrera de Lengua y Literatura, como contribución del proyecto PINE. Incluye registro fotográfico del evento.',
+      icon: '📢',
+      date: '2026-07-02',
+    },
   ],
   informes: [
     {

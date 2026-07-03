@@ -493,6 +493,17 @@ export const videos: Video[] = [
 
 export const news: News[] = [
   {
+    id: 'news_8',
+    title: 'Capacitación en Redacción de Artículos Científicos para la carrera de Lengua y Literatura',
+    content: 'Los docentes Jhonny Villafuerte y Arturo Rodríguez presentaron a la carrera de Lengua y Literatura sus experiencias y perspectivas sobre la redacción de artículos científicos, en el marco de una contribución del proyecto PINE realizada el 2 de julio de 2026.',
+    featured_image: '/images/Capacitacion-RedaccionArticulos-02Julio.jpeg',
+    published_date: '2026-07-02',
+    is_featured: true,
+    slug: 'capacitacion-redaccion-articulos-cientificos-lengua-literatura',
+    created: '2026-07-02T00:00:00Z',
+    updated: '2026-07-02T00:00:00Z',
+  },
+  {
     id: 'news_6',
     title: 'InterClass: Innovación Didáctica en Educación Inicial y Pedagogía de Idiomas',
     content: 'Una nueva InterClass reunió a las asignaturas de Innovación Didáctica en Educación Inicial, junto a la docente Lucy López Bermeo, y Pedagogía de Idiomas. Los estudiantes de Educación Inicial presentaron cuentos elaborados desde la asignatura de Literatura Infantil, compartiendo recursos didácticos creativos con sus compañeros de Pedagogía de Idiomas.',
