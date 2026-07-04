@@ -276,7 +276,7 @@ export const publications: Publication[] = [
   },
   {
     id: 'pub_72',
-    title: 'TikTok y los estudiantes de inglés a través de los diferentes grupos etarios: una revisión bibliográfica',
+    title: 'TikTok and English Language Learners Across age groups: A Bibliographic review',
     authors: 'Moreira Moreira, J. S., Orlando González, S. P., & Rodríguez Zambrano, A. D.',
     abstract: 'Revista Imaginario Social, 9(3).',
     publication_date: '2026-01-01',
