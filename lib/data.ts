@@ -489,6 +489,20 @@ export const videos: Video[] = [
     created: '2026-06-24T00:00:00Z',
     updated: '2026-06-24T00:00:00Z',
   },
+  {
+    id: 'video_14',
+    title: 'Voces Fuera del Aula | ¿Es mejor muchos o pocos amigos?',
+    youtube_url: 'https://youtu.be/oVvDY7nGv44',
+    description: 'Podcast Voces Fuera del Aula — Episodio sobre la cantidad y calidad de las amistades en el contexto educativo.',
+    embed_id: 'oVvDY7nGv44',
+    category: 'cat_2',
+    published_date: '2026-07-03',
+    order: 13,
+    is_featured: false,
+    tags: ['amistad', 'reflexion'],
+    created: '2026-07-03T00:00:00Z',
+    updated: '2026-07-03T00:00:00Z',
+  },
 ];
 
 export const news: News[] = [
