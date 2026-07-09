@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-type Doc = { id: string; title: string; filename: string; description: string; icon: string; date: string };
+type Doc = { id: string; title: string; filename: string; description: string; icon: string; date: string; period: string };
 
 function DocCard({ doc }: { doc: Doc }) {
   return (
@@ -8,7 +8,10 @@ function DocCard({ doc }: { doc: Doc }) {
       <div className="flex items-start space-x-4">
         <div className="text-5xl">{doc.icon}</div>
         <div className="flex-1">
-          <h3 className="text-xl font-semibold text-gray-900">{doc.title}</h3>
+          <div className="flex items-center gap-2">
+            <h3 className="text-xl font-semibold text-gray-900">{doc.title}</h3>
+            <span className="inline-block px-2 py-1 text-xs font-semibold bg-uleam-blue/10 text-uleam-blue rounded">{doc.period}</span>
+          </div>
           <p className="mt-1 text-xs text-gray-400 flex items-center gap-1">
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -49,20 +52,13 @@ function DocCard({ doc }: { doc: Doc }) {
 const documents = {
   proyecto: [
     {
-      id: 'acta-tecnica-reunion-01',
-      title: 'Acta Técnica de Reunión N°1 — 2025',
-      filename: '2025_ActaTecnicaReunion01.pdf',
-      description: 'Reasignación del liderazgo del proyecto e incorporación de nuevos integrantes al equipo. Regularización de la participación del Dr. Arturo Rodríguez Zambrano en el sistema institucional.',
-      icon: '📝',
-      date: '2025-05-22',
-    },
-    {
       id: 'ficha-presupuestaria',
       title: 'Ficha Presupuestaria 2025',
       filename: '2025_FICHA_PRESUPUESTARIA.pdf',
       description: 'Documento oficial de la ficha presupuestaria del proyecto 2025',
       icon: '💰',
       date: '2025-01-01',
+      period: '2025-1',
     },
     {
       id: 'proyecto-actualizado',
@@ -71,6 +67,16 @@ const documents = {
       description: 'Versión actualizada del proyecto de innovaciones pedagógicas e internacionalización',
       icon: '📄',
       date: '2025-01-01',
+      period: '2025-1',
+    },
+    {
+      id: 'acta-tecnica-reunion-01',
+      title: 'Acta Técnica de Reunión N°1 — 2025',
+      filename: '2025_ActaTecnicaReunion01.pdf',
+      description: 'Reasignación del liderazgo del proyecto e incorporación de nuevos integrantes al equipo. Regularización de la participación del Dr. Arturo Rodríguez Zambrano en el sistema institucional.',
+      icon: '📝',
+      date: '2025-05-22',
+      period: '2025-1',
     },
     {
       id: 'grupo-investigacion-2026',
@@ -79,6 +85,7 @@ const documents = {
       description: 'Actualización del grupo de investigación "Innovaciones pedagógicas para el desarrollo sostenible: inclusión, interculturalidad e interdisciplinaridad".',
       icon: '🔬',
       date: '2026-05-15',
+      period: '2026-1',
     },
   ],
   actividades: [
@@ -89,22 +96,7 @@ const documents = {
       description: 'Evento donde estudiantes y docentes universitarios y del colegio Juan Montalvo presentaron productos y estrategias de lectura creativa.',
       icon: '✍️',
       date: '2026-04-28',
-    },
-    {
-      id: 'acta-interclase-2-junio-2026',
-      title: 'Acta Interclase 2 — 2 de junio del 2026',
-      filename: '2026_ActaInterclase2_02Junio.pdf',
-      description: 'Acta de la sesión Interclase 2 donde se anunció el tema de la magia y se presentó el diagnóstico del proyecto.',
-      icon: '📝',
-      date: '2026-06-02',
-    },
-    {
-      id: 'acta-interclase-3-30-junio-2026',
-      title: 'Acta Interclase 3 — 30 de junio del 2026',
-      filename: '2026_ActaInterclase3_30Junio.pdf',
-      description: 'Convocatoria y registro de asistencia de la InterClass de Innovación Didáctica en Educación Inicial y Pedagogía de Idiomas, con la docente Lucy López Bermeo.',
-      icon: '📝',
-      date: '2026-06-30',
+      period: '2026-1',
     },
     {
       id: 'convocatoria-docentes-10-junio-2026',
@@ -113,6 +105,7 @@ const documents = {
       description: 'Convocatoria docente para la socialización de proyectos de investigación, vinculación y tesis doctorales, realizada el miércoles 10 de junio de 2026 (10h00–14h30).',
       icon: '📢',
       date: '2026-06-10',
+      period: '2026-1',
     },
     {
       id: 'convocatoria-estudiantes-delegados-10-junio-2026',
@@ -121,6 +114,25 @@ const documents = {
       description: 'Convocatoria a estudiantes delegados para la socialización de proyectos de investigación, vinculación y tesis doctorales del 10 de junio de 2026, con registro fotográfico del evento.',
       icon: '📢',
       date: '2026-06-10',
+      period: '2026-1',
+    },
+    {
+      id: 'acta-interclase-2-junio-2026',
+      title: 'Acta Interclase 2 — 2 de junio del 2026',
+      filename: '2026_ActaInterclase2_02Junio.pdf',
+      description: 'Acta de la sesión Interclase 2 donde se anunció el tema de la magia y se presentó el diagnóstico del proyecto.',
+      icon: '📝',
+      date: '2026-06-02',
+      period: '2026-1',
+    },
+    {
+      id: 'acta-interclase-3-30-junio-2026',
+      title: 'Acta Interclase 3 — 30 de junio del 2026',
+      filename: '2026_ActaInterclase3_30Junio.pdf',
+      description: 'Convocatoria y registro de asistencia de la InterClass de Innovación Didáctica en Educación Inicial y Pedagogía de Idiomas, con la docente Lucy López Bermeo.',
+      icon: '📝',
+      date: '2026-06-30',
+      period: '2026-1',
     },
     {
       id: 'asistencia-capacitacion-redaccion-articulos-02-julio-2026',
@@ -129,6 +141,7 @@ const documents = {
       description: 'Registro de asistencia de la capacitación sobre redacción de artículos científicos, dictada por los docentes Jhonny Villafuerte y Arturo Rodríguez a la carrera de Lengua y Literatura, como contribución del proyecto PINE. Incluye registro fotográfico del evento.',
       icon: '📢',
       date: '2026-07-02',
+      period: '2026-1',
     },
   ],
   informes: [
@@ -139,6 +152,7 @@ const documents = {
       description: 'Informe trimestral correspondiente al tercer trimestre de 2025 (julio-septiembre), período inicial del proyecto PINE.',
       icon: '📊',
       date: '2025-09-30',
+      period: '2025-2',
     },
     {
       id: 'informe-trimestral-oct-dic-2025',
@@ -147,6 +161,7 @@ const documents = {
       description: 'Informe trimestral correspondiente al cuarto trimestre de 2025 (octubre-diciembre), cierre del primer año del proyecto PINE.',
       icon: '📊',
       date: '2025-12-31',
+      period: '2025-2',
     },
     {
       id: 'informe-ejecutivo-drp-2025',
@@ -155,6 +170,7 @@ const documents = {
       description: 'Informe ejecutivo del proyecto durante 2025.',
       icon: '📄',
       date: '2025-12-31',
+      period: '2025-2',
     },
     {
       id: 'informe-actividades-abril-2026',
@@ -163,6 +179,7 @@ const documents = {
       description: 'Informe mensual de actividades del proyecto correspondiente a abril 2026.',
       icon: '📋',
       date: '2026-04-30',
+      period: '2026-1',
     },
     {
       id: 'informe-mensual-comision-mayo-2026',
@@ -171,6 +188,7 @@ const documents = {
       description: 'Informe mensual de comisión correspondiente a mayo 2026.',
       icon: '📋',
       date: '2026-05-31',
+      period: '2026-1',
     },
     {
       id: 'logo-grupo-investigacion-completo',
@@ -179,6 +197,7 @@ const documents = {
       description: 'Versión completa del logo del Grupo de Investigación (uso interno/oficial, no para difusión web).',
       icon: '🖼️',
       date: '2026-06-08',
+      period: '2026-1',
     },
   ],
 };
@@ -243,15 +262,34 @@ export default function DocumentsPage() {
         </div>
       </div>
 
-      {/* Informes Mensuales */}
+      {/* Informes por Período */}
       <div>
-        <h2 className="text-xl font-bold text-gray-700 mb-4 flex items-center gap-2">
-          <span>📊</span> Informes Mensuales
+        <h2 className="text-xl font-bold text-gray-700 mb-6 flex items-center gap-2">
+          <span>📊</span> Informes por Período Académico
         </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          {documents.informes.map((doc) => (
-            <DocCard key={doc.id} doc={doc} />
-          ))}
+
+        {/* Período 2025-2 (Sep-Ene) */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-gray-600 mb-4 pl-4 border-l-4 border-uleam-blue">
+            Período 2025-2 (Septiembre 2025 - Enero 2026)
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            {documents.informes.filter((doc) => doc.period === '2025-2').map((doc) => (
+              <DocCard key={doc.id} doc={doc} />
+            ))}
+          </div>
+        </div>
+
+        {/* Período 2026-1 (Ene-Ago) */}
+        <div>
+          <h3 className="text-lg font-semibold text-gray-600 mb-4 pl-4 border-l-4 border-uleam-blue">
+            Período 2026-1 (Enero 2026 - Agosto 2026)
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            {documents.informes.filter((doc) => doc.period === '2026-1').map((doc) => (
+              <DocCard key={doc.id} doc={doc} />
+            ))}
+          </div>
         </div>
       </div>
 
