@@ -133,6 +133,30 @@ const documents = {
   ],
   informes: [
     {
+      id: 'informe-trimestral-jul-sep-2025',
+      title: 'Informe Trimestral — Trimestre 3 (Julio-Septiembre 2025)',
+      filename: '__2025_3 INFORME TRIMESTRE JUL SEP_____.pdf',
+      description: 'Informe trimestral correspondiente al tercer trimestre de 2025 (julio-septiembre), período inicial del proyecto PINE.',
+      icon: '📊',
+      date: '2025-09-30',
+    },
+    {
+      id: 'informe-trimestral-oct-dic-2025',
+      title: 'Informe Trimestral — Trimestre 4 (Octubre-Diciembre 2025)',
+      filename: '__2025_4 INFORME TRIMESTRE OCT-DIC_____.pdf',
+      description: 'Informe trimestral correspondiente al cuarto trimestre de 2025 (octubre-diciembre), cierre del primer año del proyecto PINE.',
+      icon: '📊',
+      date: '2025-12-31',
+    },
+    {
+      id: 'informe-ejecutivo-drp-2025',
+      title: 'Informe Ejecutivo — DRP 2025',
+      filename: 'Informe-Ejetutivo-DRP.pdf',
+      description: 'Informe ejecutivo del proyecto durante 2025.',
+      icon: '📄',
+      date: '2025-12-31',
+    },
+    {
       id: 'informe-actividades-abril-2026',
       title: 'Informe de Actividades — Abril 2026',
       filename: '2026_InformeActividadesAbril.pdf',
