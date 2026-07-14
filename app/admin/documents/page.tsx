@@ -143,6 +143,15 @@ const documents = {
       date: '2026-07-02',
       period: '2026-1',
     },
+    {
+      id: 'informe-mensual-junio-2026',
+      title: 'Informe Mensual de Actividades — Junio 2026',
+      filename: '2026_InformeMensual_Junio.pdf',
+      description: 'Informe de actividades de la Comisión de Aseguramiento de la Calidad correspondiente a junio 2026. Detalla 6 actividades cumplidas: 3 publicaciones científicas, 2 eventos de socialización y 1 sesión académica. Dirigido a la carrera PINE.',
+      icon: '📋',
+      date: '2026-06-30',
+      period: '2026-1',
+    },
   ],
   informes: [
     {
