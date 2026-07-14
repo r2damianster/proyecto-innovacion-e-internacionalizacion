@@ -540,6 +540,20 @@ export const videos: Video[] = [
     created: '2026-07-03T00:00:00Z',
     updated: '2026-07-03T00:00:00Z',
   },
+  {
+    id: 'video_15',
+    title: 'Más allá del Lienzo: ¿Se puede separar la obra del artista? Un debate sobre arte, ética y cultura',
+    youtube_url: 'https://youtu.be/AyxDAmJGDDU',
+    description: 'Podcast Educa PINE — Debate interdisciplinario sobre arte, ética y cultura. ¿Es posible separar la obra del artista? Contribución colaborativa del proyecto PINE con disciplinas del arte y humanidades.',
+    embed_id: 'AyxDAmJGDDU',
+    category: 'cat_1',
+    published_date: '2026-07-14',
+    order: 12,
+    is_featured: false,
+    tags: ['arte', 'ética', 'cultura', 'interdisciplinario'],
+    created: '2026-07-14T00:00:00Z',
+    updated: '2026-07-14T00:00:00Z',
+  },
 ];
 
 export const news: News[] = [
