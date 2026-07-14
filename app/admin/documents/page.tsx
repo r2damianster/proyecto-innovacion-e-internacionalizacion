@@ -208,6 +208,15 @@ const documents = {
       date: '2026-07-13',
       period: '2026-1',
     },
+    {
+      id: 'informe-mensual-junio-2026',
+      title: 'Informe Mensual de Actividades — Junio 2026',
+      filename: '2026_InformeMensual_Junio-signed.pdf',
+      description: 'Informe mensual de la Comisión de Aseguramiento de la Calidad para junio 2026. Detalla 6 actividades cumplidas: 3 publicaciones científicas, 2 eventos de socialización y 1 sesión académica. Documento firmado.',
+      icon: '📋',
+      date: '2026-06-30',
+      period: '2026-1',
+    },
   ],
 };
 
