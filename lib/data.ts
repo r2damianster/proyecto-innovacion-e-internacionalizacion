@@ -554,6 +554,20 @@ export const videos: Video[] = [
     created: '2026-07-14T00:00:00Z',
     updated: '2026-07-14T00:00:00Z',
   },
+  {
+    id: 'video_16',
+    title: 'Voces fuera del aula: ¿El dinero compra la felicidad? ¿Qué haría si tuvieras 24 horas sin internet?',
+    youtube_url: 'https://youtu.be/1RZLqjS_RXA',
+    description: 'Podcast Voces Fuera del Aula — Episodio sobre felicidad, dinero y la dependencia de internet en la sociedad contemporánea.',
+    embed_id: '1RZLqjS_RXA',
+    category: 'cat_2',
+    published_date: '2026-07-14',
+    order: 14,
+    is_featured: false,
+    tags: ['dinero', 'felicidad', 'internet', 'reflexion'],
+    created: '2026-07-14T00:00:00Z',
+    updated: '2026-07-14T00:00:00Z',
+  },
 ];
 
 export const news: News[] = [
