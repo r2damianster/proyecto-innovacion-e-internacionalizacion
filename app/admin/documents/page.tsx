@@ -199,6 +199,15 @@ const documents = {
       date: '2026-06-08',
       period: '2026-1',
     },
+    {
+      id: 'informe-consolidado-eidpa-2026-1',
+      title: 'Informe Consolidado EIDPA 2026-1 — Funciones Sustantivas',
+      filename: '2026_1_Informe_Consolidado-signed.pdf',
+      description: 'Informe consolidado de cumplimiento de actividades de investigación y vinculación. Período: Enero-Junio 2026. Dirigido a la Comisión de Aseguramiento de la Calidad. Documento firmado y certificado.',
+      icon: '📑',
+      date: '2026-07-13',
+      period: '2026-1',
+    },
   ],
 };
 
