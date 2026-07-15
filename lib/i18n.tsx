@@ -81,6 +81,12 @@ const translations = {
         title: 'Red de Cooperación para la Investigación Científica sobre Lectura y Escritura Académica',
         description: 'Red interinstitucional que articula proyectos de investigación, publicaciones conjuntas y producción académica sobre lectura y escritura en contextos universitarios.',
       },
+      radioUleam: {
+        name: 'Radio ULEAM',
+        title: 'Radio ULEAM 101.7 FM',
+        description: 'Estación de radio de la Universidad Laica Eloy Alfaro de Manabí que difunde nuestros podcasts educativos en vivo. Síguenos en Facebook para acceder a los episodios transmitidos.',
+        url: 'https://www.facebook.com/uleamradio101.7',
+      },
     },
     activities: {
       sectionTitle: 'Galería de Actividades',
@@ -183,6 +189,12 @@ const translations = {
         name: 'RED LEA',
         title: 'Cooperation Network for Scientific Research on Academic Reading and Writing',
         description: 'An inter-institutional network articulating research projects, joint publications and academic production on reading and writing in university contexts.',
+      },
+      radioUleam: {
+        name: 'Radio ULEAM',
+        title: 'Radio ULEAM 101.7 FM',
+        description: 'Broadcasting station of the Eloy Alfaro Laica University of Manabí that broadcasts our educational podcasts live. Follow us on Facebook to access the broadcast episodes.',
+        url: 'https://www.facebook.com/uleamradio101.7',
       },
     },
     activities: {

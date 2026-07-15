@@ -5,7 +5,7 @@ import { useLanguage } from '@/lib/i18n';
 
 export default function ConnectionsSection() {
   const { t } = useLanguage();
-  const { group, redLea } = t.connections;
+  const { group, redLea, radioUleam } = t.connections;
 
   return (
     <section id="alianzas" className="py-10 md:py-20 bg-gray-50">
@@ -20,7 +20,7 @@ export default function ConnectionsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
             <div className="relative w-32 h-32 mb-5">
               <Image
@@ -56,6 +56,29 @@ export default function ConnectionsSection() {
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">{redLea.description}</p>
           </div>
+
+          <a
+            href={radioUleam.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col items-center text-center hover:shadow-xl transition-all cursor-pointer hover:border-uleam-blue"
+          >
+            <div className="relative w-32 h-32 mb-5">
+              <Image
+                src="/images/logo-radio-uleam.png"
+                alt={radioUleam.name}
+                fill
+                className="object-contain"
+              />
+            </div>
+            <span className="text-sm font-semibold text-uleam-gold uppercase tracking-wide mb-2">
+              {radioUleam.name}
+            </span>
+            <h3 className="text-lg font-bold text-uleam-blue mb-3 leading-snug">
+              {radioUleam.title}
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">{radioUleam.description}</p>
+          </a>
         </div>
       </div>
     </section>
