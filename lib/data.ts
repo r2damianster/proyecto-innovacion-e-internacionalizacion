@@ -344,6 +344,16 @@ export const videoCategories: VideoCategory[] = [
     created: '2026-06-05T00:00:00Z',
     updated: '2026-06-05T00:00:00Z',
   },
+  {
+    id: 'cat_4',
+    name: 'Más Allá del Lienzo',
+    slug: 'mas-alla-del-lienzo',
+    description: 'Debate interdisciplinario entre Pedagogía de Idiomas y Artes — arte, ética y cultura',
+    order: 4,
+    is_active: true,
+    created: '2026-07-14T00:00:00Z',
+    updated: '2026-07-14T00:00:00Z',
+  },
 ];
 
 export const videos: Video[] = [
@@ -544,9 +554,9 @@ export const videos: Video[] = [
     id: 'video_15',
     title: 'Más allá del Lienzo: ¿Se puede separar la obra del artista? Un debate sobre arte, ética y cultura',
     youtube_url: 'https://youtu.be/AyxDAmJGDDU',
-    description: 'Podcast Educa PINE — Debate interdisciplinario sobre arte, ética y cultura. ¿Es posible separar la obra del artista? Contribución colaborativa del proyecto PINE con disciplinas del arte y humanidades.',
+    description: 'Debate interdisciplinario sobre arte, ética y cultura. ¿Es posible separar la obra del artista? Colaboración entre Pedagogía de Idiomas y Artes del proyecto PINE.',
     embed_id: 'AyxDAmJGDDU',
-    category: 'cat_1',
+    category: 'cat_4',
     published_date: '2026-07-14',
     order: 12,
     is_featured: false,
