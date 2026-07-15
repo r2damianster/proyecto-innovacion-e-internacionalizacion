@@ -9,7 +9,8 @@
       "Read(//c/Program Files/Microsoft Office/root/Office16/**)",
       "Read(//c/Program Files/**)",
       "Read(//c/Program Files \\(x86\\)/**)",
-      "Bash(powershell.exe -Command \"Get-ChildItem C:\\\\tmp\\\\test_cert*\")"
+      "Bash(powershell.exe -Command \"Get-ChildItem C:\\\\tmp\\\\test_cert*\")",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
