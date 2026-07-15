@@ -63,6 +63,10 @@ const translations = {
     videos: {
       sectionTitle: 'Videos y Contenido Multimedia',
       filterAll: 'Todos',
+      productionTitle: '¿Cómo se produce nuestro podcast?',
+      productionText: 'Los episodios se transmiten en vivo por Radio ULEAM a través de Facebook. Luego se descargan y se publican en nuestro canal de YouTube "PINE Investigación", donde también se conectan con esta página web.',
+      productionFacebookCta: 'Radio ULEAM en Facebook',
+      productionYoutubeCta: 'Canal PINE en YouTube',
     },
     connections: {
       sectionTitle: 'Alianzas y Apoyo',
@@ -162,6 +166,10 @@ const translations = {
     videos: {
       sectionTitle: 'Videos and Multimedia Content',
       filterAll: 'All',
+      productionTitle: 'How is our podcast produced?',
+      productionText: 'Episodes are broadcast live by Radio ULEAM on Facebook. They are then downloaded and published on our YouTube channel "PINE Investigación", which also connects with this website.',
+      productionFacebookCta: 'Radio ULEAM on Facebook',
+      productionYoutubeCta: 'PINE YouTube Channel',
     },
     connections: {
       sectionTitle: 'Partnerships & Support',

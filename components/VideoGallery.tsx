@@ -116,6 +116,50 @@ export default function VideoGallery() {
           )}
         </div>
 
+        {/* Podcast Production Info */}
+        <div className="mb-8 md:mb-12 px-4 py-6 md:py-8 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start max-w-4xl mx-auto">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <img
+                src="/images/logo-radio-uleam.png"
+                alt="Radio ULEAM"
+                className="h-20 w-20 md:h-24 md:w-24 object-contain"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-xl md:text-2xl font-bold text-uleam-blue mb-3">
+                {t.videos.productionTitle}
+              </h3>
+              <p className="text-base text-gray-700 mb-4 leading-relaxed">
+                {t.videos.productionText}
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                <a
+                  href="https://www.facebook.com/uleamradio101.7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-5 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-all"
+                >
+                  f {t.videos.productionFacebookCta}
+                </a>
+                <a
+                  href="https://www.youtube.com/@PINEInvestigacion"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-5 py-2 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800 transition-all"
+                >
+                  ▶ {t.videos.productionYoutubeCta}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Category Filters */}
         {categories.length > 0 && (
           <div className="flex flex-wrap justify-center gap-3 mb-6 md:mb-10">
