@@ -11,7 +11,7 @@
 **Institución:** Universidad Laica Eloy Alfaro de Manabí (ULEAM)
 **Repositorio:** https://github.com/r2damianster/proyecto-innovacion-e-internacionalizacion.git
 **Versión actual:** 0.7.0
-**Última sesión:** 2026-06-23 (Sesión 12 — 2 nuevos videos + libro pub_71 + noticia news_5)
+**Última sesión:** 2026-07-21 (Sesión 13 — Diana Noemi Cedeño Sánchez agregada al equipo de podcast)
 
 ---
 
@@ -40,7 +40,7 @@
 | Middleware / Auth | ✅ Completo | 100% |
 | TypeScript Types | ✅ Completo | 100% |
 | Base de datos estática | ✅ data.ts + db.ts in-memory | 100% |
-| Miembros del equipo | ✅ 8 miembros (incluye equipo Podcast) | 100% |
+| Miembros del equipo | ✅ 9 miembros (incluye equipo Podcast) | 100% |
 | Publicaciones | ✅ 7 publicaciones (2 libros + 5 artículos) | 100% |
 | Videos / Podcast | ✅ 4 videos (Educa PINE + Voces Fuera del Aula) | 100% |
 | Compartir vía QR | ✅ QRFloatingButton + QRModal + QRPromoModal | 100% |
@@ -83,6 +83,13 @@
 - ✅ Publicaciones `pub_1` y `pub_2` retiradas; nueva `pub_63` agregada: "Transition from Regular English Instruction to Bilingual Education: An Experience Using Gamification" (Piloso-Cedeño & Villafuerte-Holguín, regional)
 - ✅ Fix: logo del Hero (256px) se solapaba con el texto del nav (`Inicio`, `Acerca de`, `Equipo`...) en pantallas PC de poca altura (~768px) — `Hero.tsx` ahora usa `pt-24 md:pt-28` para reservar espacio bajo el header; `Header.tsx` cambia `bg-transparent` por degradado translúcido (`from-uleam-blue/70...to-transparent backdrop-blur-sm`) y ajusta breakpoints del nombre/nav para que no se encimen en anchos medianos
 - ✅ PDF "Informe Mensual Comisión Mayo" agregado a `public/admin-assets/`
+
+---
+
+## Cambios Recientes (Sesión 13 — 2026-07-21)
+
+- ✅ `member_9`: Diana Noemi Cedeño Sánchez agregada como Estudiante Investigadora / Equipo de Podcast
+- ✅ Foto: `public/images/DianaNoemCedenoSanchez.jpeg`
 
 ---
 
@@ -161,6 +168,7 @@ proyecto-innovacion-e-internacionalizacion/   ← RAÍZ = Next.js app
 | member_6 | Josselyn Mera Rivas | Estudiante Investigadora / Equipo de Podcast | 6 |
 | member_8 | Ailys Jordana Bailón Borja | Estudiante Investigadora / Equipo de Podcast | 7 |
 | member_7 | Doménica Valeska Vélez Bravo | Equipo de Podcast | 8 |
+| member_9 | Diana Noemi Cedeño Sánchez | Estudiante Investigadora / Equipo de Podcast | 9 |
 
 ---
 
