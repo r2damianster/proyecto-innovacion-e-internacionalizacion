@@ -101,6 +101,18 @@ export const members: Member[] = [
     created: '2026-05-29T00:00:00Z',
     updated: '2026-05-29T00:00:00Z',
   },
+  {
+    id: 'member_9',
+    name: 'Diana Noemi Cedeño Sánchez',
+    role: 'Estudiante Investigadora / Equipo de Podcast',
+    orcid: '',
+    email: '',
+    photo: '/images/DianaNoemCedenoSanchez.jpeg',
+    is_leader: false,
+    order: 9,
+    created: '2026-07-21T00:00:00Z',
+    updated: '2026-07-21T00:00:00Z',
+  },
 ];
 
 export const publications: Publication[] = [
